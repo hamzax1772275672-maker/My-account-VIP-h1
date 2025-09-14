@@ -1,0 +1,268 @@
+
+/* Mobile-specific styles for better user experience */
+@media (max-width: 768px) {
+    /* Touch-friendly elements */
+    .btn, .add-to-cart, .nav-links a, .dropdown-item, .sub-category {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Improved touch targets for interactive elements */
+    .cart-icon, .account, .admin-panel, .points-balance {
+        padding: 10px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* Better mobile navigation */
+    .main-nav {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+
+    /* Mobile menu toggle */
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    /* Hide navigation by default on mobile */
+    .main-nav .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #232f3e;
+        flex-direction: column;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Show navigation when active */
+    .main-nav.active .nav-links {
+        display: flex;
+    }
+
+    /* Mobile dropdown improvements */
+    .dropdown-menu {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        width: 90%;
+        max-width: 300px;
+        margin: 0 auto;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Improved product cards for mobile */
+    .product-card {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    /* Mobile-friendly buttons */
+    .btn, .add-to-cart {
+        width: 100%;
+        max-width: 280px;
+        margin: 10px auto;
+        display: block;
+    }
+
+    /* Better spacing for mobile forms */
+    input, select, button {
+        margin-bottom: 15px;
+    }
+
+    /* Improved hero section for mobile */
+    .hero {
+        padding: 20px 0;
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        padding: 0 15px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    /* Better footer for mobile */
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    /* Mobile-friendly tables */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* Improved image handling */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Better modal dialogs for mobile */
+    .modal {
+        width: 95%;
+        max-width: 350px;
+        margin: 20px auto;
+    }
+
+    /* Mobile-friendly cards */
+    .card {
+        margin-bottom: 20px;
+    }
+
+    /* Better form inputs for mobile */
+    input, textarea, select {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    /* Improved tooltips for mobile */
+    .tooltip {
+        position: static;
+        margin-top: 5px;
+        display: block;
+    }
+
+    /* Better tabs for mobile */
+    .tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Better carousel for mobile */
+    .carousel {
+        touch-action: pan-y;
+    }
+
+    /* Mobile-optimized search */
+    .search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* Better category display */
+    .categories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    /* Better product grid */
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+
+    /* Better user actions display */
+    .user-actions {
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    /* Better cart icon */
+    .cart-icon {
+        position: relative;
+    }
+
+    .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: #ff9900;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+    }
+}
+
+/* Small mobile devices (320px - 380px) */
+@media (max-width: 380px) {
+    /* Compact layout for very small screens */
+    .container {
+        padding: 0 5px;
+    }
+
+    /* Even smaller text */
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    /* More compact buttons */
+    .btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    /* Compact navigation */
+    .nav-links a {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* Smaller logo */
+    .logo-img {
+        height: 40px;
+        width: 40px;
+    }
+
+    /* Compact user actions */
+    .user-actions > div {
+        margin: 2px;
+    }
+
+    /* Hide text on some buttons for space */
+    .hide-text-on-mobile span {
+        display: none;
+    }
+
+    /* More compact product cards */
+    .product-card {
+        padding: 10px;
+    }
+
+    /* Smaller images */
+    .category-img, .product-img {
+        height: 150px;
+    }
+
+    /* More compact form elements */
+    input, select, textarea {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
