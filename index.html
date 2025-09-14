@@ -1,0 +1,3519 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My account VIP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/cart-icon.css">
+    <link rel="stylesheet" href="css/simple-cart.css">
+    <link rel="stylesheet" href="css/notification.css">
+    <link rel="stylesheet" href="css/cart-count-fix.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Markazi+Text:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/cart-manager.js" defer></script>
+    <script src="js/cart-init.js" defer></script>
+    <script src="js/cart-click-fix.js" defer></script>
+    <script src="update-account-name-new.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="logo">
+                    <img src="Screenshot_20240920-لي.jpg" alt="My account VIP" class="logo-img">
+                    <div class="logo-text">
+                        <span class="account-text">My account <span class="vip-badge">VIP</span></span>
+                    </div>
+                </div>
+                <div class="search-bar" style="display: none;">
+                    <input type="text" placeholder="ابحث عن منتج...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-actions">
+                    <div class="language-selector">
+                        <select>
+                            <option>العربية</option>
+                            <option>English</option>
+                        </select>
+                    </div>
+                    <div class="account dropdown">
+                        <i class="fas fa-user"></i>
+                        <span>حسابي</span>
+                        <div class="dropdown-menu">
+                            <a href="login.html" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</a>
+                            <a href="register.html" class="dropdown-item"><i class="fas fa-user-plus"></i> تسجيل جديد</a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item" id="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                        </div>
+                    </div>
+
+                    <div class="points-balance">
+                        <div class="points-tooltip">كل نقطة ب1 دولار</div>
+                        <i class="fas fa-coins"></i>
+                        <span>رصيد النقاط: 0</span>
+                    </div>
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="admin-panel" id="adminPanel">
+                        <a href="admin.html" style="color: white; text-decoration: none;"><i class="fas fa-cog"></i>
+                        <span>الإدارة</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">الرئيسية</a></li>
+                    <li><a href="#categories">التصنيفات</a></li>
+                    <li><a href="#">العروض</a></li>
+                    <li><a href="#best-sellers">الأكثر مبيعاً</a></li>
+                    <li><a href="#">جديدنا</a></li>
+                    <li><a href="#">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-wave"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title" style="display: flex; justify-content: center; align-items: center; margin-top: -180px;">
+                    <div style="display: flex; align-items: center;">
+                        <img src="Screenshot_20240920-لي.jpg" alt="My account VIP" class="hero-logo-img">
+                        <span style="font-family: 'Markazi Text', 'Sedgwick Ave', cursive; margin-left: 10px; font-size: 1.2em; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">أهلاً بك في</span>
+                        <span style="font-family: 'Nova Mono', monospace; margin-left: 10px;">My account <span class="vip-badge" style="margin-left: 0; text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.4);">VIP</span></span>
+                    </div>
+                </h2>
+                <div style="text-align: center; margin-top: 10px;">
+                    <div style="display: inline-flex; align-items: center; justify-content: center; background-color: rgba(255, 255, 255, 0.2); border-radius: 50px; padding: 8px 20px; backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.3);">
+                        <i class="fas fa-user-circle" style="color: #fff; font-size: 24px; margin-left: 10px;"></i>
+                        <span id="username-display" style="color: #fff; font-size: 18px; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">مستخدم</span>
+                    </div>
+                </div>
+                <div style="position: absolute; bottom: -200px; left: 0; width: 100%; text-align: center; z-index: 2;">
+                    <p class="commission-text">ساعد التجار على رفع مبيعاتهم، واستفد من عمولات مجزية.تصل الى 50%</p>
+    <a href="#" class="btn">رصيد حسابي 0.00</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>شحن سريع</h3>
+                    <p>توصيل لجميع أنحاء المملكة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                    <h3>إرجاع مجاني</h3>
+                    <p>سهولة الإرجاع خلال 30 يوم</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>دفع آمن</h3>
+                    <p>طرق دفع آمنة ومتنوعة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>دعم على مدار الساعة</h3>
+                    <p>فريق دعم متاح دائماً لمساعدتك</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">التصنيفات</h2>
+            <div class="categories-grid">
+                <div class="category-card electronics-category">
+                    <a href="electronics2.html" style="text-decoration: none;">
+                        <div class="category-img">
+                            <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="إلكترونيات">
+                        </div>
+                        <h3>إلكترونيات</h3>
+                    </a>
+                    <div class="sub-categories">
+                        <a href="electronics2.html#smartphones" class="sub-category">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>هواتف ذكية</span>
+                        </a>
+                        <a href="electronics2.html#computers" class="sub-category">
+                            <i class="fas fa-laptop"></i>
+                            <span>أجهزة كمبيوتر</span>
+                        </a>
+                        <a href="electronics2.html#tvs" class="sub-category">
+                            <i class="fas fa-tv"></i>
+                            <span>تلفزيونات</span>
+                        </a>
+                        <a href="electronics2.html#cameras" class="sub-category">
+                            <i class="fas fa-camera"></i>
+                            <span>كاميرات</span>
+                        </a>
+                        <a href="electronics2.html#headphones" class="sub-category">
+                            <i class="fas fa-headphones"></i>
+                            <span>سماعات</span>
+                        </a>
+                        <a href="electronics2.html#videogames" class="sub-category">
+                            <i class="fas fa-gamepad"></i>
+                            <span>ألعاب فيديو</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="category-card fashion-category">
+                    <a href="fashion2.html" style="text-decoration: none;">
+                        <div class="category-img">
+                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="أزياء">
+                        </div>
+                        <h3>أزياء</h3>
+                    </a>
+                    <div class="sub-categories">
+                        <a href="fashion2.html#mens-fashion" class="sub-category">
+                            <i class="fas fa-male"></i>
+                            <span>أزياء رجالية</span>
+                        </a>
+                        <a href="fashion2.html#womens-fashion" class="sub-category">
+                            <i class="fas fa-female"></i>
+                            <span>أزياء نسائية</span>
+                        </a>
+                        <a href="fashion2.html#kids-fashion" class="sub-category">
+                            <i class="fas fa-child"></i>
+                            <span>أزياء أطفال</span>
+                        </a>
+                        <a href="fashion2.html#accessories" class="sub-category">
+                            <i class="fas fa-glasses"></i>
+                            <span>إكسسوارات</span>
+                        </a>
+                        <a href="fashion2.html#shoes" class="sub-category">
+                            <i class="fas fa-shoe-prints"></i>
+                            <span>أحذية</span>
+                        </a>
+                        <a href="fashion2.html#watches" class="sub-category">
+                            <i class="fas fa-clock"></i>
+                            <span>ساعات</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="category-card home-kitchen-category interactive-category">
+                    <a href="home_kitchen2.html" style="text-decoration: none;">
+                        <div class="category-img">
+                            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="منزل ومطبخ">
+                        </div>
+                        <h3>منزل ومطبخ</h3>
+                    </a>
+                    <div class="category-toggle" onclick="toggleSubCategories('home-kitchen')">
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="sub-categories" id="home-kitchen-subcategories">
+                        <a href="home_kitchen2.html#furniture" class="sub-category">
+                            <i class="fas fa-couch"></i>
+                            <span>أثاث منزلي</span>
+                        </a>
+                        <a href="home_kitchen2.html#kitchen-appliances" class="sub-category">
+                            <i class="fas fa-blender"></i>
+                            <span>أجهزة مطبخ</span>
+                        </a>
+                        <a href="home_kitchen2.html#kitchen-tools" class="sub-category">
+                            <i class="fas fa-utensils"></i>
+                            <span>أدوات مطبخ</span>
+                        </a>
+                        <a href="home_kitchen2.html#home-decor" class="sub-category">
+                            <i class="fas fa-home"></i>
+                            <span>ديكورات منزلية</span>
+                        </a>
+                        <a href="home_kitchen2.html#bedding" class="sub-category">
+                            <i class="fas fa-bed"></i>
+                            <span>أغطية ووسائد</span>
+                        </a>
+                        <a href="home_kitchen2.html#storage" class="sub-category">
+                            <i class="fas fa-archive"></i>
+                            <span>تخزين وتنظيم</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="category-card beauty-care-category">
+                    <a href="beauty_care2.html" style="text-decoration: none;">
+                        <div class="category-img">
+                            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="جمال وعناية">
+                        </div>
+                        <h3>جمال وعناية</h3>
+                    </a>
+                    <div class="category-toggle" onclick="toggleSubCategories('beauty-care')">
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="sub-categories" id="beauty-care-subcategories">
+                        <a href="beauty_care2.html#skincare" class="sub-category">
+                            <i class="fas fa-spa"></i>
+                            <span>العناية بالبشرة</span>
+                        </a>
+                        <a href="beauty_care2.html#makeup" class="sub-category">
+                            <i class="fas fa-palette"></i>
+                            <span>المكياج</span>
+                        </a>
+                        <a href="beauty_care2.html#haircare" class="sub-category">
+                            <i class="fas fa-cut"></i>
+                            <span>العناية بالشعر</span>
+                        </a>
+                        <a href="beauty_care2.html#fragrance" class="sub-category">
+                            <i class="fas fa-spray-can"></i>
+                            <span>العطور</span>
+                        </a>
+                        <a href="beauty_care2.html#menscare" class="sub-category">
+                            <i class="fas fa-male"></i>
+                            <span>العناية الرجالية</span>
+                        </a>
+                        <a href="beauty_care2.html#tools" class="sub-category">
+                            <i class="fas fa-magic"></i>
+                            <span>أدوات التجميل</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="best-sellers">
+        <div class="container">
+            <h2 class="section-title">المنتجات الأكثر مبيعاً</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/16093243/pexels-photo-16093243.jpeg" alt="ساعة يد">
+                        <span class="discount">-25%</span>
+
+                    </div>
+                    <h3>ساعة يد كلاسيكية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(56)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">89 ريال</span>
+                        <span class="old-price">119 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/1291685348/photo/mobile-battery-large-3d-rendering.jpg?b=1&s=612x612&w=0&k=20&c=wLLnbm1c4rxuNLj5w8V9GiEcGqFY7jFeloSFheiCmDo=" alt="شاحن متنقل">
+
+                    </div>
+                    <h3>شاحن متنقل بسعة 10000 مللي أمبير</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(92)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">95 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/1273858537/photo/set-of-black-non-stick-kitchen-utensils-on-a-white-background-pot-ladle-frying-pan-with-glass.jpg?b=1&s=612x612&w=0&k=20&c=SSWfAPL7OyyENti29sWcHH6dSH4l3zqBP5oDygxJMV4=" alt="مجموعة أواني طهي">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>مجموعة أواني طهي غير لاصقة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(75)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">125 ريال</span>
+                        <span class="old-price">147 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="سماعات لاسلكية">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>سماعات لاسلكية بلوتوث</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(42)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">199 ريال</span>
+                        <span class="old-price">249 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/7417513/pexels-photo-7417513.jpeg" alt="مرطب هواء">
+                    </div>
+                    <h3>مرطب هواء بالرذاذ البارد</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(63)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">210 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/13039122/pexels-photo-13039122.jpeg" alt="عطر">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>عطر رجالي شرقي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(118)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">225 ريال</span>
+                        <span class="old-price">250 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/4612149/pexels-photo-4612149.jpeg" alt="مجموعة عناية بالبشرة">
+                    </div>
+                    <h3>مجموعة عناية بالبشرة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(32)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">279 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3731256/pexels-photo-3731256.jpeg" alt="حقيبة ظهر للمدرسة">
+                    </div>
+                    <h3>حقيبة ظهر للمدرسة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(87)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">299 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/5706269/pexels-photo-5706269.jpeg" alt="حقيبة يد جلدية">
+                    </div>
+                    <h3>حقيبة يد جلدية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(128)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">349 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/33481395/pexels-photo-33481395.jpeg" alt="سماعات بلوتوث بإلغاء الضوضاء">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>سماعات بلوتوث بإلغاء الضوضاء</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(105)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">385 ريال</span>
+                        <span class="old-price">450 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/4498478/pexels-photo-4498478.jpeg" alt="ساعة ذكية لقياس النشاط">
+                    </div>
+                    <h3>ساعة ذكية لقياس النشاط</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(76)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">425 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/9040568/pexels-photo-9040568.jpeg" alt="كاميرا رقمية">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>كاميرا رقمية احترافية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(64)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">475 ريال</span>
+                        <span class="old-price">595 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/1921673/pexels-photo-1921673.jpeg" alt="غلاية كهربائية ذكية">
+                    </div>
+                    <h3>غلاية كهربائية ذكية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(93)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">525 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/5202922/pexels-photo-5202922.jpeg" alt="مكواة بخار محمولة">
+                    </div>
+                    <h3>مكواة بخار محمولة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(51)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">575 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/14438774/pexels-photo-14438774.jpeg" alt="شاحن لاسلكي للهاتف">
+                    </div>
+                    <h3>شاحن لاسلكي للهاتف</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(47)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">625 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/377711/pexels-photo-377711.jpeg" alt="سماعات لاسلكية احترافية">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>سماعات لاسلكية احترافية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(112)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">675 ريال</span>
+                        <span class="old-price">899 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/302894/pexels-photo-302894.jpeg" alt="ماكينة قهوة إسبريسو">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>ماكينة قهوة إسبريسو</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(85)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">725 ريال</span>
+                        <span class="old-price">850 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/30428420/pexels-photo-30428420.jpeg" alt="حاسوب محمول 15 بوصة">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>حاسوب محمول 15 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(203)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">825 ريال</span>
+                        <span class="old-price">915 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/33001499/pexels-photo-33001499.jpeg" alt="هاتف ذكي جديد">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>هاتف ذكي جديد</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(156)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">925 ريال</span>
+                        <span class="old-price">1155 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/4672162/pexels-photo-4672162.jpeg" alt="ساعة ذكية متطورة">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>ساعة ذكية متطورة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1025 ريال</span>
+                        <span class="old-price">1205 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/4348403/pexels-photo-4348403.jpeg" alt="جهاز لوحي احترافي">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>جهاز لوحي احترافي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(134)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1125 ريال</span>
+                        <span class="old-price">1499 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <!-- منتجات إضافية -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/5386754/pexels-photo-5386754.jpeg" alt="سلك شحن USB">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>سلك شحن USB</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(45)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">45 ريال</span>
+                        <span class="old-price">50 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/4709289/pexels-photo-4709289.jpeg" alt="غطاء هاتف">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>غطاء هاتف شفاف</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(78)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">60 ريال</span>
+                        <span class="old-price">75 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3945664/pexels-photo-3945664.jpeg" alt="سماعات أذن">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>سماعات أذن سلكية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(92)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">85 ريال</span>
+                        <span class="old-price">100 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/2041540/pexels-photo-2041540.jpeg" alt="شاحن متنقل">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>شاحن متنقل</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(123)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">120 ريال</span>
+                        <span class="old-price">160 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3738730/pexels-photo-3738730.jpeg" alt="كاميرا ويب">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>كاميرا ويب عالية الجودة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(67)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">160 ريال</span>
+                        <span class="old-price">200 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg" alt="ماوس لاسلكي">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>ماوس لاسلكي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">170 ريال</span>
+                        <span class="old-price">200 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/2115267/pexels-photo-2115267.jpeg" alt="لوحة مفاتيح">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>لوحة مفاتيح ميكانيكية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(89)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">225 ريال</span>
+                        <span class="old-price">250 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/373516/pexels-photo-373516.jpeg" alt="سماعات بلوتوث">
+                        <span class="discount">-30%</span>
+                    </div>
+                    <h3>سماعات بلوتوث مائية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(156)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">245 ريال</span>
+                        <span class="old-price">350 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/1367242/pexels-photo-1367242.jpeg" alt="كابل HDMI">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>كابل HDMI عالي الجودة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(34)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">280 ريال</span>
+                        <span class="old-price">350 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg" alt="حامل هاتف">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>حامل هاتف متعدد الزوايا</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(67)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">340 ريال</span>
+                        <span class="old-price">400 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/4709285/pexels-photo-4709285.jpeg" alt="شاشة حماية">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>شاشة حماية للهاتف</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(112)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">375 ريال</span>
+                        <span class="old-price">500 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/577586/pexels-photo-577586.jpeg" alt="لوحة رسوم">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>لوحة رسوم رقمية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(45)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">400 ريال</span>
+                        <span class="old-price">500 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/4050316/pexels-photo-4050316.jpeg" alt="ساعة حائط">
+                        <span class="discount">-30%</span>
+                    </div>
+                    <h3>ساعة حائط ذكية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(78)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">420 ريال</span>
+                        <span class="old-price">600 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/577587/pexels-photo-577587.jpeg" alt="طابعة">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>طابعة ليزر ملونة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(92)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">510 ريال</span>
+                        <span class="old-price">600 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/577588/pexels-photo-577588.jpeg" alt="كاميرا رقمية">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>كاميرا رقمية احترافية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(134)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">600 ريال</span>
+                        <span class="old-price">800 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/577589/pexels-photo-577589.jpeg" alt="جهاز بث مباشر">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>جهاز بث مباشر</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(67)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">680 ريال</span>
+                        <span class="old-price">850 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/577590/pexels-photo-577590.jpeg" alt="شاشة كمبيوتر">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>شاشة كمبيوتر 27 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(156)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">850 ريال</span>
+                        <span class="old-price">1000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/577591/pexels-photo-577591.jpeg" alt="جهاز ألعاب">
+                        <span class="discount">-30%</span>
+                    </div>
+                    <h3>جهاز ألعاب محمول</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">980 ريال</span>
+                        <span class="old-price">1400 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/577592/pexels-photo-577592.jpeg" alt="سماعات احترافية">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>سماعات احترافية للستوديو</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(203)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1050 ريال</span>
+                        <span class="old-price">1400 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/577593/pexels-photo-577593.jpeg" alt="هاتف محمول">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>هاتف محمول متطور</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(234)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1200 ريال</span>
+                        <span class="old-price">1500 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <!-- منتجات إضافية مرتفعة الثمن -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/4709288/pexels-photo-4709288.jpeg" alt="سماعات لاسلكية">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>سماعات لاسلكية احترافية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1350 ريال</span>
+                        <span class="old-price">1590 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/385684/pexels-photo-385684.jpeg" alt="كمبيوتر محمول">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>كمبيوتر محمول 14 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1425 ريال</span>
+                        <span class="old-price">1583 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/2042879/pexels-photo-2042879.jpeg" alt="شاشة كمبيوتر">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>شاشة كمبيوتر 27 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1520 ريال</span>
+                        <span class="old-price">1900 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/385681/pexels-photo-385681.jpeg" alt="جهاز لوحي">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>جهاز لوحي 12 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(123)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1615 ريال</span>
+                        <span class="old-price">1900 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg" alt="كاميرا احترافية">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>كاميرا احترافية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(298)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1725 ريال</span>
+                        <span class="old-price">2300 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg" alt="هاتف ذكي">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>هاتف ذكي متطور</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(342)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1800 ريال</span>
+                        <span class="old-price">2000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/2042878/pexels-photo-2042878.jpeg" alt="تلفزيون ذكي">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>تلفزيون ذكي 50 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(187)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">1920 ريال</span>
+                        <span class="old-price">2400 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/385682/pexels-photo-385682.jpeg" alt="حاسوب محمول">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>حاسوب محمول للألعاب</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(213)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">2040 ريال</span>
+                        <span class="old-price">2400 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780681/pexels-photo-3780681.jpeg" alt="ساعة ذكية">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>ساعة ذكية متطورة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(276)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">2160 ريال</span>
+                        <span class="old-price">2400 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780682/pexels-photo-3780682.jpeg" alt="طابعة متطورة">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>طابعة ليزر ملونة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(98)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">2250 ريال</span>
+                        <span class="old-price">3000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780683/pexels-photo-3780683.jpeg" alt="جهاز ألعاب">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>جهاز ألعاب احترافي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(356)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">2400 ريال</span>
+                        <span class="old-price">3000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780684/pexels-photo-3780684.jpeg" alt="كمبيوتر مكتبي">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر مكتبي متطور</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(178)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">2550 ريال</span>
+                        <span class="old-price">3000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780685/pexels-photo-3780685.jpeg" alt="تلفزيون ذكي">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>تلفزيون ذكي 65 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(289)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">2700 ريال</span>
+                        <span class="old-price">3600 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780686/pexels-photo-3780686.jpeg" alt="كاميرا فيديو">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>كاميرا فيديو احترافية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">2880 ريال</span>
+                        <span class="old-price">3600 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780687/pexels-photo-3780687.jpeg" alt="حاسوب محمول">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>حاسوب محمول للتصميم</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(234)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">3060 ريال</span>
+                        <span class="old-price">3600 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780688/pexels-photo-3780688.jpeg" alt="نظام صوتي">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>نظام صوتي منزلي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(167)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">3300 ريال</span>
+                        <span class="old-price">4400 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780689/pexels-photo-3780689.jpeg" alt="كمبيوتر مكتبي">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>كمبيوتر مكتبي للألعاب</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(312)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">3600 ريال</span>
+                        <span class="old-price">4500 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780690/pexels-photo-3780690.jpeg" alt="تلفزيون ذكي">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>تلفزيون ذكي 75 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(223)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">3825 ريال</span>
+                        <span class="old-price">4500 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780691/pexels-photo-3780691.jpeg" alt="حاسوب محمول">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>حاسوب محمول للعمل</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(278)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">4200 ريال</span>
+                        <span class="old-price">5600 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <!-- منتجات إضافية فاخرة -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/385685/pexels-photo-385685.jpeg" alt="كمبيوتر محمول فاخر">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر محمول فاخر</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">3750 ريال</span>
+                        <span class="old-price">4412 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/2042877/pexels-photo-2042877.jpeg" alt="تلفزيون ذكي كبير">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>تلفزيون ذكي 85 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">3900 ريال</span>
+                        <span class="old-price">4875 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780684/pexels-photo-3780684.jpeg" alt="نظام صوتي متطور">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>نظام صوتي متطور</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">4050 ريال</span>
+                        <span class="old-price">5400 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780685/pexels-photo-3780685.jpeg" alt="كمبيوتر مكتبي فائق">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر مكتبي فائق</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(298)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">4200 ريال</span>
+                        <span class="old-price">4941 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780686/pexels-photo-3780686.jpeg" alt="كاميرا احترافية متطورة">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>كاميرا احترافية متطورة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(342)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">4350 ريال</span>
+                        <span class="old-price">4833 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780687/pexels-photo-3780687.jpeg" alt="هاتف ذكي فاخر">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>هاتف ذكي فاخر</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(187)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">4500 ريال</span>
+                        <span class="old-price">5625 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780688/pexels-photo-3780688.jpeg" alt="جهاز لوحي فاخر">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>جهاز لوحي فاخر</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(213)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">4650 ريال</span>
+                        <span class="old-price">5471 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780689/pexels-photo-3780689.jpeg" alt="ساعة ذكية فاخرة">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>ساعة ذكية فاخرة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(276)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">4800 ريال</span>
+                        <span class="old-price">6400 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780690/pexels-photo-3780690.jpeg" alt="نظام ألعاب متطور">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>نظام ألعاب متطور</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(98)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">4950 ريال</span>
+                        <span class="old-price">6188 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780691/pexels-photo-3780691.jpeg" alt="شاشة كمبيوتر كبيرة">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>شاشة كمبيوتر 32 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(356)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">5100 ريال</span>
+                        <span class="old-price">6000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780692/pexels-photo-3780692.jpeg" alt="طابعة احترافية">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>طابعة احترافية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">5250 ريال</span>
+                        <span class="old-price">5833 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780693/pexels-photo-3780693.jpeg" alt="كمبيوتر محمول للأعمال">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>كمبيوتر محمول للأعمال</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">5400 ريال</span>
+                        <span class="old-price">7200 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780694/pexels-photo-3780694.jpeg" alt="تلفزيون ذكي فائق">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>تلفزيون ذكي فائق الجودة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">5550 ريال</span>
+                        <span class="old-price">6938 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780695/pexels-photo-3780695.jpeg" alt="كاميرا احترافية عالية">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كاميرا احترافية عالية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(298)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">5700 ريال</span>
+                        <span class="old-price">6706 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780696/pexels-photo-3780696.jpeg" alt="نظام صوتي فاخر">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>نظام صوتي فاخر</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(342)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">5850 ريال</span>
+                        <span class="old-price">6500 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780697/pexels-photo-3780697.jpeg" alt="جهاز لوحي احترافي">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>جهاز لوحي احترافي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(187)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">6000 ريال</span>
+                        <span class="old-price">8000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780698/pexels-photo-3780698.jpeg" alt="كمبيوتر مكتبي متطور">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>كمبيوتر مكتبي متطور</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(213)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">6150 ريال</span>
+                        <span class="old-price">7688 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780699/pexels-photo-3780699.jpeg" alt="ساعة ذكية احترافية">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>ساعة ذكية احترافية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(276)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">6300 ريال</span>
+                        <span class="old-price">7412 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780700/pexels-photo-3780700.jpeg" alt="نظام ألعاب فائق">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>نظام ألعاب فائق</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(98)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">6450 ريال</span>
+                        <span class="old-price">7167 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780701/pexels-photo-3780701.jpeg" alt="تلفزيون ذكي عملاق">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>تلفزيون ذكي عملاق</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(356)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">6600 ريال</span>
+                        <span class="old-price">8800 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <!-- منتجات إضافية مميزة -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780693/pexels-photo-3780693.jpeg" alt="كمبيوتر محمول مميز">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر محمول مميز</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">6600 ريال</span>
+                        <span class="old-price">7765 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780694/pexels-photo-3780694.jpeg" alt="تلفزيون ذكي مميز">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>تلفزيون ذكي 95 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">6750 ريال</span>
+                        <span class="old-price">8438 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780695/pexels-photo-3780695.jpeg" alt="نظام صوتي مميز">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>نظام صوتي مميز</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">6900 ريال</span>
+                        <span class="old-price">9200 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780696/pexels-photo-3780696.jpeg" alt="كمبيوتر مكتبي مميز">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر مكتبي مميز</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(298)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">7050 ريال</span>
+                        <span class="old-price">8294 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780697/pexels-photo-3780697.jpeg" alt="كاميرا مميزة">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>كاميرا مميزة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(342)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">7200 ريال</span>
+                        <span class="old-price">8000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780698/pexels-photo-3780698.jpeg" alt="هاتف ذكي مميز">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>هاتف ذكي مميز</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(187)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">7350 ريال</span>
+                        <span class="old-price">9188 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780699/pexels-photo-3780699.jpeg" alt="جهاز لوحي مميز">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>جهاز لوحي مميز</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(213)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">7500 ريال</span>
+                        <span class="old-price">8824 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780700/pexels-photo-3780700.jpeg" alt="ساعة ذكية مميزة">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>ساعة ذكية مميزة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(276)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">7650 ريال</span>
+                        <span class="old-price">10200 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780701/pexels-photo-3780701.jpeg" alt="نظام ألعاب مميز">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>نظام ألعاب مميز</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(98)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">7800 ريال</span>
+                        <span class="old-price">9750 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780702/pexels-photo-3780702.jpeg" alt="شاشة كمبيوتر مميزة">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>شاشة كمبيوتر 34 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(356)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">7950 ريال</span>
+                        <span class="old-price">9353 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780703/pexels-photo-3780703.jpeg" alt="طابعة مميزة">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>طابعة مميزة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">8100 ريال</span>
+                        <span class="old-price">9000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780704/pexels-photo-3780704.jpeg" alt="تلفزيون ذكي كبير">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>تلفزيون ذكي 100 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">8250 ريال</span>
+                        <span class="old-price">11000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780705/pexels-photo-3780705.jpeg" alt="كمبيوتر محمول احترافي">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>كمبيوتر محمول احترافي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">8400 ريال</span>
+                        <span class="old-price">10500 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780706/pexels-photo-3780706.jpeg" alt="نظام صوتي احترافي">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>نظام صوتي احترافي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(298)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">8550 ريال</span>
+                        <span class="old-price">10059 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780707/pexels-photo-3780707.jpeg" alt="كاميرا احترافية مميزة">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>كاميرا احترافية مميزة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(342)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">8700 ريال</span>
+                        <span class="old-price">9667 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780708/pexels-photo-3780708.jpeg" alt="هاتف ذكي احترافي">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>هاتف ذكي احترافي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(187)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">8850 ريال</span>
+                        <span class="old-price">11800 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780709/pexels-photo-3780709.jpeg" alt="جهاز لوحي احترافي">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>جهاز لوحي احترافي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(213)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">9000 ريال</span>
+                        <span class="old-price">11250 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780710/pexels-photo-3780710.jpeg" alt="ساعة ذكية احترافية">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>ساعة ذكية احترافية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(276)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">9150 ريال</span>
+                        <span class="old-price">10765 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780711/pexels-photo-3780711.jpeg" alt="نظام ألعاب احترافي">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>نظام ألعاب احترافي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(98)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">9300 ريال</span>
+                        <span class="old-price">10333 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780712/pexels-photo-3780712.jpeg" alt="شاشة كمبيوتر احترافية">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>شاشة كمبيوتر 38 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(356)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">9450 ريال</span>
+                        <span class="old-price">12600 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <!-- منتجات إضافية راقية -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780704/pexels-photo-3780704.jpeg" alt="كمبيوتر محمول راقي">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر محمول راقي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">9450 ريال</span>
+                        <span class="old-price">11118 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780705/pexels-photo-3780705.jpeg" alt="تلفزيون ذكي راقي">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>تلفزيون ذكي 120 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">9600 ريال</span>
+                        <span class="old-price">12000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780706/pexels-photo-3780706.jpeg" alt="نظام صوتي راقي">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>نظام صوتي راقي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">9750 ريال</span>
+                        <span class="old-price">13000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780707/pexels-photo-3780707.jpeg" alt="كمبيوتر مكتبي راقي">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر مكتبي راقي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(298)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">9900 ريال</span>
+                        <span class="old-price">11647 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780708/pexels-photo-3780708.jpeg" alt="كاميرا راقية">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>كاميرا راقية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(342)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">10050 ريال</span>
+                        <span class="old-price">11167 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780709/pexels-photo-3780709.jpeg" alt="هاتف ذكي راقي">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>هاتف ذكي راقي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(187)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">10200 ريال</span>
+                        <span class="old-price">12750 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780710/pexels-photo-3780710.jpeg" alt="جهاز لوحي راقي">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>جهاز لوحي راقي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(213)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">10350 ريال</span>
+                        <span class="old-price">12176 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780711/pexels-photo-3780711.jpeg" alt="ساعة ذكية راقية">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>ساعة ذكية راقية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(276)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">10500 ريال</span>
+                        <span class="old-price">14000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780712/pexels-photo-3780712.jpeg" alt="نظام ألعاب راقي">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>نظام ألعاب راقي</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(98)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">10650 ريال</span>
+                        <span class="old-price">13313 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780713/pexels-photo-3780713.jpeg" alt="شاشة كمبيوتر راقية">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>شاشة كمبيوتر 38 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(356)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">10800 ريال</span>
+                        <span class="old-price">12706 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780714/pexels-photo-3780714.jpeg" alt="طابعة راقية">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>طابعة راقية</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">10950 ريال</span>
+                        <span class="old-price">12167 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780715/pexels-photo-3780715.jpeg" alt="تلفزيون ذكي كبير جدا">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>تلفزيون ذكي 130 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">11100 ريال</span>
+                        <span class="old-price">14800 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780716/pexels-photo-3780716.jpeg" alt="كمبيوتر محمول فائق الجودة">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر محمول فائق الجودة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(298)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">11250 ريال</span>
+                        <span class="old-price">13235 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780717/pexels-photo-3780717.jpeg" alt="نظام صوتي فاخر">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>نظام صوتي فاخر</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">11400 ريال</span>
+                        <span class="old-price">14250 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780718/pexels-photo-3780718.jpeg" alt="كاميرا احترافية فاخرة">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>كاميرا احترافية فاخرة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(342)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">11550 ريال</span>
+                        <span class="old-price">12833 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780719/pexels-photo-3780719.jpeg" alt="هاتف ذكي فاخر جدا">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>هاتف ذكي فاخر جدا</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(187)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">11700 ريال</span>
+                        <span class="old-price">15600 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780720/pexels-photo-3780720.jpeg" alt="جهاز لوحي فاخر">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>جهاز لوحي فاخر</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(213)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">11850 ريال</span>
+                        <span class="old-price">13941 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780721/pexels-photo-3780721.jpeg" alt="ساعة ذكية فاخرة جدا">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>ساعة ذكية فاخرة جدا</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(276)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">12000 ريال</span>
+                        <span class="old-price">15000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <!-- منتجات إضافية فاخرة جداً -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780715/pexels-photo-3780715.jpeg" alt="كمبيوتر محمول فاخر جداً">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر محمول فاخر جداً</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">12300 ريال</span>
+                        <span class="old-price">14471 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780716/pexels-photo-3780716.jpeg" alt="تلفزيون ذكي فاخر جداً">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>تلفزيون ذكي 150 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">12450 ريال</span>
+                        <span class="old-price">15563 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780717/pexels-photo-3780717.jpeg" alt="نظام صوتي فاخر جداً">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>نظام صوتي فاخر جداً</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">12600 ريال</span>
+                        <span class="old-price">16800 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780718/pexels-photo-3780718.jpeg" alt="كمبيوتر مكتبي فاخر جداً">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر مكتبي فاخر جداً</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(298)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">12750 ريال</span>
+                        <span class="old-price">15000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780719/pexels-photo-3780719.jpeg" alt="كاميرا فاخرة جداً">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>كاميرا فاخرة جداً</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(342)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">12900 ريال</span>
+                        <span class="old-price">14333 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780720/pexels-photo-3780720.jpeg" alt="هاتف ذكي فاخر جداً">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>هاتف ذكي فاخر جداً</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(187)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">13050 ريال</span>
+                        <span class="old-price">16313 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780721/pexels-photo-3780721.jpeg" alt="جهاز لوحي فاخر جداً">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>جهاز لوحي فاخر جداً</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(213)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">13200 ريال</span>
+                        <span class="old-price">15529 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780722/pexels-photo-3780722.jpeg" alt="ساعة ذكية فاخرة جداً">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>ساعة ذكية فاخرة جداً</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(276)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">13350 ريال</span>
+                        <span class="old-price">17800 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780723/pexels-photo-3780723.jpeg" alt="نظام ألعاب فاخر جداً">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>نظام ألعاب فاخر جداً</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(98)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">13500 ريال</span>
+                        <span class="old-price">16875 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780724/pexels-photo-3780724.jpeg" alt="شاشة كمبيوتر فاخرة جداً">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>شاشة كمبيوتر 42 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(356)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">13650 ريال</span>
+                        <span class="old-price">16059 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780725/pexels-photo-3780725.jpeg" alt="طابعة فاخرة جداً">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>طابعة فاخرة جداً</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(189)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">13800 ريال</span>
+                        <span class="old-price">15333 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780726/pexels-photo-3780726.jpeg" alt="تلفزيون ذكي فائق">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>تلفزيون ذكي 160 بوصة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(267)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">13950 ريال</span>
+                        <span class="old-price">17438 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780727/pexels-photo-3780727.jpeg" alt="نظام صوتي فائق">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>نظام صوتي فائق</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(145)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">14100 ريال</span>
+                        <span class="old-price">18800 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780728/pexels-photo-3780728.jpeg" alt="كمبيوتر مكتبي فائق">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>كمبيوتر مكتبي فائق</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(298)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">14250 ريال</span>
+                        <span class="old-price">16765 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780729/pexels-photo-3780729.jpeg" alt="كاميرا فائقة">
+                        <span class="discount">-10%</span>
+                    </div>
+                    <h3>كاميرا فائقة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(342)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">14400 ريال</span>
+                        <span class="old-price">16000 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780730/pexels-photo-3780730.jpeg" alt="هاتف ذكي فائق">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>هاتف ذكي فائق</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(187)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">14550 ريال</span>
+                        <span class="old-price">18188 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780731/pexels-photo-3780731.jpeg" alt="جهاز لوحي فائق">
+                        <span class="discount">-15%</span>
+                    </div>
+                    <h3>جهاز لوحي فائق</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(213)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">14700 ريال</span>
+                        <span class="old-price">17294 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780732/pexels-photo-3780732.jpeg" alt="ساعة ذكية فائقة">
+                        <span class="discount">-25%</span>
+                    </div>
+                    <h3>ساعة ذكية فائقة</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(276)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">14850 ريال</span>
+                        <span class="old-price">19800 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/3780733/pexels-photo-3780733.jpeg" alt="نظام ألعاب فائق">
+                        <span class="discount">-20%</span>
+                    </div>
+                    <h3>نظام ألعاب فائق</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(98)</span>
+                    </div>
+                    <div class="price">
+                        <span class="current-price">15000 ريال</span>
+                        <span class="old-price">18750 ريال</span>
+                    </div>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>اشترك في نشرتنا البريدية</h2>
+                <p>احصل على أحدث العروض والخصومات الحصرية</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="أدخل بريدك الإلكتروني">
+                    <button type="submit" class="btn">اشترك</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>My account VIP</h3>
+                    <p>نمنحك تجربة تسوق فريدة مع تشكيلة واسعة من المنتجات عالية الجودة بأسعار تنافسية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">عن المتجر</a></li>
+                        <li><a href="#">المنتجات</a></li>
+                        <li><a href="#">المدونة</a></li>
+                        <li><a href="#">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>مساعدة</h3>
+                    <ul>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الشحن</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الخدمة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> info@aamaliamazon.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 My account VIP. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="notification-manager.js"></script>
+    <script src="script.js"></script>
+    <script src="update-account-name-new.js"></script>
+    <script src="interactive-categories.js"></script>
+    <script src="firebase-auth-check.js"></script>
+    <!-- Cart functionality removed -->
+    <script src="interactive-rating.js"></script>
+
+
+
+        /* Custom styles for balance buttons */
+        .balance-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            margin: 10px;
+            background: linear-gradient(135deg, #ff6d00, #ff8f00);
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 15px rgba(255, 109, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .balance-btn:hover {
+            background: linear-gradient(135deg, #ff8f00, #ffa000);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 109, 0, 0.4);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .balance-btn:active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .balance-btn i {
+            font-size: 22px;
+            margin-right: 10px;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+        }
+
+        .balance-btn:hover i {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
+        }
+
+        .balance-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .balance-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+            z-index: 1;
+        }
+
+        .balance-btn:hover::before {
+            left: 100%;
+        }
+
+        .balance-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: 0;
+        }
+
+        .balance-btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Add a glowing effect for extra visual appeal */
+        .balance-btn::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #2196f3, #03a9f4, #00bcd4, #2196f3);
+            border-radius: 50px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+            background-size: 400%;
+            animation: gradient-animation 15s linear infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .balance-btn:hover::after {
+            opacity: 1;
+        }
+
+        .points-balance {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            margin-right: 10px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+
+        .points-balance:hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .points-balance i {
+            font-size: 18px;
+            margin-left: 8px;
+            color: #ffc107;
+            transition: all 0.3s ease;
+        }
+
+        .points-balance span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            margin-right: 5px;
+        }
+
+        .points-balance:hover i {
+            transform: scale(1.1) rotate(10deg);
+            filter: drop-shadow(0 0 5px rgba(255, 193, 7, 0.5));
+        }
+
+
+        }
+
+        /* Custom styles for points tooltip */
+        .points-tooltip {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #212529;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 1;
+            visibility: visible;
+            transition: none;
+            margin-bottom: 5px;
+            z-index: 10;
+        }
+
+        .points-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #212529;
+        }
+
+        /* Custom styles for cart */
+        .cart {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            margin-right: 10px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .cart:hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .cart i {
+            font-size: 18px;
+            margin-left: 8px;
+            color: #495057;
+            transition: all 0.3s ease;
+        }
+
+        .cart span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            margin-right: 5px;
+        }
+
+        .cart:hover i {
+            transform: scale(1.1);
+            color: #343a40;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #ff6d00, #ff8f00);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            z-index: 10;
+            border: 2px solid white;
+        }
+
+        .cart-count.show {
+            transform: scale(1);
+        }
+
+        .cart-count.pulse {
+            animation: pulse 0.5s ease;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+    
+    <!-- السلة الجانبية -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h2>سلة التسوق</h2>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-container">
+            <!-- سيتم عرض عناصر السلة هنا بواسطة JavaScript -->
+        </div>
+    </div>
+</body>
+</html>

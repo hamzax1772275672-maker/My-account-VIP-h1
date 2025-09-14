@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سلة التسوق - My account VIP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/cart-icon.css">
+    <link rel="stylesheet" href="css/simple-cart.css">
+    <link rel="stylesheet" href="css/notification.css">
+    <link rel="stylesheet" href="css/cart-count-fix.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .cart-header {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cart-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #3498db, #2ecc71, #f1c40f, #e74c3c, #9b59b6);
+        }
+        
+        .cart-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-logo img {
+            height: 40px;
+            margin-left: 15px;
+        }
+        
+        .cart-logo h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cart-navigation {
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-navigation a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .cart-navigation a:hover {
+            color: #3498db;
+            transform: translateY(-2px);
+        }
+        
+        /* Cart Page Styles */
+        .cart-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .cart-page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .cart-page-header h2 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cart-page-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 3px;
+        }
+        
+        .cart-page-header p {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .cart-page-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .cart-items-section {
+            flex: 2;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .cart-items-section:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .cart-summary-section {
+            flex: 1;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            height: fit-content;
+            transition: all 0.3s ease;
+        }
+        
+        .cart-summary-section:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .cart-summary-section h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart-container {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .empty-cart-icon {
+            font-size: 100px;
+            color: #ddd;
+            margin-bottom: 25px;
+        }
+
+        .empty-cart-message {
+            font-size: 22px;
+            color: #777;
+            margin-bottom: 35px;
+        }
+
+        .continue-shopping-btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .continue-shopping-btn:hover {
+            background: linear-gradient(135deg, #2980b9, #21618c);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .cart-page-content {
+                flex-direction: column;
+            }
+
+            .cart-items-section,
+            .cart-summary-section {
+                flex: 100%;
+            }
+            
+            .cart-header-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .cart-logo {
+                margin-bottom: 15px;
+            }
+            
+            .cart-navigation {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .cart-navigation a {
+                margin: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- رأس الصفحة المحسن -->
+    <header class="cart-header">
+        <div class="cart-header-content">
+            <div class="cart-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <img src="Screenshot_20240920-لي.jpg" alt="My account VIP">
+                    <h1>My account VIP</h1>
+                </a>
+            </div>
+            <div class="cart-navigation">
+                <a href="index.html">الرئيسية</a>
+                <a href="products.html">المنتجات</a>
+                <a href="electronics2.html">الإلكترونيات</a>
+                <a href="fashion2.html">الأزياء</a>
+                <a href="beauty_care2.html">العناية بالجمال</a>
+                <a href="home_kitchen2.html">المنزل والمطبخ</a>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <a href="login.html">تسجيل الدخول</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- محتوى صفحة السلة -->
+    <div class="cart-page">
+        <div class="cart-page-header">
+            <h1>سلة التسوق</h1>
+        </div>
+
+        <div class="cart-page-content">
+            <div class="cart-items-section">
+                <div class="cart-container">
+                    <!-- سيتم عرض عناصر السلة هنا بواسطة JavaScript -->
+                </div>
+            </div>
+
+            <div class="cart-summary-section">
+                <h2>ملخص الطلب</h2>
+                <div class="cart-summary">
+                    <!-- سيتم عرض ملخص الطلب هنا بواسطة JavaScript -->
+                </div>
+
+                <div class="coupon-section">
+                    <input type="text" id="coupon-code" placeholder="أدخل كود الخصم">
+                    <button id="apply-coupon">تطبيق</button>
+                </div>
+
+                <div class="cart-actions">
+                    <button id="clear-cart">إفراغ السلة</button>
+                    <button id="checkout">إتمام الشراء</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="products.html">المنتجات</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الفئات</h3>
+                    <ul>
+                        <li><a href="electronics2.html">الإلكترونيات</a></li>
+                        <li><a href="fashion2.html">الأزياء</a></li>
+                        <li><a href="beauty_care2.html">العناية بالجمال</a></li>
+                        <li><a href="home_kitchen2.html">المنزل والمطبخ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p>البريد الإلكتروني: info@myaccountvip.com</p>
+                    <p>الهاتف: +966 12 345 6789</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 My account VIP. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- إضافة ملفات JavaScript -->
+    <script src="js/cart-manager.js"></script>
+    <script src="js/cart-init.js"></script>
+    <script src="js/cart-click-fix.js"></script>
+</body>
+</html>

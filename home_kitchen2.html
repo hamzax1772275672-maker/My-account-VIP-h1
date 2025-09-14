@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منزل ومطبخ - My account VIP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/cart-icon.css">
+    <link rel="stylesheet" href="css/simple-cart.css">
+    <link rel="stylesheet" href="css/notification.css">
+    <link rel="stylesheet" href="css/cart-count-fix.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Markazi+Text:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/cart-manager.js" defer></script>
+    <script src="js/cart-init.js" defer></script>
+    <script src="js/cart-click-fix.js" defer></script>
+    <style>
+        /* Custom styles for cart - Copied from index.html */
+        .cart {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            margin-right: 10px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .cart:hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .cart i {
+            font-size: 18px;
+            margin-left: 8px;
+            color: #495057;
+            transition: all 0.3s ease;
+        }
+
+        .cart span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            margin-right: 5px;
+        }
+
+        .cart:hover i {
+            transform: scale(1.1);
+            color: #343a40;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #ff6d00, #ff8f00);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            z-index: 10;
+            border: 2px solid white;
+        }
+
+        .cart-count.show {
+            transform: scale(1);
+        }
+
+        /* Rating System Styles */
+        .rating {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            direction: ltr;
+        }
+
+        .rating i {
+            font-size: 16px;
+            margin: 0 2px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .rating i.fas {
+            color: #ffc107;
+        }
+
+        .rating i.far {
+            color: #ddd;
+        }
+
+        .rating i.highlighted {
+            color: #ffc107;
+            transform: scale(1.1);
+        }
+
+        .rating-count {
+            font-size: 12px;
+            color: #666;
+            margin-right: 5px;
+        }
+
+        .rating-animation {
+            animation: pulse 0.5s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            color: white;
+            z-index: 1001;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+        }
+
+        .notification.success {
+            background-color: #4CAF50;
+        }
+
+        .notification.error {
+            background-color: #f44336;
+        }
+
+        .notification.info {
+            background-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="logo">
+                    <img src="Screenshot_20240920-لي.jpg" alt="My account VIP" class="logo-img">
+                    <div class="logo-text">
+                        <span class="account-text">My account <span class="vip-badge">VIP</span></span>
+                    </div>
+                </div>
+                <div class="search-bar" style="display: none;">
+                    <input type="text" placeholder="ابحث عن منتج...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-actions">
+                    <div class="language-selector">
+                        <select>
+                            <option>العربية</option>
+                            <option>English</option>
+                        </select>
+                    </div>
+                    <div class="account">
+                        <i class="fas fa-user"></i>
+                        <span>حسابي</span>
+                    </div>
+                    <div class="points-balance">
+                        <div class="points-tooltip">كل نقطه ب 1دولار</div>
+                        <i class="fas fa-coins"></i>
+                        <span>رصيد النقاط: 0</span>
+                    </div>
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="admin-panel" id="adminPanel" style="display: none;">
+                        <i class="fas fa-cog"></i>
+                        <span>الإدارة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#" class="active">التصنيفات</a></li>
+                    <li><a href="#">العروض</a></li>
+                    <li><a href="#">الأكثر مبيعاً</a></li>
+                    <li><a href="#">جديدنا</a></li>
+                    <li><a href="#">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home & Kitchen Categories Section -->
+    <section class="home-kitchen-categories">
+        <div class="container">
+            <h2 class="section-title">منزل ومطبخ</h2>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a> / <span>منزل ومطبخ</span>
+            </div>
+
+            <div class="home-kitchen-grid">
+                <!-- Furniture Category -->
+                <div class="home-kitchen-section" id="furniture">
+                    <h3><i class="fas fa-couch"></i> أثاث منزلي</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="كنبة">
+                            </div>
+                            <div class="product-info">
+                                <h4>كنبة KIVIK من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">1,299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&fit=crop" alt="طاولة">
+                            </div>
+                            <div class="product-info">
+                                <h4>طاولة طعام NORDEN من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">899 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://www.ikea.com/global/assets/range-categorisation/images/desk-desk-chairs-fu004.jpeg?imwidth=400%20loading=" alt="كرسي">
+                            </div>
+                            <div class="product-info">
+                                <h4>كرسي مكتب MARKUS من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1382525109/photo/attic-bedroom-interior.webp?a=1&b=1&s=612x612&w=0&k=20&c=3o3dWn0jIPgxcvJeMGPG9lBIfRphIcfxyWHxmZm3KjU=" alt="سرير">
+                            </div>
+                            <div class="product-info">
+                                <h4>سرير HEMNES من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">1,199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="خزانة">
+                            </div>
+                            <div class="product-info">
+                                <h4>خزانة PAX من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">1,599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/2187709387/photo/book-shelves-jam-packed.webp?a=1&b=1&s=612x612&w=0&k=20&c=znRNgUghwCYq0mXTNxXPT206TGu2aUrxeJZd7Qety0g=" alt="رف">
+                            </div>
+                            <div class="product-info">
+                                <h4>رف كتب BILLY من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://www.ikea.com/global/assets/range-categorisation/images/storage-organisation-st001.jpeg?imwidth=400%20loading=" alt="طاولة جانبية">
+                            </div>
+                            <div class="product-info">
+                                <h4>طاولة جانبية LACK من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=200&fit=crop" alt="كرسي">
+                            </div>
+                            <div class="product-info">
+                                <h4>كرسي POÄNG من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">399 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="طاولة تلفزيون">
+                            </div>
+                            <div class="product-info">
+                                <h4>طاولة تلفزيون BESTÅ من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">799 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="صوفا">
+                            </div>
+                            <div class="product-info">
+                                <h4>صوفا EKTORP من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">1,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=200&fit=crop" alt="طاولة كمبيوتر">
+                            </div>
+                            <div class="product-info">
+                                <h4>طاولة كمبيوتر LINNMON من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">249 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=200&fit=crop" alt="خزانة ملابس">
+                            </div>
+                            <div class="product-info">
+                                <h4>خزانة ملابس MALM من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">899 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&fit=crop" alt="طاولة قهوة">
+                            </div>
+                            <div class="product-info">
+                                <h4>طاولة قهوة HEMNES من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=200&fit=crop" alt="كرسي أكل">
+                            </div>
+                            <div class="product-info">
+                                <h4>كرسي أكل HENRIKSDAL من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=200&fit=crop" alt="مرتبة">
+                            </div>
+                            <div class="product-info">
+                                <h4>مرتبة HAUGESUND من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">1,099 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://www.ikea.com/global/assets/range-categorisation/images/baby-children-bc001.jpeg?imwidth=400%20loading=" alt="طاولة مساعدة">
+                            </div>
+                            <div class="product-info">
+                                <h4>طاولة مساعدة RÅSKOG من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://www.ikea.com/global/assets/range-categorisation/images/pots-plants-pp001.jpeg?imwidth=400%20loading=" alt="طاولة خروج">
+                            </div>
+                            <div class="product-info">
+                                <h4>طاولة خروج HEMNES من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=800&q=80&auto=webp" alt="كرسي هزاز">
+                            </div>
+                            <div class="product-info">
+                                <h4>كرسي هزاز POÄNG من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">449 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="خزانة كتب">
+                            </div>
+                            <div class="product-info">
+                                <h4>خزانة كتب HEMNES من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">799 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="طاولة زينة">
+                            </div>
+                            <div class="product-info">
+                                <h4>طاولة زينة MALM من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">399 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kitchen Appliances Category -->
+                <div class="home-kitchen-section" id="kitchen-appliances">
+                    <h3><i class="fas fa-blender"></i> أجهزة مطبخ</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/3992207/pexels-photo-3992207.jpeg" alt="مايكروويف">
+                            </div>
+                            <div class="product-info">
+                                <h4>مايكروويف Panasonic NN-DF386BBPQ</h4>
+                                <div class="product-price">
+                                    <span class="current-price">899 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=800&q=80" alt="خلاط">
+                            </div>
+                            <div class="product-info">
+                                <h4>خلاط كهربائي Philips Daily Collection</h4>
+                                <div class="product-price">
+                                    <span class="current-price">179 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ7LOaPoQHmI7Of5nUbS5sbGWAYow3SxaxmrjJ0qg2yI7BnfQKk_spXvHK-GPIK" alt="غسالة أطباق">
+                            </div>
+                            <div class="product-info">
+                                <h4>غسالة أطباق Bosch SMS46KI03I</h4>
+                                <div class="product-price">
+                                    <span class="current-price">1,899 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1583471800737-36d8e3a83ceb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Ym9zY2glMjBIQkE1MzRCUzAlMjBlbGVjdHJpYyUyMG92ZW58ZW58MHx8MHx8fDA%3D" alt="فرن">
+                            </div>
+                            <div class="product-info">
+                                <h4>فرن كهربائي Bosch HBA534BS0</h4>
+                                <div class="product-price">
+                                    <span class="current-price">1,599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1722603929403-de9e80c46a9a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U2Ftc3VuZyUyMFJUMzhLNTUzMlM4JTIwUmVmcmlnZXJhdG9yfGVufDB8fDB8fHww" alt="ثلاجة">
+                            </div>
+                            <div class="product-info">
+                                <h4>ثلاجة Samsung RT38K5532S8</h4>
+                                <div class="product-price">
+                                    <span class="current-price">2,299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/487415524/photo/blender.webp?a=1&b=1&s=612x612&w=0&k=20&c=ooVPdtK5dDH5aoo02ofEwbjR4Z-gBWHD37X5gkb-bXo=" alt="عصارة">
+                            </div>
+                            <div class="product-info">
+                                <h4>عصارة Philips HR1832/00</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1723259461381-59ab9fa18f5d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8RGFld29vJTIwS09SJTIwNkw3UiUyMG1pY3Jvd2F2ZSUyMG92ZW58ZW58MHx8MHx8fDA%3D" alt="فرن ميكروويف">
+                            </div>
+                            <div class="product-info">
+                                <h4>فرن ميكروويف Daewoo KOR-6L7R</h4>
+                                <div class="product-price">
+                                    <span class="current-price">249 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1205676410/photo/beating-of-homemade-mayonnaise-with-olive-oil-mix-ingredients-for-sauce-the-chef-uses-a.webp?a=1&b=1&s=612x612&w=0&k=20&c=YQmr4uVdeiY3VbO_GgXUHZUxrjGVZrPVxlvfenXULnc=" alt="خلاط">
+                            </div>
+                            <div class="product-info">
+                                <h4>خلاط يدوي Braun MQ5037WH</h4>
+                                <div class="product-price">
+                                    <span class="current-price">159 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1721274501976-144f45bfb1af?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U2Ftc3VuZyUyMFdXMTJLODQxMk9XJTIwd2FzaGluZyUyMG1hY2hpbmV8ZW58MHx8MHx8fDA%3D" alt="غسالة ملابس">
+                            </div>
+                            <div class="product-info">
+                                <h4>غسالة ملابس Samsung WW12K8412OW</h4>
+                                <div class="product-price">
+                                    <span class="current-price">2,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/964095278/photo/toaster-on-white-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=N2fD93YR3AaTTJ7DSxjdp1z5Ave7vmSsHBQItHyRDGY=" alt="محمصة خبز">
+                            </div>
+                            <div class="product-info">
+                                <h4>محمصة خبز Philips HD2582/90</h4>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1375211547/photo/hand-blender-set.webp?a=1&b=1&s=612x612&w=0&k=20&c=l5KMaZEDk3zPMjbu3kB_bQSopGqCUAq-t8VAa3HQADE=" alt="محضر طعام">
+                            </div>
+                            <div class="product-info">
+                                <h4>محضر طعام Moulinex FP8131</h4>
+                                <div class="product-price">
+                                    <span class="current-price">299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1470558023/photo/a-woman-draws-water-into-an-electric-kettle-in-the-background-of-the-kitchen-its-time-for.webp?a=1&b=1&s=612x612&w=0&k=20&c=_WJctqqHChgeqliUfJS7vpeT3fR2NBRhwCUSh2SVDBQ=" alt="غلاية كهربائية">
+                            </div>
+                            <div class="product-info">
+                                <h4>غلاية كهربائية Philips HD9350/90</h4>
+                                <div class="product-price">
+                                    <span class="current-price">99 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/2181033131/photo/close-up-of-chicken-wings-cooked-in-an-air-fryer-in-the-kitchen-juicy-chicken-wings-top-view.webp?a=1&b=1&s=612x612&w=0&k=20&c=WdojtR-ZP2qdRd7lfCUfT3esghILdecj17Les5gP4b4=" alt="فرن هوائي">
+                            </div>
+                            <div class="product-info">
+                                <h4>فرن هوائي Philips HD9630/90</h4>
+                                <div class="product-price">
+                                    <span class="current-price">399 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7936975/pexels-photo-7936975.jpeg" alt="خلاط عمودي">
+                            </div>
+                            <div class="product-info">
+                                <h4>خلاط عمودي Bosch MSM66110</h4>
+                                <div class="product-price">
+                                    <span class="current-price">229 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1307161789/photo/coffee-machine-is-preparing-latte-in-domestic-kitchen.webp?a=1&b=1&s=612x612&w=0&k=20&c=2Up10Jl1y-qlNx7nZIjmbWeGeR3zLMyvkQJx5S4sh_A=" alt="ماكينة قهوة">
+                            </div>
+                            <div class="product-info">
+                                <h4>ماكينة قهوة Philips HD7432/20</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8774416/pexels-photo-8774416.jpeg" alt="مجفف ملابس">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجفف ملابس Bosch WTWH7660SA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">2,199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7113840/pexels-photo-7113840.jpeg" alt="عصارة فواكه">
+                            </div>
+                            <div class="product-info">
+                                <h4>عصارة فواكه Panasonic MJ-L500</h4>
+                                <div class="product-price">
+                                    <span class="current-price">799 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1639161042430-2d5ebacc40b5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Qm9zY2glMjBUUlQwNTBNJTIwd2F0ZXIlMjBoZWF0ZXJ8ZW58MHx8MHx8fDA%3D" alt="سخان مياه">
+                            </div>
+                            <div class="product-info">
+                                <h4>سخان مياه Bosch TRT050M</h4>
+                                <div class="product-price">
+                                    <span class="current-price">349 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/38325/vacuum-cleaner-carpet-cleaner-housework-housekeeping-38325.jpeg" alt="مكنسة كهربائية">
+                            </div>
+                            <div class="product-info">
+                                <h4>مكنسة كهربائية Philips FC8784/01</h4>
+                                <div class="product-price">
+                                    <span class="current-price">899 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1219559088/photo/electric-oven.webp?a=1&b=1&s=612x612&w=0&k=20&c=lHAXJHlLqljWMsPECHYLu4BEF6FCExVqBOwLo4ApgIg=" alt="مقلاة هوائية">
+                            </div>
+                            <div class="product-info">
+                                <h4>مقلاة هوائية Philips HD9630/90</h4>
+                                <div class="product-price">
+                                    <span class="current-price">449 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kitchen Tools Category -->
+                <div class="home-kitchen-section" id="kitchen-tools">
+                    <h3><i class="fas fa-utensils"></i> أدوات مطبخ</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/5825374/pexels-photo-5825374.jpeg" alt="أواني طهي">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة أواني طهي Tefal Ingenio</h4>
+                                <div class="product-price">
+                                    <span class="current-price">699 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/29456115/pexels-photo-29456115.jpeg" alt="سكين">
+                            </div>
+                            <div class="product-info">
+                                <h4>سكين طاهي Zwilling Four Star</h4>
+                                <div class="product-price">
+                                    <span class="current-price">449 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/10821332/pexels-photo-10821332.jpeg" alt="أواني خبز">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة أواني خبز Pyrex</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/30946801/pexels-photo-30946801.jpeg" alt="خلاط">
+                            </div>
+                            <div class="product-info">
+                                <h4>خلاط كهربائي Philips Daily Collection</h4>
+                                <div class="product-price">
+                                    <span class="current-price">179 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1134562545/photo/knife-handles-on-white-background.jpg?b=1&s=612x612&w=0&k=20&c=hml-BDsgrzknTFKQ7rK2fiGj3ynoJUr8-_oo50KuNiE=" alt="مجموعة سكاكين">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة سكاكين Zwilling Twin Signature</h4>
+                                <div class="product-price">
+                                    <span class="current-price">799 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/5779887/pexels-photo-5779887.jpeg" alt="مقلاة">
+                            </div>
+                            <div class="product-info">
+                                <h4>مقلاة تيفال Expertise</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/132045739/photo/pressure-cooker.jpg?b=1&s=612x612&w=0&k=20&c=MHi60lvewbSapzjFTpcvEOfZ3fmZjbc0I-eKOoNB6s8=" alt="طنجرة">
+                            </div>
+                            <div class="product-info">
+                                <h4>طنجرة ضغط تيفال ClipsoMinut</h4>
+                                <div class="product-price">
+                                    <span class="current-price">299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/524998115/photo/cookers.jpg?b=1&s=612x612&w=0&k=20&c=cDaG-Ucv22jvkv-nWj_s6QxNtkQwje_cZkTeiL2S-Jo=" alt="مجموعة أواني">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة أواني ستانلس ستيل BergHOFF</h4>
+                                <div class="product-price">
+                                    <span class="current-price">599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/6794059/pexels-photo-6794059.jpeg" alt="لوح تقطيع">
+                            </div>
+                            <div class="product-info">
+                                <h4>لوح تقطيع خشبي Joseph Joseph</h4>
+                                <div class="product-price">
+                                    <span class="current-price">89 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/12904151/pexels-photo-12904151.jpeg" alt="مجموعة أدوات خبز">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة أدوات خبز OXO Good Grips</h4>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8522790/pexels-photo-8522790.jpeg" alt="شبكة شوي">
+                            </div>
+                            <div class="product-info">
+                                <h4>شبكة شوي Le Creuset</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/5987754/pexels-photo-5987754.jpeg" alt="مجموعة قوالب">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة قوالب خبز Silikomart</h4>
+                                <div class="product-price">
+                                    <span class="current-price">79 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7965895/pexels-photo-7965895.jpeg" alt="مجموعة مقاييس">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة مقاييس طهي Tefal</h4>
+                                <div class="product-price">
+                                    <span class="current-price">59 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/4397817/pexels-photo-4397817.jpeg" alt="مجموعة مغارف">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة مغارط مطبخ Zwilling</h4>
+                                <div class="product-price">
+                                    <span class="current-price">169 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1296351077/photo/homemade-pizza-with-salami-bacon-tomato-sauce-yellow-cheese-and-mozzarella-in-a-black.jpg?b=1&s=612x612&w=0&k=20&c=TWNcJ3aXm2zD5jTQ8azCTk_gdUBzSy5yC0XF16BkpQA=" alt="شواية">
+                            </div>
+                            <div class="product-info">
+                                <h4>شواية كهربائية Tefal Optigrill</h4>
+                                <div class="product-price">
+                                    <span class="current-price">399 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/5741101/pexels-photo-5741101.jpeg" alt="مبشرة">
+                            </div>
+                            <div class="product-info">
+                                <h4>مبشرة خضروات OXO Good Grips</h4>
+                                <div class="product-price">
+                                    <span class="current-price">49 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1427238778/photo/plate-with-shiny-silver-cutlery-on-grey-table-closeup.webp?a=1&b=1&s=612x612&w=0&k=20&c=gxfMJWcBPxl4tva70Sm8txh_i756wr5AqEPJYIaE-60=" alt="مجموعة شوكت">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة شوكت طعام Cuisinart</h4>
+                                <div class="product-price">
+                                    <span class="current-price">99 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Home Decor Category -->
+                <div class="home-kitchen-section" id="home-decor">
+                    <h3><i class="fas fa-home"></i> ديكورات منزلية</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/31575459/pexels-photo-31575459.jpeg" alt="ستائر">
+                            </div>
+                            <div class="product-info">
+                                <h4>ستائر HILJA من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://plus.unsplash.com/premium_photo-1725502483278-d44f4d2eebc6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUMzJTg1RFVNJTIwcnVnJTIwZnJvbSUyMElLRUF8ZW58MHx8MHx8fDA%3D" alt="سجادة">
+                            </div>
+                            <div class="product-info">
+                                <h4>سجادة ÅDUM من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://plus.unsplash.com/premium_photo-1681412205381-c0e9681bcbb8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8UGhpbGlwcyUyMEh1ZSUyMFdoaXRlJTIwYW5kJTIwQ29sb3IlMjBzbWFydCUyMGxpZ2h0aW5nfGVufDB8fDB8fHww" alt="إضاءة">
+                            </div>
+                            <div class="product-info">
+                                <h4>إضاءة ذكية Philips Hue White and Color</h4>
+                                <div class="product-price">
+                                    <span class="current-price">399 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1692719968175-fa5d03b10557?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RkVKS0ElMjBhcnRpZmljaWFsJTIwcGxhbnRzJTIwZnJvbSUyMElLRUF8ZW58MHx8MHx8fDA%3D" alt="نباتات اصطناعية">
+                            </div>
+                            <div class="product-info">
+                                <h4>نباتات اصطناعية FEJKA من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://plus.unsplash.com/premium_photo-1661310071084-d9529e66c181?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8RklTS0JPJTIwcGhvdG8lMjBmcmFtZSUyMGZyb20lMjBJS0VBfGVufDB8fDB8fHww" alt="إطار صور">
+                            </div>
+                            <div class="product-info">
+                                <h4>إطار صور FISKBO من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">19 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1675807526240-fb2e22e39048?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SE9WRVQlMjBtaXJyb3IlMjBmcm9tJTIwSUtFQXxlbnwwfHwwfHx8MA%3D%3D" alt="مرآة">
+                            </div>
+                            <div class="product-info">
+                                <h4>مرآة HOVET من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1740215181184-b4bb9a2ee90a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8TEFDSyUyMHNpZGUlMjB0YWJsZSUyMGZyb20lMjBJS0VBfGVufDB8fDB8fHww" alt="طاولة جانبية">
+                            </div>
+                            <div class="product-info">
+                                <h4>طاولة جانبية LACK من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1606799897614-0de68899e3df?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8U0FNTEElMjBzdG9yYWdlJTIwYm94JTIwZnJvbSUyMElLRUF8ZW58MHx8MHx8fDA%3D" alt="صندوق تخزين">
+                            </div>
+                            <div class="product-info">
+                                <h4>صندوق تخزين SAMLA من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">39 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/11200986/pexels-photo-11200986.jpeg" alt="شمعدان">
+                            </div>
+                            <div class="product-info">
+                                <h4>شمعدان BRODER من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">79 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/4050194/pexels-photo-4050194.jpeg" alt="ساعة حائط">
+                            </div>
+                            <div class="product-info">
+                                <h4>ساعة حائط STOMMA من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">59 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/245208/pexels-photo-245208.jpeg" alt="إطارات متعددة">
+                            </div>
+                            <div class="product-info">
+                                <h4>إطارات متعددة RIBBA من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">99 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33658460/pexels-photo-33658460.jpeg" alt="مصباح طاولة">
+                            </div>
+                            <div class="product-info">
+                                <h4>مصباح طاولة TERTIAL من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">79 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1705768049385-928add871059?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TklTU0VEQUwlMjBkZWNvcmF0aXZlJTIwbWlycm9yJTIwZnJvbSUyMElLRUF8ZW58MHx8MHx8fDA%3D" alt="مرآة ديكور">
+                            </div>
+                            <div class="product-info">
+                                <h4>مرآة ديكور NISSEDAL من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">49 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1699140034822-011cc2de9917?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fERSJUMzJTk2TkElMjBib3glMjBmcm9tJTIwSUtFQXxlbnwwfHwwfHx8MA%3D%3D" alt="صندوق">
+                            </div>
+                            <div class="product-info">
+                                <h4>صندوق DRÖNA من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">35 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/4916185/pexels-photo-4916185.jpeg" alt="حامل نباتات">
+                            </div>
+                            <div class="product-info">
+                                <h4>حامل نباتات BURMLIG من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">25 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/5546852/pexels-photo-5546852.jpeg" alt="لوحة فنية">
+                            </div>
+                            <div class="product-info">
+                                <h4>لوحة فنية FAMILJ من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">69 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8625717/pexels-photo-8625717.jpeg" alt="معلقات">
+                            </div>
+                            <div class="product-info">
+                                <h4>معلقات SKUGGIS من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">15 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/2462918/pexels-photo-2462918.jpeg" alt="مظلة ديكور">
+                            </div>
+                            <div class="product-info">
+                                <h4>مظلة ديكور PLOCKA من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">45 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/6624884/pexels-photo-6624884.jpeg" alt="مفرش طاولة">
+                            </div>
+                            <div class="product-info">
+                                <h4>مفرش طاولة VINTERFINT من IKEA</h4>
+                                <div class="product-price">
+                                    <span class="current-price">89 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>حول المتجر</h3>
+                    <p>متجر My account VIP يوفر أفضل المنتجات بأفضل الأسعار، مع خدمة عملاء مميزة وتوصيل سريع لجميع أنحاء المملكة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">المنتجات</a></li>
+                        <li><a href="#">العروض</a></li>
+                        <li><a href="#">من نحن</a></li>
+                        <li><a href="#">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>خدمة العملاء</h3>
+                    <ul>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                        <li><a href="#">طرق الدفع</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> info@myaccountvip.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 My account VIP. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="rating-system.js"></script>
+    <script src="add-rating-to-home-kitchen.js"></script>
+    
+    <!-- السلة الجانبية -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h2>سلة التسوق</h2>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-container">
+            <!-- سيتم عرض عناصر السلة هنا بواسطة JavaScript -->
+        </div>
+    </div>
+</body>
+</html>

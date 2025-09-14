@@ -1,0 +1,144 @@
+/* تنسيقات السلة البسيطة - عرض اسم المنتج وسعره فقط */
+
+.cart-items {
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+  background-color: #f9f9f9;
+}
+
+.item-details {
+  flex: 2;
+}
+
+.item-details h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+.item-price {
+  margin: 0;
+  font-size: 16px;
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.quantity-controls button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.quantity-controls button:hover {
+  background-color: #2980b9;
+}
+
+.quantity-controls span {
+  margin: 0 10px;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+.item-total {
+  flex: 1;
+  text-align: left;
+}
+
+.item-total p {
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.remove-item {
+  padding: 8px 15px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove-item:hover {
+  background-color: #c0392b;
+}
+
+.empty-cart-message {
+  text-align: center;
+  padding: 30px;
+  color: #7f8c8d;
+  font-size: 18px;
+}
+
+/* تنسيقات العداد */
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(231, 76, 60, 0.5);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.cart-count:empty {
+  display: none;
+}
+
+/* تنسيقات متجاوبة */
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .item-details {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .item-total {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

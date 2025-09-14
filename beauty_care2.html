@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عناية وجمال - My account VIP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/cart-icon.css">
+    <link rel="stylesheet" href="css/simple-cart.css">
+    <link rel="stylesheet" href="css/notification.css">
+    <link rel="stylesheet" href="css/cart-count-fix.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Markazi+Text:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/cart-manager.js" defer></script>
+    <script src="js/cart-init.js" defer></script>
+    <script src="js/cart-click-fix.js" defer></script>
+    <style>
+        /* Custom styles for cart - Copied from index.html */
+        .cart {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            margin-right: 10px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .cart:hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .cart i {
+            font-size: 18px;
+            margin-left: 8px;
+            color: #495057;
+            transition: all 0.3s ease;
+        }
+
+        .cart span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            margin-right: 5px;
+        }
+
+        .cart:hover i {
+            transform: scale(1.1);
+            color: #343a40;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #ff6d00, #ff8f00);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            z-index: 10;
+            border: 2px solid white;
+        }
+
+        .cart-count.show {
+            transform: scale(1);
+        }
+
+        /* Rating System Styles */
+        .rating {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            direction: ltr;
+        }
+
+        .rating i {
+            font-size: 16px;
+            margin: 0 2px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .rating i.fas {
+            color: #ffc107;
+        }
+
+        .rating i.far {
+            color: #ddd;
+        }
+
+        .rating i.highlighted {
+            color: #ffc107;
+            transform: scale(1.1);
+        }
+
+        .rating-count {
+            font-size: 12px;
+            color: #666;
+            margin-right: 5px;
+        }
+
+        .rating-animation {
+            animation: pulse 0.5s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            color: white;
+            z-index: 1001;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+        }
+
+        .notification.success {
+            background-color: #4CAF50;
+        }
+
+        .notification.error {
+            background-color: #f44336;
+        }
+
+        .notification.info {
+            background-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="logo">
+                    <img src="Screenshot_20240920-لي.jpg" alt="My account VIP" class="logo-img">
+                    <div class="logo-text">
+                        <span class="account-text">My account <span class="vip-badge">VIP</span></span>
+                    </div>
+                </div>
+                <div class="search-bar" style="display: none;">
+                    <input type="text" placeholder="ابحث عن منتج...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-actions">
+                    <div class="language-selector">
+                        <select>
+                            <option>العربية</option>
+                            <option>English</option>
+                        </select>
+                    </div>
+                    <div class="account">
+                        <i class="fas fa-user"></i>
+                        <span>حسابي</span>
+                    </div>
+                    <div class="points-balance">
+                        <div class="points-tooltip">كل نقطه ب 1دولار</div>
+                        <i class="fas fa-coins"></i>
+                        <span>رصيد النقاط: 0</span>
+                    </div>
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="admin-panel" id="adminPanel" style="display: none;">
+                        <i class="fas fa-cog"></i>
+                        <span>الإدارة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#" class="active">التصنيفات</a></li>
+                    <li><a href="#">العروض</a></li>
+                    <li><a href="#">الأكثر مبيعاً</a></li>
+                    <li><a href="#">جديدنا</a></li>
+                    <li><a href="#">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Beauty Care Categories Section -->
+    <section class="beauty-care-categories">
+        <div class="container">
+            <h2 class="section-title">عناية وجمال</h2>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a> / <span>عناية وجمال</span>
+            </div>
+
+            <div class="beauty-care-grid">
+                <!-- Skincare Category -->
+                <div class="beauty-care-section" id="skincare">
+                    <h3><i class="fas fa-spa"></i> العناية بالبشرة</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/2087954/pexels-photo-2087954.png" alt="غسول وجه Cetaphil">
+                            </div>
+                            <div class="product-info">
+                                <h4>غسول وجه Cetaphil</h4>
+                                <div class="product-price">
+                                    <span class="current-price">29 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/6847823/pexels-photo-6847823.jpeg" alt="تونر Simple">
+                            </div>
+                            <div class="product-info">
+                                <h4>تونر Simple</h4>
+                                <div class="product-price">
+                                    <span class="current-price">39 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/3059404/pexels-photo-3059404.jpeg" alt="قناع Freeman">
+                            </div>
+                            <div class="product-info">
+                                <h4>قناع Freeman</h4>
+                                <div class="product-price">
+                                    <span class="current-price">49 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/16615430/pexels-photo-16615430.jpeg" alt="كريم مرطب Nivea">
+                            </div>
+                            <div class="product-info">
+                                <h4>كريم مرطب Nivea</h4>
+                                <div class="product-price">
+                                    <span class="current-price">59 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/17053665/pexels-photo-17053665.jpeg" alt="واقي شمس Neutrogena">
+                            </div>
+                            <div class="product-info">
+                                <h4>واقي شمس Neutrogena</h4>
+                                <div class="product-price">
+                                    <span class="current-price">69 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7353843/pexels-photo-7353843.jpeg" alt="سيروم The Ordinary">
+                            </div>
+                            <div class="product-info">
+                                <h4>سيروم The Ordinary</h4>
+                                <div class="product-price">
+                                    <span class="current-price">79 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/11995228/pexels-photo-11995228.jpeg" alt="مقشر St. Ives">
+                            </div>
+                            <div class="product-info">
+                                <h4>مقشر St. Ives</h4>
+                                <div class="product-price">
+                                    <span class="current-price">89 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/3762871/pexels-photo-3762871.jpeg" alt="كريم عين Olay">
+                            </div>
+                            <div class="product-info">
+                                <h4>كريم عين Olay</h4>
+                                <div class="product-price">
+                                    <span class="current-price">99 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/27271453/pexels-photo-27271453.jpeg" alt="زيت وجه Bio-Oil">
+                            </div>
+                            <div class="product-info">
+                                <h4>زيت وجه Bio-Oil</h4>
+                                <div class="product-price">
+                                    <span class="current-price">109 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/6001500/pexels-photo-6001500.jpeg" alt="قناع ورقي Mediheal">
+                            </div>
+                            <div class="product-info">
+                                <h4>قناع ورقي Mediheal</h4>
+                                <div class="product-price">
+                                    <span class="current-price">119 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/28255122/pexels-photo-28255122.jpeg" alt="سيروم فيتامين سي L'Oréal">
+                            </div>
+                            <div class="product-info">
+                                <h4>سيروم فيتامين سي L'Oréal</h4>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/4612121/pexels-photo-4612121.jpeg" alt="كريم ليلي Garnier">
+                            </div>
+                            <div class="product-info">
+                                <h4>كريم ليلي Garnier</h4>
+                                <div class="product-price">
+                                    <span class="current-price">139 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/6633571/pexels-photo-6633571.jpeg" alt="مزيل مكياج Bioderma">
+                            </div>
+                            <div class="product-info">
+                                <h4>مزيل مكياج Bioderma</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/5240655/pexels-photo-5240655.jpeg" alt="كريم نهاري Vichy">
+                            </div>
+                            <div class="product-info">
+                                <h4>كريم نهاري Vichy</h4>
+                                <div class="product-price">
+                                    <span class="current-price">159 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/16650943/pexels-photo-16650943.jpeg" alt="سيروم حمض الهيالورونيك La Roche-Posay">
+                            </div>
+                            <div class="product-info">
+                                <h4>سيروم حمض الهيالورونيك La Roche-Posay</h4>
+                                <div class="product-price">
+                                    <span class="current-price">169 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7479673/pexels-photo-7479673.jpeg" alt="قناع طين Kiehl's">
+                            </div>
+                            <div class="product-info">
+                                <h4>قناع طين Kiehl's</h4>
+                                <div class="product-price">
+                                    <span class="current-price">179 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/14920158/pexels-photo-14920158.jpeg" alt="سيروم ريتينول Clinique">
+                            </div>
+                            <div class="product-info">
+                                <h4>سيروم ريتينول Clinique</h4>
+                                <div class="product-price">
+                                    <span class="current-price">189 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/16181772/pexels-photo-16181772.jpeg" alt="كريم مضاد للشيخوخة Estée Lauder">
+                            </div>
+                            <div class="product-info">
+                                <h4>كريم مضاد للشيخوخة Estée Lauder</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/2536965/pexels-photo-2536965.jpeg" alt="مجموعة عناية بالبشرة Shiseido">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة عناية بالبشرة Shiseido</h4>
+                                <div class="product-price">
+                                    <span class="current-price">209 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Makeup Category -->
+                <div class="beauty-care-section" id="makeup">
+                    <h3><i class="fas fa-palette"></i> المكياج</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33731189/pexels-photo-33731189.jpeg" alt="ماسكارا Maybelline">
+                            </div>
+                            <div class="product-info">
+                                <h4>ماسكارا Maybelline</h4>
+                                <div class="product-price">
+                                    <span class="current-price">39 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/18031823/pexels-photo-18031823.jpeg" alt="أحمر شفاه Rimmel">
+                            </div>
+                            <div class="product-info">
+                                <h4>أحمر شفاه Rimmel</h4>
+                                <div class="product-price">
+                                    <span class="current-price">49 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33753918/pexels-photo-33753918.jpeg" alt="آيلاينر L'Oréal">
+                            </div>
+                            <div class="product-info">
+                                <h4>آيلاينر L'Oréal</h4>
+                                <div class="product-price">
+                                    <span class="current-price">59 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/1115128/pexels-photo-1115128.jpeg" alt="برونزر NYX">
+                            </div>
+                            <div class="product-info">
+                                <h4>برونزر NYX</h4>
+                                <div class="product-price">
+                                    <span class="current-price">69 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33793986/pexels-photo-33793986.jpeg" alt="بلاشر Milani">
+                            </div>
+                            <div class="product-info">
+                                <h4>بلاشر Milani</h4>
+                                <div class="product-price">
+                                    <span class="current-price">79 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8128066/pexels-photo-8128066.jpeg" alt="كونسيلر Maybelline">
+                            </div>
+                            <div class="product-info">
+                                <h4>كونسيلر Maybelline</h4>
+                                <div class="product-price">
+                                    <span class="current-price">89 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/9620358/pexels-photo-9620358.jpeg" alt="هايلايتر Fenty Beauty">
+                            </div>
+                            <div class="product-info">
+                                <h4>هايلايter Fenty Beauty</h4>
+                                <div class="product-price">
+                                    <span class="current-price">99 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/12323034/pexels-photo-12323034.jpeg" alt="برايمر Smashbox">
+                            </div>
+                            <div class="product-info">
+                                <h4>برايمr Smashbox</h4>
+                                <div class="product-price">
+                                    <span class="current-price">109 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/1499517/pexels-photo-1499517.jpeg" alt="بودرة وجه MAC">
+                            </div>
+                            <div class="product-info">
+                                <h4>بودرة وجه MAC</h4>
+                                <div class="product-price">
+                                    <span class="current-price">119 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/12344805/pexels-photo-12344805.jpeg" alt="كريم أساس Dior">
+                            </div>
+                            <div class="product-info">
+                                <h4>كريم أساس Dior</h4>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/15567426/pexels-photo-15567426.jpeg" alt="مجموعة ظلال العيون Urban Decay">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة ظلال العيون Urban Decay</h4>
+                                <div class="product-price">
+                                    <span class="current-price">139 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/10189937/pexels-photo-10189937.jpeg" alt="مثبت مكياج Urban Decay">
+                            </div>
+                            <div class="product-info">
+                                <h4>مثبت مكياج Urban Decay</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/4938191/pexels-photo-4938191.jpeg" alt="أحمر شفاه سائل Huda Beauty">
+                            </div>
+                            <div class="product-info">
+                                <h4>أحمر شفاه سائل Huda Beauty</h4>
+                                <div class="product-price">
+                                    <span class="current-price">159 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/18996279/pexels-photo-18996279.jpeg" alt="كريم إضاءة Charlotte Tilbury">
+                            </div>
+                            <div class="product-info">
+                                <h4>كريم إضاءة Charlotte Tilbury</h4>
+                                <div class="product-price">
+                                    <span class="current-price">169 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/18996279/pexels-photo-18996279.jpeg" alt="بودرة تثبيت Make Up For Ever">
+                            </div>
+                            <div class="product-info">
+                                <h4>بودرة تثبيت Make Up For Ever</h4>
+                                <div class="product-price">
+                                    <span class="current-price">179 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8558256/pexels-photo-8558256.jpeg" alt="قلم حواجب Benefit">
+                            </div>
+                            <div class="product-info">
+                                <h4>قلم حواجب Benefit</h4>
+                                <div class="product-price">
+                                    <span class="current-price">189 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/3148938/pexels-photo-3148938.jpeg" alt="مجموعة مكياج Too Faced">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة مكياج Too Faced</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8365693/pexels-photo-8365693.jpeg" alt="بالتيت Chanel">
+                            </div>
+                            <div class="product-info">
+                                <h4>بالتيت Chanel</h4>
+                                <div class="product-price">
+                                    <span class="current-price">209 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/4540077/pexels-photo-4540077.jpeg" alt="مجموعة أحمر شفاه Tom Ford">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة أحمر شفاه Tom Ford</h4>
+                                <div class="product-price">
+                                    <span class="current-price">219 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hair Care Category -->
+                <div class="beauty-care-section" id="haircare">
+                    <h3><i class="fas fa-cut"></i> العناية بالشعر</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/5241037/pexels-photo-5241037.jpeg" alt="شامبو Head & Shoulders">
+                            </div>
+                            <div class="product-info">
+                                <h4>شامبو Head & Shoulders</h4>
+                                <div class="product-price">
+                                    <span class="current-price">29 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8467970/pexels-photo-8467970.jpeg" alt="بلسم Pantene">
+                            </div>
+                            <div class="product-info">
+                                <h4>بلسم Pantene</h4>
+                                <div class="product-price">
+                                    <span class="current-price">39 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7819721/pexels-photo-7819721.jpeg" alt="قناع شعر Garnier">
+                            </div>
+                            <div class="product-info">
+                                <h4>قناع شعر Garnier</h4>
+                                <div class="product-price">
+                                    <span class="current-price">49 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/10110225/pexels-photo-10110225.jpeg" alt="زيت شعر Argan">
+                            </div>
+                            <div class="product-info">
+                                <h4>زيت شعر Argan</h4>
+                                <div class="product-price">
+                                    <span class="current-price">59 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/28994388/pexels-photo-28994388.jpeg" alt="سيروم شعر L'Oréal">
+                            </div>
+                            <div class="product-info">
+                                <h4>سيروم شعر L'Oréal</h4>
+                                <div class="product-price">
+                                    <span class="current-price">69 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8467962/pexels-photo-8467962.jpeg" alt="رذاذ حماية حرارة Tresemmé">
+                            </div>
+                            <div class="product-info">
+                                <h4>رذاذ حماية حرارة Tresemmé</h4>
+                                <div class="product-price">
+                                    <span class="current-price">79 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7262414/pexels-photo-7262414.jpeg" alt="جفاف شامبو Batiste">
+                            </div>
+                            <div class="product-info">
+                                <h4>جفاف شامبو Batiste</h4>
+                                <div class="product-price">
+                                    <span class="current-price">89 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7440059/pexels-photo-7440059.jpeg" alt="كريم تصفيف Schwarzkopf">
+                            </div>
+                            <div class="product-info">
+                                <h4>كريم تصفيف Schwarzkopf</h4>
+                                <div class="product-price">
+                                    <span class="current-price">99 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/10574055/pexels-photo-10574055.jpeg" alt="مكيف عميق Dove">
+                            </div>
+                            <div class="product-info">
+                                <h4>مكيف عميق Dove</h4>
+                                <div class="product-price">
+                                    <span class="current-price">109 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/3738338/pexels-photo-3738338.jpeg" alt="مكواة شعر Philips">
+                            </div>
+                            <div class="product-info">
+                                <h4>مكواة شعر Philips</h4>
+                                <div class="product-price">
+                                    <span class="current-price">119 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/1321916/pexels-photo-1321916.jpeg" alt="صبغة شعر L'Oréal Excellence">
+                            </div>
+                            <div class="product-info">
+                                <h4>صبغة شعر L'Oréal Excellence</h4>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/3993471/pexels-photo-3993471.jpeg" alt="مجفف شعر Braun">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجفف شعر Braun</h4>
+                                <div class="product-price">
+                                    <span class="current-price">139 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8467960/pexels-photo-8467960.jpeg" alt="مكيف كيراتين Schwarzkopf">
+                            </div>
+                            <div class="product-info">
+                                <h4>مكيف كيراتين Schwarzkopf</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7818056/pexels-photo-7818056.png" alt="زيت أرغان Moroccanoil">
+                            </div>
+                            <div class="product-info">
+                                <h4>زيت أرغان Moroccanoil</h4>
+                                <div class="product-price">
+                                    <span class="current-price">159 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/3993467/pexels-photo-3993467.jpeg" alt="مجفف شعر احترافي Parlux">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجفف شعر احترافi Parlux</h4>
+                                <div class="product-price">
+                                    <span class="current-price">169 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/10318055/pexels-photo-10318055.jpeg" alt="مكواة تسوية GHD">
+                            </div>
+                            <div class="product-info">
+                                <h4>مكواة تسوية GHD</h4>
+                                <div class="product-price">
+                                    <span class="current-price">179 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7440062/pexels-photo-7440062.jpeg" alt="مجموعة عناية بالشعر Kerastase">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة عناية بالشعر Kerastase</h4>
+                                <div class="product-price">
+                                    <span class="current-price">189 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/16032298/pexels-photo-16032298.jpeg" alt="جهاز ازالة الشعر Philips Lumea">
+                            </div>
+                            <div class="product-info">
+                                <h4>جهاز ازالة الشعر Philips Lumea</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/696285/pexels-photo-696285.jpeg" alt="مجفف شعر Dyson Supersonic">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجفف شعر Dyson Supersonic</h4>
+                                <div class="product-price">
+                                    <span class="current-price">209 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fragrance Category -->
+                <div class="beauty-care-section" id="fragrance">
+                    <h3><i class="fas fa-spray-can"></i> العطور</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/16034366/pexels-photo-16034366.jpeg" alt="عطر نسائي Zara">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر نسائي Zara</h4>
+                                <div class="product-price">
+                                    <span class="current-price">49 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33764989/pexels-photo-33764989.jpeg" alt="عطر رجالي Adidas">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر رجالي Adidas</h4>
+                                <div class="product-price">
+                                    <span class="current-price">59 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/32018888/pexels-photo-32018888.jpeg" alt="عطر يونيسكس Calvin Klein">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر يونيسكس Calvin Klein</h4>
+                                <div class="product-price">
+                                    <span class="current-price">69 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/13599787/pexels-photo-13599787.jpeg" alt="عطر نسائي Bvlgari">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر نسائي Bvlgari</h4>
+                                <div class="product-price">
+                                    <span class="current-price">79 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/19190787/pexels-photo-19190787.jpeg" alt="عطر رجالي Hugo Boss">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر رجالي Hugo Boss</h4>
+                                <div class="product-price">
+                                    <span class="current-price">89 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7487833/pexels-photo-7487833.jpeg" alt="عطر يونيسكس Tom Ford">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر يونيسكس Tom Ford</h4>
+                                <div class="product-price">
+                                    <span class="current-price">99 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/9957554/pexels-photo-9957554.jpeg" alt="عطر نسائي Gucci">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر نسائي Gucci</h4>
+                                <div class="product-price">
+                                    <span class="current-price">109 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8747010/pexels-photo-8747010.jpeg" alt="عطر رجالي Armani">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر رجالي Armani</h4>
+                                <div class="product-price">
+                                    <span class="current-price">119 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33711973/pexels-photo-33711973.jpeg" alt="عطر يونيسكس Jo Malone">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر يونيسكس Jo Malone</h4>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/3067686/pexels-photo-3067686.jpeg" alt="عطر نسائي Dior">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر نسائي Dior</h4>
+                                <div class="product-price">
+                                    <span class="current-price">139 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/17461556/pexels-photo-17461556.jpeg" alt="عطر رجالي Versace">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر رجالي Versace</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/3785784/pexels-photo-3785784.jpeg" alt="عطر يونيسكس">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر يونيسكس Viktor&Rolf</h4>
+                                <div class="product-price">
+                                    <span class="current-price">159 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/28606627/pexels-photo-28606627.jpeg" alt="عطر نسائي Chanel">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر نسائي Chanel</h4>
+                                <div class="product-price">
+                                    <span class="current-price">169 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8516167/pexels-photo-8516167.jpeg" alt="عطر رجالي Creed">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر رجالي Creed</h4>
+                                <div class="product-price">
+                                    <span class="current-price">179 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33711973/pexels-photo-33711973.jpeg" alt="عطر يونيسكس Maison Margiela">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر يونيسكس Maison Margiela</h4>
+                                <div class="product-price">
+                                    <span class="current-price">189 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33200123/pexels-photo-33200123.jpeg" alt="عطر نسائي Clive Christian">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر نسائي Clive Christian</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/32817143/pexels-photo-32817143.jpeg" alt="عطر رجالي Amouage">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر رجالي Amouage</h4>
+                                <div class="product-price">
+                                    <span class="current-price">209 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/31847823/pexels-photo-31847823.jpeg" alt="عطر يونيسكس Byredo">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر يونيسكس Byredo</h4>
+                                <div class="product-price">
+                                    <span class="current-price">219 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/11028230/pexels-photo-11028230.jpeg" alt="مجموعة عطور Roja Parfums">
+                            </div>
+                            <div class="product-info">
+                                <h4>مجموعة عطور Roja Parfums</h4>
+                                <div class="product-price">
+                                    <span class="current-price">229 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Women Accessories Category -->
+                <div class="beauty-care-section" id="women-accessories">
+                    <h3><i class="fas fa-female"></i> اكسسوارات نسائية</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/13755908/pexels-photo-13755908.png" alt="أقراط ذهبية بسيطة">
+                            </div>
+                            <div class="product-info">
+                                <h4>أقراط ذهبية بسيطة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">39 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/1684113/pexels-photo-1684113.jpeg" alt="أساور سيليكون ملونة">
+                            </div>
+                            <div class="product-info">
+                                <h4>أساور سيليكون ملونة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">49 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/147637/pexels-photo-147637.jpeg" alt="قلادة فضية بسيطة">
+                            </div>
+                            <div class="product-info">
+                                <h4>قلادة فضية بسيطة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">59 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/13929357/pexels-photo-13929357.jpeg" alt="خواتم متعددة الألوان">
+                            </div>
+                            <div class="product-info">
+                                <h4>خواتم متعددة الألوان</h4>
+                                <div class="product-price">
+                                    <span class="current-price">69 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/9431865/pexels-photo-9431865.jpeg" alt="دبلة فضية أنيقة">
+                            </div>
+                            <div class="product-info">
+                                <h4>دبلة فضية أنيقة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">79 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33776624/pexels-photo-33776624.jpeg" alt="ساعة يد نسائية">
+                            </div>
+                            <div class="product-info">
+                                <h4>ساعة يد نسائية</h4>
+                                <div class="product-price">
+                                    <span class="current-price">89 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/31459472/pexels-photo-31459472.jpeg" alt="طقم مجوهرات كامل">
+                            </div>
+                            <div class="product-info">
+                                <h4>طقم مجوهرات كامل</h4>
+                                <div class="product-price">
+                                    <span class="current-price">99 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/20039818/pexels-photo-20039818.jpeg" alt="شرائط شعر متنوعة">
+                            </div>
+                            <div class="product-info">
+                                <h4>شرائط شعر متنوعة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">109 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/4515450/pexels-photo-4515450.jpeg" alt="مشابك شعر فاخرة">
+                            </div>
+                            <div class="product-info">
+                                <h4>مشابك شعر فاخرة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">119 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/32677241/pexels-photo-32677241.jpeg" alt="نظارة شمس نسائية">
+                            </div>
+                            <div class="product-info">
+                                <h4>نظارة شمس نسائية</h4>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/12568810/pexels-photo-12568810.jpeg" alt="حقيبة كتف صغيرة">
+                            </div>
+                            <div class="product-info">
+                                <h4>حقيبة كتف صغيرة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">139 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/4464822/pexels-photo-4464822.jpeg" alt="وشاح حريري أنيق">
+                            </div>
+                            <div class="product-info">
+                                <h4>وشاح حريري أنيق</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/32837682/pexels-photo-32837682.jpeg" alt="قلادة ذهبية مطعمة">
+                            </div>
+                            <div class="product-info">
+                                <h4>قلادة ذهبية مطعمة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">159 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/10828766/pexels-photo-10828766.jpeg" alt="أساور ذهبية متداخلة">
+                            </div>
+                            <div class="product-info">
+                                <h4>أساور ذهبية متداخلة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">169 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/6044222/pexels-photo-6044222.jpeg" alt="حقيبة يد جلدية">
+                            </div>
+                            <div class="product-info">
+                                <h4>حقيبة يد جلدية</h4>
+                                <div class="product-price">
+                                    <span class="current-price">179 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33690484/pexels-photo-33690484.jpeg" alt="ساعة ذكية نسائية">
+                            </div>
+                            <div class="product-info">
+                                <h4>ساعة ذكية نسائية</h4>
+                                <div class="product-price">
+                                    <span class="current-price">189 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7541801/pexels-photo-7541801.jpeg" alt="طقم أقراط ماسية">
+                            </div>
+                            <div class="product-info">
+                                <h4>طقم أقراط ماسية</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/17426951/pexels-photo-17426951.jpeg" alt="حقيبة ظهر جلدية">
+                            </div>
+                            <div class="product-info">
+                                <h4>حقيبة ظهر جلدية</h4>
+                                <div class="product-price">
+                                    <span class="current-price">209 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/29503017/pexels-photo-29503017.jpeg" alt="طقم مجوهرات ذهبية">
+                            </div>
+                            <div class="product-info">
+                                <h4>طقم مجوهرات ذهبية</h4>
+                                <div class="product-price">
+                                    <span class="current-price">219 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Women Jewelry Category -->
+                <div class="beauty-care-section" id="women-jewelry">
+                    <h3><i class="fas fa-gem"></i> مجوهرات نسائية</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/15799269/pexels-photo-15799269.jpeg" alt="أقراط فضية صغيرة">
+                            </div>
+                            <div class="product-info">
+                                <h4>أقراط فضية صغيرة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">59 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/6046164/pexels-photo-6046164.jpeg" alt="قلادة فضية بسيطة">
+                            </div>
+                            <div class="product-info">
+                                <h4>قلادة فضية بسيطة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">69 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/13726607/pexels-photo-13726607.jpeg" alt="خاتم فضي بسيط">
+                            </div>
+                            <div class="product-info">
+                                <h4>خاتم فضي بسيط</h4>
+                                <div class="product-price">
+                                    <span class="current-price">79 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/8182269/pexels-photo-8182269.jpeg" alt="أسورة فضية رفيعة">
+                            </div>
+                            <div class="product-info">
+                                <h4>أسورة فضية رفيعة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">89 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/4291121/pexels-photo-4291121.jpeg" alt="دبلة فضية مزينة">
+                            </div>
+                            <div class="product-info">
+                                <h4>دبلة فضية مزينة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">99 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7250143/pexels-photo-7250143.png" alt="طقم أقراط ذهبية">
+                            </div>
+                            <div class="product-info">
+                                <h4>طقم أقراط ذهبية</h4>
+                                <div class="product-price">
+                                    <span class="current-price">109 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/6153885/pexels-photo-6153885.jpeg" alt="قلادة ذهبية خفيفة">
+                            </div>
+                            <div class="product-info">
+                                <h4>قلادة ذهبية خفيفة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">119 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33756878/pexels-photo-33756878.jpeg" alt="خواتم ذهبية رفيعة">
+                            </div>
+                            <div class="product-info">
+                                <h4>خواتم ذهبية رفيعة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/3641059/pexels-photo-3641059.jpeg" alt="أسورة ذهبية متينة">
+                            </div>
+                            <div class="product-info">
+                                <h4>أسورة ذهبية متينة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">139 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7130033/pexels-photo-7130033.jpeg" alt="دبلة ذهبية عيار 18">
+                            </div>
+                            <div class="product-info">
+                                <h4>دبلة ذهبية عيار 18</h4>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/16082503/pexels-photo-16082503.jpeg" alt="طقم مجوهرات فضية">
+                            </div>
+                            <div class="product-info">
+                                <h4>طقم مجوهرات فضية</h4>
+                                <div class="product-price">
+                                    <span class="current-price">159 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/7134460/pexels-photo-7134460.jpeg" alt="قلادة ذهبية مطعمة بالألماس">
+                            </div>
+                            <div class="product-info">
+                                <h4>قلادة ذهبية مطعمة بالألماس</h4>
+                                <div class="product-price">
+                                    <span class="current-price">169 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/33717668/pexels-photo-33717668.jpeg" alt="أسورة ذهبية مطعمة">
+                            </div>
+                            <div class="product-info">
+                                <h4>أسورة ذهبية مطعمة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">179 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/13595298/pexels-photo-13595298.jpeg" alt="أقراط ذهبية مطعمة">
+                            </div>
+                            <div class="product-info">
+                                <h4>أقراط ذهبية مطعمة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">189 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/29502435/pexels-photo-29502435.jpeg" alt="طقم مجوهرات ذهبية">
+                            </div>
+                            <div class="product-info">
+                                <h4>طقم مجوهرات ذهبية</h4>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/10983782/pexels-photo-10983782.jpeg" alt="قلادة ماسية فاخرة">
+                            </div>
+                            <div class="product-info">
+                                <h4>قلادة ماسية فاخرة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">209 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/2879829/pexels-photo-2879829.jpeg" alt="أسورة ماسية أنيقة">
+                            </div>
+                            <div class="product-info">
+                                <h4>أسورة ماسية أنيقة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">219 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/10983783/pexels-photo-10983783.jpeg" alt="أقراط ماسية فاخرة">
+                            </div>
+                            <div class="product-info">
+                                <h4>أقراط ماسية فاخرة</h4>
+                                <div class="product-price">
+                                    <span class="current-price">229 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/30746014/pexels-photo-30746014.jpeg" alt="طقم مجوهرات ماسي">
+                            </div>
+                            <div class="product-info">
+                                <h4>طقم مجوهرات ماسي</h4>
+                                <div class="product-price">
+                                    <span class="current-price">239 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>My account VIP</h3>
+                    <p>نمنحك تجربة تسوق فريدة مع تشكيلة واسعة من المنتجات عالية الجودة بأسعار تنافسية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="#">من نحن</a></li>
+                        <li><a href="#">المنتجات</a></li>
+                        <li><a href="#">العروض</a></li>
+                        <li><a href="#">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>خدمة العملاء</h3>
+                    <ul>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الشحن</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</p>
+                        <p><i class="fas fa-phone"></i> +966 50 123 4567</p>
+                        <p><i class="fas fa-envelope"></i> info@myaccountvip.com</p>
+                    </div>
+                    <div class="newsletter">
+                        <h4>اشترك في نشرتنا البريدية</h4>
+                        <form>
+                            <input type="email" placeholder="بريدك الإلكتروني">
+                            <button type="submit">اشترك</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 My account VIP. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="rating-system.js"></script>
+    <script src="add-rating-to-beauty-care.js"></script>
+    
+    <!-- السلة الجانبية -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h2>سلة التسوق</h2>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-container">
+            <!-- سيتم عرض عناصر السلة هنا بواسطة JavaScript -->
+        </div>
+    </div>
+</body>
+</html>

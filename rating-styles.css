@@ -1,0 +1,60 @@
+
+/* Enhanced Rating Styles */
+.rating {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    direction: ltr;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.rating:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.rating i {
+    font-size: 16px;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.rating i.highlighted {
+    transform: scale(1.1);
+}
+
+.rating .rating-count {
+    font-size: 14px;
+    color: #666;
+    margin-right: 8px;
+    font-weight: 500;
+}
+
+.rating-animation {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Notification styles */
+.notification {
+    font-family: 'Cairo', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 250px;
+    max-width: 350px;
+}
+
+.notification::before {
+    content: "✓";
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}

@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأزياء - My account VIP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/cart-icon.css">
+    <link rel="stylesheet" href="css/simple-cart.css">
+    <link rel="stylesheet" href="css/notification.css">
+    <link rel="stylesheet" href="css/cart-count-fix.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Markazi+Text:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/cart-manager.js" defer></script>
+    <script src="js/cart-init.js" defer></script>
+    <script src="js/cart-click-fix.js" defer></script>
+    <style>
+        /* Custom styles for cart - Copied from index.html */
+        .cart {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            margin-right: 10px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .cart:hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .cart i {
+            font-size: 18px;
+            margin-left: 8px;
+            color: #495057;
+            transition: all 0.3s ease;
+        }
+
+        .cart span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            margin-right: 5px;
+        }
+
+        .cart:hover i {
+            transform: scale(1.1);
+            color: #343a40;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #ff6d00, #ff8f00);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            z-index: 10;
+            border: 2px solid white;
+        }
+
+        .cart-count.show {
+            transform: scale(1);
+        }
+
+        /* Rating System Styles */
+        .rating {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            direction: ltr;
+        }
+
+        .rating i {
+            font-size: 16px;
+            margin: 0 2px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .rating i.fas {
+            color: #ffc107;
+        }
+
+        .rating i.far {
+            color: #ddd;
+        }
+
+        .rating i.highlighted {
+            color: #ffc107;
+            transform: scale(1.1);
+        }
+
+        .rating-count {
+            font-size: 12px;
+            color: #666;
+            margin-right: 5px;
+        }
+
+        .rating-animation {
+            animation: pulse 0.5s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            color: white;
+            z-index: 1001;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+        }
+
+        .notification.success {
+            background-color: #4CAF50;
+        }
+
+        .notification.error {
+            background-color: #f44336;
+        }
+
+        .notification.info {
+            background-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="logo">
+                    <img src="Screenshot_20240920-لي.jpg" alt="My account VIP" class="logo-img">
+                    <div class="logo-text">
+                        <span class="account-text">My account <span class="vip-badge">VIP</span></span>
+                    </div>
+                </div>
+                <div class="search-bar" style="display: none;">
+                    <input type="text" placeholder="ابحث عن منتج...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-actions">
+                    <div class="language-selector">
+                        <select>
+                            <option>العربية</option>
+                            <option>English</option>
+                        </select>
+                    </div>
+                    <div class="account">
+                        <i class="fas fa-user"></i>
+                        <span>حسابي</span>
+                    </div>
+                    <div class="points-balance">
+                        <div class="points-tooltip">كل نقطه ب 1دولار</div>
+                        <i class="fas fa-coins"></i>
+                        <span>رصيد النقاط: 0</span>
+                    </div>
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="admin-panel" id="adminPanel" style="display: none;">
+                        <i class="fas fa-cog"></i>
+                        <span>الإدارة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#" class="active">التصنيفات</a></li>
+                    <li><a href="#">العروض</a></li>
+                    <li><a href="#">الأكثر مبيعاً</a></li>
+                    <li><a href="#">جديدنا</a></li>
+                    <li><a href="#">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Fashion Categories Section -->
+    <section class="fashion-categories">
+        <div class="container">
+            <h2 class="section-title">الأزياء</h2>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a> / <span>الأزياء</span>
+            </div>
+
+            <div class="fashion-grid">
+                <!-- Men's Fashion Category -->
+                <div class="fashion-section" id="mens-fashion">
+                    <h3><i class="fas fa-male"></i> أزياء رجالية</h3>
+                    <div class="products-grid">
+                        <!-- المنتج 1 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTeXU8aMOPxPEvyhXHDTkMKGse7iT7MwfeAN5ybTmxgWm9g4Hhm91doqUS7KdVu" alt="قميص رسمي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>قميص رسمي من Hugo Boss</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-1">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">499 ريال</span>
+                                    <span class="old-price">649 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 2 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQfMzKHDXjzsR6kt8I34nDP1JDtrqvzAKNamlUSKnmJtie2JxwhTc-d3IeOdNNY" alt="بنطال جينز" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>بنطال جينز من Levi's</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-2">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">399 ريال</span>
+                                    <span class="old-price">499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 3 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuCnLjZJUzZLKZ_wePhKD1N8iE8ozy9CKTsxRZhVDXuflEw58nUPzU8Zlvc74K" alt="بليزر" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                     </div>
+                            <div class="product-info">
+                                <h4>بليزر من Zara</h4>
+
+                                <div class="product-price">
+                                    <span class="current-price">349 ريال</span>
+                                    <span class="old-price">449 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 4 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSUogwhGjB5_WeYzRMnCciVZxqPdW5j-AM_5LOQJeeIytNuuVtZ-3HgaSGhOGs6" alt="تي شيرت من Nike" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>تي شيرت من Nike</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-4">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                    <span class="old-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 5 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI-yq_LDeDqAD3iH2TGhlkdVTiTuUKZoz9ty3Jfs6Xh8-tO5_5CTLKlDCHQt7x" alt="حذاء رسمي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>حذاء رسمي من Aldo</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-5">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">449 ريال</span>
+                                    <span class="old-price">599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 6 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhyiLKo8kIFq6A6T0q643SttqomzRfX8UOUoQ5xuPB5I_JL9uqfl2WH02iBitT" alt="ساعة كلاسيكية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>ساعة كلاسيكية من Tissot</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-6">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">1,299 ريال</span>
+                                    <span class="old-price">1,599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 7 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuBpSJopLZl33z-qd8v5wlNT_CIhb1NSLow1nyzHZPoOF5kN3--dgxfjIAJT_" alt="نظارة شمسية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>نظارة شمسية من Ray-Ban</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-7">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">599 ريال</span>
+                                    <span class="old-price">749 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 8 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWSnepE1bplA7sjbYewD1QT6ze5WYTR9S71LcMipj8SlA_0_n4Ikl_O_E2eqXF" alt="حزام جلد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>حزام جلد من Gucci</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-8">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">899 ريال</span>
+                                    <span class="old-price">1,199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 9 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSmXayP6XJ5nc5aNQ2ADZsN1hTGxKoXomfJ0_rY0pEMxE3zprJ1tCl5I2mAYVjA" alt="محفظة جلد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>محفظة جلد من Tommy Hilfiger</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-9">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">299 ريال</span>
+                                    <span class="old-price">399 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 10 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoha9e83klKVcAcMguGAceSMzd-SkBA5xjsb-5wYUv2raJaud6GsjupV4-ZzWw" alt="سترة صوف" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>سترة صوف من Massimo Dutti</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-10">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">799 ريال</span>
+                                    <span class="old-price">999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 11 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzMWPosB4mLvJHwGuvvkN3ryo7cy9guCwCJvdxKcMbWI8IYQ6L0svly3WhE74y" alt="جاكيت جلد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>جاكيت جلد من Diesel</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-11">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">1,299 ريال</span>
+                                    <span class="old-price">1,599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 12 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu6Dcd_pSs7UBnDkPalgFaQyU03Z6gXiZWFGmG6tPKm1JNeBVvRDqbuKCo3MfU" alt="صندل" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>صندل من Birkenstock</h4>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-12">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">349 ريال</span>
+                                    <span class="old-price">449 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 13 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1402356860/photo/clock-for-trail-and-mountain-marking-the-temperature-of-the-place.webp?a=1&b=1&s=612x612&w=0&k=20&c=ztIrQ0Bwui6KOh4ngxdBGHsPwB8a7dekDkjSTHO-acw=" alt="ساعة سبورت" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>ساعة رياضية من Garmin</h4>
+                                <div class="product-details">
+                                </div>
+
+                                <!-- Rating System -->
+                                <div class="rating" data-product-id="fashion-mens-13">
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="rating-count">(0)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <span class="current-price">899 ريال</span>
+                                    <span class="old-price">1,099 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 14 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1626399224576-6e520b63dbe1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWRpZGFzJTIwdHJhY2tzdWl0fGVufDB8fDB8fHww" alt="طاقم رياضي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>طاقم رياضي من Adidas</h4>
+
+                                <div class="product-details">
+                                 
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">299 ريال</span>
+                                    <span class="old-price">399 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 15 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1458502280/photo/stylish-knotted-blue-striped-tie-on-white-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=R2mkMHLQwOFogVn6KrawYh55HBhaZPhFmzrh114u6Ek=" alt="ربطة عنق" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>ربطة عنق من Hermès</h4>
+                                <div class="product-details">
+                         
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">599 ريال</span>
+                                    <span class="old-price">799 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 16 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/2156869324/photo/an-arab-people-enjoys-a-spring-picnic-in-a-meadow-near-abu-dhabi-seated-on-chairs-they-savor.webp?a=1&b=1&s=612x612&w=0&k=20&c=7NkoiSG6PnO3F3B2xL-Dis4s2xNytjuomKaK-wT5HnQ=" alt="دشداشة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>دشداشة قطن من Omani</h4>
+                                <div class="product-details">
+                                
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                    <span class="old-price">249 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 17 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1366951557/photo/portrait-of-young-successful-arab-businessman-in-traditional-outfit-gently-smiling-wearing.webp?a=1&b=1&s=612x612&w=0&k=20&c=ogHTAlTrKXcU9IFS3YlIy5E2b04wLEk-MkLAwxBFOI0=" alt="غترة وعقال" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>طقم غترة وعقال من Saudi</h4>
+                                <div class="product-details">
+                     
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                    <span class="old-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 18 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/658152442/photo/learning-to-surf.webp?a=1&b=1&s=612x612&w=0&k=20&c=2tWElWilFp0q9vMo-wKppTNk7UOXVYyqlPOxMAwzwa8=" alt="بدلة سباحة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>بدلة سباحة من Speedo</h4>
+                                <div class="product-details">
+                   
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">249 ريال</span>
+                                    <span class="old-price">349 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 19 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1707616782025-5d9e96413cee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmV3JTIwYmFsYW5jZSUyMHNuZWFrZXJzfGVufDB8fDB8fHww" alt="حذاء رياضي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>حذاء رياضي من New Balance</h4>
+                                <div class="product-details">
+                    
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">449 ريال</span>
+                                    <span class="old-price">549 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 20 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/2196818455/photo/freezing-man-pulling-winter-jacket-closer-in-cold-weather.webp?a=1&b=1&s=612x612&w=0&k=20&c=ik6JqnebfCZ3Nh4WAduT_Ks9KvsN5Y_mHF95bJbUIxE=" alt="كاب شتوي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>كاب شتوي من Canada Goose</h4>
+                                <div class="product-details">
+                       
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">399 ريال</span>
+                                    <span class="old-price">499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Women's Fashion Category -->
+                <div class="fashion-section" id="womens-fashion">
+                    <h3><i class="fas fa-female"></i> أزياء نسائية</h3>
+                    <div class="products-grid">
+                        <!-- المنتج 1 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.pexels.com/photos/23440287/pexels-photo-23440287.jpeg" alt="بلوزة صيفية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>بلوزة صيفية من Zara</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">99 ريال</span>
+                                    <span class="old-price">149 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 2 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1481262658/photo/generation-z-lifestyle.webp?a=1&b=1&s=612x612&w=0&k=20&c=RJFsFRWBdeq3JZ85bP5myj2PmFqqbz6QWlScrKWfYd8=" alt="تنورة قصيرة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>تنورة قصيرة من H&M</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                    <span class="old-price">179 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 3 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://plus.unsplash.com/premium_photo-1664867432729-7e6c603cd45b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZXZlbmluZyUyMGRyZXNzfGVufDB8fDB8fHww" alt="فساتين سهرة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>فساتين سهرة من Mango</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">159 ريال</span>
+                                    <span class="old-price">209 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 4 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1658910453954-6ca847bb7470?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVuaW0lMjBqZWFuc3xlbnwwfHwwfHx8MA%3D%3D" alt="بنطال جينز" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>بنطال جينز من Pull&Bear</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">189 ريال</span>
+                                    <span class="old-price">239 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 5 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1137550893/photo/female-overcoat-in-modern-clothing-store.webp?a=1&b=1&s=612x612&w=0&k=20&c=z9SPpFG5m4mZkgXLt1LwDFKoNAhd3LHTzAqzzoKTtco=" alt="جاكيت شتوي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>جاكيت شتوي من Bershka</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">219 ريال</span>
+                                    <span class="old-price">269 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 6 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://plus.unsplash.com/premium_photo-1673384389924-097135cbf1cd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZGVzaWduZXIlMjBoYW5kYmFnfGVufDB8fDB8fHww" alt="حقيبة يد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>حقيبة يد من Stradivarius</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">249 ريال</span>
+                                    <span class="old-price">299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 7 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1589212987511-4a924cb9d8ac?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWxlZ2FudCUyMGRyZXNzfGVufDB8fDB8fHww" alt="فستان رسمي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>فستان رسمي ازياء</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">279 ريال</span>
+                                    <span class="old-price">329 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 8 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/2176620612/photo/low-section-of-woman-moving-up-on-staircase.webp?a=1&b=1&s=612x612&w=0&k=20&c=Qr1R3aTXd5GbHkjUOY2bT3bwUuYEUxcFgxesNQAWch8=" alt="حذاء كعب عالي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>حذاء كعب عالي من Aldo</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">309 ريال</span>
+                                    <span class="old-price">359 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 9 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/89914640/photo/blouse.webp?a=1&b=1&s=612x612&w=0&k=20&c=BkWhtDk2R5NN-WgvJkBAQIM18B8Ohy2m4I0B_vr8Dyw=" alt="بلوزة حرير" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>بلوزة حرير من Massimo Dutti</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">339 ريال</span>
+                                    <span class="old-price">389 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 10 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1157379246/photo/woman-crossing-the-street-in-san-francisco-california.webp?a=1&b=1&s=612x612&w=0&k=20&c=gf7Vv805Cyl14jGxQ1OHCXn1zDIQoMeKwgqyaTO-Yo8=" alt="معطف شتوي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>معطف شتوي from Oysho</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">369 ريال</span>
+                                    <span class="old-price">419 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 11 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/2203928554/photo/young-woman-walking-through-a-modern-home-furnishing-store.webp?a=1&b=1&s=612x612&w=0&k=20&c=iqEBcaFY6Foy1OEE_EBWVX7R7y_JIvytfweI_wTYcz8=" alt="حقيبة ظهر" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>حقيبة ظهر من Tommy Hilfiger</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">399 ريال</span>
+                                    <span class="old-price">449 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 12 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1626245952853-5bf72a3b7d7c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3BvcnR5JTIwc3dpbXN1aXR8ZW58MHx8MHx8fDA%3D" alt="بدلة سباحة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>بدلة سباحة من Nike</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">429 ريال</span>
+                                    <span class="old-price">479 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 13 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/96061882/photo/red-fashion.webp?a=1&b=1&s=612x612&w=0&k=20&c=F8hXR7emjm98Prq_X5saRdc8Pun8CII77ZAXIdKg5rg=" alt="فستان سهرة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>فستان سهرة من Guess</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">459 ريال</span>
+                                    <span class="old-price">509 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 14 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://plus.unsplash.com/premium_photo-1740017729242-ae61f44b4d7a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZGVzaWduZXIlMjBsZWF0aGVyJTIwamFja2V0fGVufDB8fDB8fHww" alt="جاكيت جلد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>جاكيت جلد من Michael Kors</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">489 ريال</span>
+                                    <span class="old-price">539 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 15 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1308274455/photo/blue-sneakers-isolated-on-white-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=wg43UfhLhC1LUHmfR7z-589JIXWQsVbCFls_HFSzEa0=" alt="حذاء رياضي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>حذاء رياضي من Adidas</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">519 ريال</span>
+                                    <span class="old-price">569 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 16 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/2169325200/photo/tsa-screening-bins.webp?a=1&b=1&s=612x612&w=0&k=20&c=tXF9y9SElIqL8G1mdIW65k0IALQZ5CcPzhWFzg3NLPc=" alt="حقيبة سفر" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>حقيبة سفر من Samsonite</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">549 ريال</span>
+                                    <span class="old-price">599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 17 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://images.unsplash.com/photo-1599143844475-a5a9549b28c1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxlYXRoZXIlMjB3YXRjaHxlbnwwfHwwfHx8MA%3D%3D" alt="ساعة يد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>ساعة يد من Fossil</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">579 ريال</span>
+                                    <span class="old-price">629 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 18 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/157404280/photo/isolated-shot-of-sunglasses-on-black-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=DMMefZkUhK7uk4ADcW_97U4g3mxoOb0crCa_AadFRhQ=" alt="نظارات شمسية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>نظارات شمسية من Ray-Ban</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">609 ريال</span>
+                                    <span class="old-price">659 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 19 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/2198046458/photo/tiered-lace-wedding-dress-with-long-skirt-hanging-up.webp?a=1&b=1&s=612x612&w=0&k=20&c=lJ9gUp1QqtlXyV805-maU_DXW4bi8i0Dy__UkxI8TfE=" alt="فستان زفاف" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>فستان زفاف من Vera Wang</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">639 ريال</span>
+                                    <span class="old-price">689 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 20 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/2172836783/photo/a-chic-bottle-with-a-gold-cap-of-cosmetic-perfume-on-an-abstract-marble-background-top-view.webp?a=1&b=1&s=612x612&w=0&k=20&c=5OEjQdL8ti_-BlxloKnjxhBgEk-PzyKZMlVrmrGVO34=" alt="عطر نسائي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>عطر نسائي من Chanel</h4>
+                                <div class="product-details">
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">669 ريال</span>
+                                    <span class="old-price">719 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kids Fashion Category -->
+                <div class="fashion-section" id="kids-fashion">
+                    <h3><i class="fas fa-child"></i> أزياء أطفال</h3>
+                    <div class="products-grid">
+                        <!-- سيتم إضافة المنتجات قريباً -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- قسم أزياء الأطفال -->
+    <section class="products-section" id="children-fashion">
+        <div class="container">
+            <h2 class="section-title">أزياء الأطفال</h2>
+            <div class="products-grid">
+                <!-- المنتج 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://plus.unsplash.com/premium_photo-1705554519595-c1143c7fef97?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2lybHMlMjBibG91c2V8ZW58MHx8MHx8fDA%3D" alt="بلوزة و تنورة بناتية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بلوزة و تنورة بناتية</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">49 ريال</span>
+                            <span class="old-price">79 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/183521223/photo/small-happy-boy.webp?a=1&b=1&s=612x612&w=0&k=20&c=EvKjweEKy5Yur1ELTS3MSy6NqhCUj534V2rLPOFvcQA=" alt="تيشيرت وشورت أولاد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>تيشيرت وشورت أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">59 ريال</span>
+                            <span class="old-price">89 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/2199110947/photo/cute-girl-with-giant-easter-eggs.webp?a=1&b=1&s=612x612&w=0&k=20&c=ApcTvWBHMNODJXqqi0oV17714ufqlIv9Yw8shn4ugC4=" alt="فستان صيفي بناتي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>فستان صيفي بناتي</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">69 ريال</span>
+                            <span class="old-price">99 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.pexels.com/photos/33645529/pexels-photo-33645529.jpeg" alt="جينز وقميص أولاد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>جينز وقميص أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">79 ريال</span>
+                            <span class="old-price">109 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://plus.unsplash.com/premium_photo-1663099757175-d84fbef799c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGdpcmxzJTIwd2ludGVyJTIwYmxvdXNlfGVufDB8fDB8fHww" alt="بلوزة شتوية بناتية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بلوزة شتوية بناتية</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">89 ريال</span>
+                            <span class="old-price">119 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/468178667/photo/young-boy-getting-dressed-for-school.webp?a=1&b=1&s=612x612&w=0&k=20&c=iUwe6qN9_s3KHC19YhTo_qFm7QHxLc6KL8q_iAGfcD0=" alt="بلوزة شتوية أولاد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بلوزة شتوية أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">99 ريال</span>
+                            <span class="old-price">129 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 7 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/626914262/photo/cute-toddler-with-afro-hair-holding-lollipop.webp?a=1&b=1&s=612x612&w=0&k=20&c=TUBRiUA4WV5cKED02a4xUC5scN1AtVYUPKpjGyoIyIY=" alt="جاكيت بناتي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>جاكيت بناتي</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">109 ريال</span>
+                            <span class="old-price">139 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 8 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/2227478697/photo/cute-boy-smiling-in-front-of-house.webp?a=1&b=1&s=612x612&w=0&k=20&c=0ERu4YZwq56osN0LkfKgOoG8Lo88XQWUmsKzAA6akPs=" alt="جاكيت أولاد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>جاكيت أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">119 ريال</span>
+                            <span class="old-price">149 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 9 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/1257095382/photo/little-toddler-girl-playing-with-his-little-sister-at-home.webp?a=1&b=1&s=612x612&w=0&k=20&c=wqz0k2WnmL9q2IQvLpWGGatb0MUQkSykboeF4ItxrCc=" alt="بيجاما بناتية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بيجاما بناتية</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">129 ريال</span>
+                            <span class="old-price">159 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 10 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/473707118/photo/weve-got-the-moves-likes-jagger.webp?a=1&b=1&s=612x612&w=0&k=20&c=cQk27NrifPGGst0DhXArlAPx5ecbNIdoRwdDF58vAUQ=" alt="بيجاما أولاد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بيجاما أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">139 ريال</span>
+                            <span class="old-price">169 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- المنتج 11 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/1326850649/photo/happy-children-molding-a-shape-of-sand-at-the-beach.webp?a=1&b=1&s=612x612&w=0&k=20&c=jhdm9seAYYkehRHjFKAkbxZKLBscPk2vA4tkQIYipuQ=" alt="بدلة سباحة بناتية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بدلة سباحة بناتية</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">149 ريال</span>
+                            <span class="old-price">179 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 12 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/174689702/photo/little-swimmer.webp?a=1&b=1&s=612x612&w=0&k=20&c=XupM3gkxEvq7jW3nj38ls1U4TdRbhFO8vtYBMWA66_4=" alt="بدلة سباحة أولاد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بدلة سباحة أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">159 ريال</span>
+                            <span class="old-price">189 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 13 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/530558281/photo/four-happy-little-flower-girls-laughing-together-in-formal-dresses.webp?a=1&b=1&s=612x612&w=0&k=20&c=eVIpOPQfBzoH1TwhOcfwzvilPMRtjiHXaoc-MLUtGEI=" alt="فستان حفلات بناتي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>فستان حفلات بناتي</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">169 ريال</span>
+                            <span class="old-price">199 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 14 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/901956746/photo/adorable-african-american-boy-standing-in-suit-on-gray.webp?a=1&b=1&s=612x612&w=0&k=20&c=vEKnUZPQJ2HLOtkqLKr7Nr0WABT3zvi6bMuJ_maA5sE=" alt="بدلة رسمية أولاد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بدلة رسمية أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">179 ريال</span>
+                            <span class="old-price">209 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 15 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/1196411685/photo/beautiful-three-year-old-mixed-race-girl-smiling-and-playing-in-her-backyard-dressed-up.webp?a=1&b=1&s=612x612&w=0&k=20&c=b1OdNU4Bc09yjRG7TVrQsrQrAHoycp7BEIkqMlDxSuY=" alt="معطف شتوي بناتي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>معطف شتوي بناتي</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">189 ريال</span>
+                            <span class="old-price">219 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 16 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/1068862646/photo/child-playing-with-snow-in-winter-kids-outdoors.webp?a=1&b=1&s=612x612&w=0&k=20&c=dRF1VckxT1OGfUwBQ1_p5Afkz10EuK5Pya4sGdsY75g=" alt="معطف شتوي أولاد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>معطف شتوي أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">199 ريال</span>
+                            <span class="old-price">229 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 17 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/184869814/photo/confident-little-girl-in-black-track-suit.webp?a=1&b=1&s=612x612&w=0&k=20&c=kPTz2emkY-QJDvlIF_6RHs9vwSK3h7tfm7n-I4Jzhgc=" alt="بدلة رياضية بناتية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بدلة رياضية بناتية</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">209 ريال</span>
+                            <span class="old-price">239 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 18 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/1313973387/photo/portrait-of-a-little-stylish-boy-in-a-warm-sports-suit-on-a-gray-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=eGNmKxg0MWwXdpPWszzv9i8Yw0_XJjzxJY9-r8OChDE=" alt="بدلة رياضية أولاد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بدلة رياضية أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">219 ريال</span>
+                            <span class="old-price">249 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 19 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/811247706/photo/children-grow-and-learn-with-the-power-of-their-imagination.webp?a=1&b=1&s=612x612&w=0&k=20&c=DWkWKZ9r_wyPfN5WHgM6pmvXa7kjoPy9KzAZcOZukg8=" alt="زي تنكري بناتي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>زي تنكري بناتي</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">229 ريال</span>
+                            <span class="old-price">259 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 20 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/1019131772/photo/little-boy-pretending-to-be-a-fireman.webp?a=1&b=1&s=612x612&w=0&k=20&c=xyzjramrwfj_qUqalZxkPBwRSrkbNuSEWF6AioMyCMk=" alt="زي تنكري أولاد" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>زي تنكري أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">239 ريال</span>
+                            <span class="old-price">269 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+                <!-- المنتج 11 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/2150498334/photo/siblings-dancing-in-birthday-confetti.webp?a=1&b=1&s=612x612&w=0&k=20&c=x7S4_CPl7YIMxeJQ-w3H8q6Sj8JuNq2lQtwkOpkZMQU=" alt="فستان حفلة بناتي" style="width: 70%; height: 300px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>فستان حفلة بناتي</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">149 ريال</span>
+                            <span class="old-price">179 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 12 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/854461746/photo/he-gets-his-style-from-dad.webp?a=1&b=1&s=612x612&w=0&k=20&c=jOvjyM8FnoyrPOLbjaO70DrJoAL5XohXWbWQPcGwftI=" alt="بدلة رسمية أولاد" style="width: 70%; height: 300px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بدلة رسمية أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">159 ريال</span>
+                            <span class="old-price">189 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 13 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/671375670/photo/jogging.webp?a=1&b=1&s=612x612&w=0&k=20&c=-4njMURdJXiVAHS8wxeV5u_-6_vouxaC1vv4rwzMies=" alt="بدلة رياضية بناتية" style="width: 70%; height: 300px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بدلة رياضية بناتية</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">169 ريال</span>
+                            <span class="old-price">199 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 14 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/1182341684/photo/child-race-running.webp?a=1&b=1&s=612x612&w=0&k=20&c=vf0QT1FKmuhb-0nSChNQ7fBKVB5p31k2BHfMeMuM9g0=" alt="بدلة رياضية أولاد" style="width: 70%; height: 300px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بدلة رياضية أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">179 ريال</span>
+                            <span class="old-price">209 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 15 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://plus.unsplash.com/premium_photo-1663090931701-3261587aefcd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Z2lybHMlMjB3aW50ZXIlMjBjb2F0fGVufDB8fDB8fHww" alt="معطف شتوي بناتي" style="width: 70%; height: 300px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>معطف شتوي بناتي</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">189 ريال</span>
+                            <span class="old-price">219 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 16 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://plus.unsplash.com/premium_photo-1663090692233-b19414fca51f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym95cyUyMHdpbnRlciUyMGNvYXR8ZW58MHx8MHx8fDA%3D" alt="معطف شتوي أولاد" style="width: 70%; height: 300px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>معطف شتوي أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">199 ريال</span>
+                            <span class="old-price">229 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 17 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://plus.unsplash.com/premium_photo-1661378815799-7605ea5020b4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2hpbGRyZW4lMjBzd2ltc3VpdHxlbnwwfHwwfHx8MA%3D%3D" alt="بدلة سباحة بناتية" style="width: 70%; height: 300px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بدلة سباحة بناتية</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">209 ريال</span>
+                            <span class="old-price">239 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 18 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://plus.unsplash.com/premium_photo-1664392447266-06593c3a1bb7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Ym95cyUyMHN3aW13ZWFyfGVufDB8fDB8fHww" alt="بدلة سباحة أولاد" style="width: 70%; height: 300px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>بدلة سباحة أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">219 ريال</span>
+                            <span class="old-price">249 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 19 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/2161613956/photo/girl-in-a-space-suit-playing-at-home-exploring-and-learning-about-planets-imagining-space.webp?a=1&b=1&s=612x612&w=0&k=20&c=I_6yBzu9jVZc8xBZVzLzHCIcexyFbOOMd7ZMTCDDYzM=" alt="زي تنكري بناتي" style="width: 70%; height: 300px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>زي تنكري بناتي</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">229 ريال</span>
+                            <span class="old-price">259 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج 20 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://media.istockphoto.com/id/471912351/photo/mortal-enemies-knight-and-dragon.webp?a=1&b=1&s=612x612&w=0&k=20&c=ytFKd5DYsxvPq37kRaQNyyxhrGr7NPsE9QXsbOPgxVU=" alt="زي تنكري أولاد" style="width: 70%; height: 300px; object-fit: cover; margin: 0 auto; display: block;">
+                    </div>
+                    <div class="product-info">
+                        <h4>زي تنكري أولاد</h4>
+                        <div class="product-details">
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">239 ريال</span>
+                            <span class="old-price">269 ريال</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">أضف للسلة</button>
+                            <button class="add-to-wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>حول المتجر</h3>
+                    <p>متجر My account VIP هو وجهتك التسوقية المفضلة للمنتجات العالية الجودة بأسعار تنافسية. نقدم تجربة تسوق استثنائية لعملائنا الكرام.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="#">من نحن</a></li>
+                        <li><a href="#">المنتجات</a></li>
+                        <li><a href="#">العروض</a></li>
+                        <li><a href="#">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>خدمة العملاء</h3>
+                    <ul>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الشحن</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</p>
+                        <p><i class="fas fa-phone"></i> +966 50 123 4567</p>
+                        <p><i class="fas fa-envelope"></i> info@myaccountvip.com</p>
+                    </div>
+                    <div class="newsletter">
+                        <h4>اشترك في نشرتنا البريدية</h4>
+                        <form>
+                            <input type="email" placeholder="بريدك الإلكتروني">
+                            <button type="submit">اشترك</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 My account VIP. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="rating-system.js"></script>
+    <script src="add-rating-to-fashion.js"></script>
+    
+    <!-- السلة الجانبية -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h2>سلة التسوق</h2>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-container">
+            <!-- سيتم عرض عناصر السلة هنا بواسطة JavaScript -->
+        </div>
+    </div>
+</body>
+</html>

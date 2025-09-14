@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنتجات - My account VIP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* أسلوب الصفحة */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #232f3e;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-icon i {
+            font-size: 24px;
+            color: #232f3e;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            display: none; /* مخفي بشكل افتراضي عندما تكون السلة فارغة */
+        }
+
+        .products-header {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .products-header h1 {
+            font-size: 32px;
+            color: #232f3e;
+            margin-bottom: 10px;
+        }
+
+        .products-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: #ff6b6b;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            background-color: #232f3e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #1a252f;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #333;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        footer {
+            background-color: #232f3e;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">My account VIP</div>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Section -->
+    <div class="container">
+        <div class="products-header">
+            <h1>منتجاتنا المميزة</h1>
+            <p>اكتشف تشكيلتنا المميزة من المنتجات عالية الجودة بأسعار تنافسية</p>
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card product" data-id="1" data-name="هاتف ذكي X1" data-price="1200">
+                <img src="https://via.placeholder.com/300x200" alt="هاتف ذكي X1" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">هاتف ذكي X1</h3>
+                    <div class="product-price">1200 ريال</div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-cart-plus"></i>
+                        أضف إلى السلة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card product" data-id="2" data-name="لابتوب احترافي" data-price="3500">
+                <img src="https://via.placeholder.com/300x200" alt="لابتوب احترافي" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">لابتوب احترافي</h3>
+                    <div class="product-price">3500 ريال</div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-cart-plus"></i>
+                        أضف إلى السلة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card product" data-id="3" data-name="سماعات لاسلكية" data-price="450">
+                <img src="https://via.placeholder.com/300x200" alt="سماعات لاسلكية" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">سماعات لاسلكية</h3>
+                    <div class="product-price">450 ريال</div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-cart-plus"></i>
+                        أضف إلى السلة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card product" data-id="4" data-name="كاميرا رقمية" data-price="2100">
+                <img src="https://via.placeholder.com/300x200" alt="كاميرا رقمية" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">كاميرا رقمية</h3>
+                    <div class="product-price">2100 ريال</div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-cart-plus"></i>
+                        أضف إلى السلة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card product" data-id="5" data-name="ساعة ذكية" data-price="800">
+                <img src="https://via.placeholder.com/300x200" alt="ساعة ذكية" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">ساعة ذكية</h3>
+                    <div class="product-price">800 ريال</div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-cart-plus"></i>
+                        أضف إلى السلة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card product" data-id="6" data-name="جهاز لوحي" data-price="1500">
+                <img src="https://via.placeholder.com/300x200" alt="جهاز لوحي" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">جهاز لوحي</h3>
+                    <div class="product-price">1500 ريال</div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-cart-plus"></i>
+                        أضف إلى السلة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>جميع الحقوق محفوظة © 2023 My account VIP</p>
+        </div>
+    </footer>
+
+    <!-- Cart system removed -->
+</body>
+</html>

@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإلكترونيات - My account VIP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="electronics-styles.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/cart-icon.css">
+    <link rel="stylesheet" href="css/simple-cart.css">
+    <link rel="stylesheet" href="css/notification.css">
+    <link rel="stylesheet" href="css/cart-count-fix.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Markazi+Text:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="rating-system.js" defer></script>
+    <script src="js/cart-manager.js" defer></script>
+    <script src="js/cart-init.js" defer></script>
+    <script src="js/cart-click-fix.js" defer></script>
+    <style>
+        /* Custom styles for cart - Copied from index.html */
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-img {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card:hover .product-overlay {
+            transform: translateY(0);
+        }
+        .cart {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            margin-right: 10px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .cart:hover {
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .cart i {
+            font-size: 18px;
+            margin-left: 8px;
+            color: #495057;
+            transition: all 0.3s ease;
+        }
+
+        .cart span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            margin-right: 5px;
+        }
+
+        .cart:hover i {
+            transform: scale(1.1);
+            color: #343a40;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #ff6d00, #ff8f00);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            z-index: 10;
+            border: 2px solid white;
+        }
+
+        .cart-count.show {
+            transform: scale(1);
+        }
+
+        /* Rating System Styles */
+        .rating {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            direction: ltr;
+        }
+
+        .rating i {
+            font-size: 16px;
+            margin: 0 2px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .rating i.fas {
+            color: #ffc107;
+        }
+
+        .rating i.far {
+            color: #ddd;
+        }
+
+        .rating i.highlighted {
+            color: #ffc107;
+            transform: scale(1.1);
+        }
+
+        .rating-count {
+            font-size: 12px;
+            color: #666;
+            margin-right: 5px;
+        }
+
+        .rating-animation {
+            animation: pulse 0.5s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            color: white;
+            z-index: 1001;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-weight: 500;
+        }
+
+        .notification.success {
+            background-color: #4CAF50;
+        }
+
+        .notification.error {
+            background-color: #f44336;
+        }
+
+        .notification.info {
+            background-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="logo">
+                    <img src="Screenshot_20240920-لي.jpg" alt="My account VIP" class="logo-img">
+                    <div class="logo-text">
+                        <span class="account-text">My account <span class="vip-badge">VIP</span></span>
+                    </div>
+                </div>
+                <div class="search-bar" style="display: none;">
+                    <input type="text" placeholder="ابحث عن منتج...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-actions">
+                    <div class="language-selector">
+                        <select>
+                            <option>العربية</option>
+                            <option>English</option>
+                        </select>
+                    </div>
+                    <div class="account">
+                        <i class="fas fa-user"></i>
+                        <span>حسابي</span>
+                    </div>
+                    <div class="points-balance">
+                        <div class="points-tooltip">كل نقطه ب 1دولار</div>
+                        <i class="fas fa-coins"></i>
+                        <span>رصيد النقاط: 0</span>
+                    </div>
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="admin-panel" id="adminPanel" style="display: none;">
+                        <i class="fas fa-cog"></i>
+                        <span>الإدارة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="#" class="active">التصنيفات</a></li>
+                    <li><a href="#">العروض</a></li>
+                    <li><a href="#">الأكثر مبيعاً</a></li>
+                    <li><a href="#">جديدنا</a></li>
+                    <li><a href="#">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Electronics Categories Section -->
+    <section class="electronics-categories">
+        <div class="container">
+            <h2 class="section-title">الإلكترونيات</h2>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a> / <span>الإلكترونيات</span>
+            </div>
+
+            <div class="electronics-grid">
+                <!-- Smartphones Category -->
+                <div class="electronics-section" id="smartphones">
+                    <h3><i class="fas fa-mobile-alt"></i> هواتف ذكية</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://www.digitaltrends.com/wp-content/uploads/2023/09/iphone-15-pro-max-review-outside-leaves.jpg?p=1" alt="آيفون 15 برو ماكس">
+                            </div>
+                            <div class="product-info">
+                                <h4>آيفون 15 برو ماكس 256 جيجا</h4>
+                                <div class="rating" data-product-id="iphone-15-pro-max-256">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(42)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">5,299 ريال</span>
+                                    <span class="old-price">5,699 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://www.mockupworld.co/wp-content/uploads/2025/01/free-mockup-samsung-galaxy-s24-ultra.jpg" alt="سامسونج جالاكسي S24 الترا">
+                            </div>
+                            <div class="product-info">
+                                <h4>سامسونج جالاكسي S24 الترا 512 جيجا</h4>
+                                <div class="rating" data-product-id="samsung-galaxy-s24-ultra-512">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(38)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">4,799 ريال</span>
+                                    <span class="old-price">5,199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://i.insider.com/65cfbf246fcb546d2d50f812?format=jpeg&width=1200" alt="جوجل بيكسل 8 برو">
+                            </div>
+                            <div class="product-info">
+                                <h4>جوجل بيكسل 8 برو 256 جيجا</h4>
+                                <div class="rating" data-product-id="google-pixel-8-pro-256">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(31)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,899 ريال</span>
+                                    <span class="old-price">4,299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://www.digitaltrends.com/wp-content/uploads/2024/03/xiaomi-14-ultra-back-hand.jpg?fit=3000%2C2000&p=1" alt="شاومي 14 الترا">
+                            </div>
+                            <div class="product-info">
+                                <h4>شاومي 14 الترا 512 جيجا</h4>
+                                <div class="rating" data-product-id="xiaomi-14-ultra-512">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(27)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,299 ريال</span>
+                                    <span class="old-price">3,699 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://www.androidauthority.com/wp-content/uploads/2024/02/oneplus-12-camera-on-box.jpg" alt="OnePlus 12">
+                            </div>
+                            <div class="product-info">
+                                <h4>OnePlus 12 256 جيجا</h4>
+                                <div class="rating" data-product-id="oneplus-12-256">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(22)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">2,999 ريال</span>
+                                    <span class="old-price">3,399 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://i.ebayimg.com/images/g/oZIAAOSwh1loDG8O/s-l1200.jpg" alt="vivo X100 Pro">
+                            </div>
+                            <div class="product-info">
+                                <h4>vivo X100 Pro 512 جيجا</h4>
+                                <div class="rating" data-product-id="vivo-x100-pro-512">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(19)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,599 ريال</span>
+                                    <span class="old-price">3,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="nothing-phone-2-256" data-name="Nothing Phone 2 256 جيجا" data-price="2499" data-image="https://i5.walmartimages.com/asr/be27a008-803a-4f83-948d-a6f5025d6500.fef891cd6470b3f2026e64ace37698ac.jpeg" data-category="هواتف">
+                            <div class="product-img">
+                                <img src="https://i5.walmartimages.com/asr/be27a008-803a-4f83-948d-a6f5025d6500.fef891cd6470b3f2026e64ace37698ac.jpeg" alt="Nothing Phone 2">
+                            </div>
+                            <div class="product-info">
+                                <h4>Nothing Phone 2 256 جيجا</h4>
+                                <div class="rating" data-product-id="nothing-phone-2-256">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(16)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">2,499 ريال</span>
+                                    <span class="old-price">2,799 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="xiaomi-13-ultra-512" data-name="Xiaomi 13 Ultra 512 جيجا" data-price="3199" data-image="https://i02.appmifile.com/473_operator_sg/23/05/2023/ec1998dedf7dfed61a3c3f5cbcdd5421.png" data-category="هواتف">
+                            <div class="product-img">
+                                <img src="https://i02.appmifile.com/473_operator_sg/23/05/2023/ec1998dedf7dfed61a3c3f5cbcdd5421.png" alt="Xiaomi 13 Ultra">
+                            </div>
+                            <div class="product-info">
+                                <h4>Xiaomi 13 Ultra 512 جيجا</h4>
+                                <div class="rating" data-product-id="xiaomi-13-ultra-512">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(21)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,199 ريال</span>
+                                    <span class="old-price">3,599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="realme-gt-5-256" data-name="Realme GT 5 256 جيجا" data-price="2199" data-image="https://i.ebayimg.com/images/g/498AAOSwj3xlBBe5/s-l1200.jpg" data-category="هواتف">
+                            <div class="product-img">
+                                <img src="https://i.ebayimg.com/images/g/498AAOSwj3xlBBe5/s-l1200.jpg" alt="Realme GT 5">
+                            </div>
+                            <div class="product-info">
+                                <h4>Realme GT 5 256 جيجا</h4>
+                                <div class="rating" data-product-id="realme-gt-5-256">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(18)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">2,199 ريال</span>
+                                    <span class="old-price">2,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="huawei-p60-pro-512" data-name="Huawei P60 Pro 512 جيجا" data-price="3799" data-image="https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/phones/p60-pro/images/performance/huawei-p60-pro-ip68.jpg" data-category="هواتف">
+                            <div class="product-img">
+                                <img src="https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/phones/p60-pro/images/performance/huawei-p60-pro-ip68.jpg" alt="Huawei P60 Pro">
+                            </div>
+                            <div class="product-info">
+                                <h4>Huawei P60 Pro 512 جيجا</h4>
+                                <div class="rating" data-product-id="huawei-p60-pro-512">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(26)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,799 ريال</span>
+                                    <span class="old-price">4,199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="google-pixel-8a-128" data-name="Google Pixel 8a 128 جيجا" data-price="1899" data-image="https://m.media-amazon.com/images/I/41YhgMwtpFL._UF894%2C1000_QL80_.jpg" data-category="هواتف">
+                            <div class="product-img">
+                                <img src="https://m.media-amazon.com/images/I/41YhgMwtpFL._UF894%2C1000_QL80_.jpg" alt="Google Pixel 8a">
+                            </div>
+                            <div class="product-info">
+                                <h4>Google Pixel 8a 128 جيجا</h4>
+                                <div class="rating" data-product-id="google-pixel-8a-128">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(23)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">1,899 ريال</span>
+                                    <span class="old-price">2,199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="motorola-edge-40-pro-256" data-name="Motorola Edge 40 Pro 256 جيجا" data-price="2699" data-image="https://m.media-amazon.com/images/I/71hVkWzI8gL._UF894%2C1000_QL80_.jpg" data-category="هواتف">
+                            <div class="product-img">
+                                <img src="https://m.media-amazon.com/images/I/71hVkWzI8gL._UF894%2C1000_QL80_.jpg" alt="Motorola Edge 40 Pro">
+                            </div>
+                            <div class="product-info">
+                                <h4>Motorola Edge 40 Pro 256 جيجا</h4>
+                                <div class="rating" data-product-id="motorola-edge-40-pro-256">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(21)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">2,699 ريال</span>
+                                    <span class="old-price">2,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="realme-gt-5-pro-1tb" data-name="Realme GT 5 Pro 1 تيرا" data-price="2199" data-image="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfnA7o911eNXyf27PRDvaAMh8FbxiiTA_p4urVtL0Laq7UjuD9-Ktcr1s-Poa3" data-category="هواتف">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfnA7o911eNXyf27PRDvaAMh8FbxiiTA_p4urVtL0Laq7UjuD9-Ktcr1s-Poa3" alt="Realme GT 5 Pro">
+                            </div>
+                            <div class="product-info">
+                                <h4>Realme GT 5 Pro 1 تيرا</h4>
+                                <div class="rating" data-product-id="realme-gt-5-pro-1tb">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(17)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">2,199 ريال</span>
+                                    <span class="old-price">2,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="product-card" data-id="iphone-16-pro-max-512" data-name="iPhone 16 Pro Max 512 جيجا" data-price="5299" data-image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRnG_yvgF1wWV2yw4-GF204e9dJkSph-b38p4iZCOAKeJVosPESJXxuKZYT15I1" data-category="هواتف">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRnG_yvgF1wWV2yw4-GF204e9dJkSph-b38p4iZCOAKeJVosPESJXxuKZYT15I1" alt="iPhone 15 Pro Max" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>iPhone 16 Pro Max 512 جيجا</h4>
+                                <div class="rating" data-product-id="iphone-16-pro-max-512">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(39)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">5,299 ريال</span>
+                                    <span class="old-price">5,799 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="samsung-galaxy-s25-ultra-1tb" data-name="Samsung Galaxy S25 Ultra 1 تيرا" data-price="4499" data-image="https://media.istockphoto.com/id/1459395537/photo/brand-new-samsung-galaxy-z-fold-4-in-grey-green-color-new-smartphone-with-a-folding-screen.jpg?s=1024x1024&w=is&k=20&c=54XHnLM0BjWPaKyrs23lWV0P1XJgJBAQY4z3ClHo6i4=" data-category="هواتف">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1459395537/photo/brand-new-samsung-galaxy-z-fold-4-in-grey-green-color-new-smartphone-with-a-folding-screen.jpg?s=1024x1024&w=is&k=20&c=54XHnLM0BjWPaKyrs23lWV0P1XJgJBAQY4z3ClHo6i4=" alt="Samsung Galaxy S23 Ultra">
+                            </div>
+                            <div class="product-info">
+                                <h4>Samsung Galaxy S25 Ultra 1 تيرا</h4>
+                                <div class="rating" data-product-id="samsung-galaxy-s25-ultra-1tb">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(45)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">4,499 ريال</span>
+                                    <span class="old-price">4,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card" data-id="xiaomi-15-ultra-1tb" data-name="Xiaomi 15 Ultra 1 تيرا" data-price="3299" data-image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQtr03xt5wXh0k_ZacZoGzkV7kjxh4HSuT39bEt8gwaCP7VQ9wIuJhyIms2mV42" data-category="هواتف">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQtr03xt5wXh0k_ZacZoGzkV7kjxh4HSuT39bEt8gwaCP7VQ9wIuJhyIms2mV42" alt="Xiaomi 14 Pro" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Xiaomi 15 Ultra 1 تيرا</h4>
+                                <div class="rating" data-product-id="xiaomi-15-ultra-1tb">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(28)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,299 ريال</span>
+                                    <span class="old-price">3,699 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://media.istockphoto.com/id/1459395537/photo/brand-new-samsung-galaxy-z-fold-4-in-grey-green-color-new-smartphone-with-a-folding-screen.jpg?s=1024x1024&w=is&k=20&c=54XHnLM0BjWPaKyrs23lWV0P1XJgJBAQY4z3ClHo6i4=" alt="Samsung Galaxy S24 Ultra" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Samsung Galaxy S24 Ultra 1 تيرا</h4>
+                                <div class="rating" data-product-id="samsung-galaxy-s24-ultra-1tb">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(51)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">4,999 ريال</span>
+                                    <span class="old-price">5,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSaQfYvTzNU9tzDifXWQbGrD6XEyv0jiCaTsvjWbDG2VnsUB5EH9jUn0aQ0LGgk" alt="Oppo Find X7 Ultra" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Oppo Find X6 Pro 1 تيرا</h4>
+                                <div class="rating" data-product-id="oppo-find-x6-pro-1tb">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(19)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,999 ريال</span>
+                                    <span class="old-price">4,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSLlvA-3_8aE3P99vHV4C18RzPrn4uK9BHycV-Fk1FjiS8Di23X_BTFIYY8PwpU" alt="Vivo X100 Pro" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Vivo  Pro+ 1 تيرا</h4>
+                                <div class="rating" data-product-id="vivo-pro-plus-1tb">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(25)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,499 ريال</span>
+                                    <span class="old-price">3,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSI7yOex0iz3PwCwsa4QzOidSjcDdYXVl9oXhLtfl2YedfSbWtEHeeNXQIDmi9G" alt="Honor Magic 6 Pro" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Honor Magic 5 Pro 1 تيرا</h4>
+                                <div class="rating" data-product-id="honor-magic-5-pro-1tb">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(22)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,199 ريال</span>
+                                    <span class="old-price">3,599 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSpBNNIHYVTO_y6xJRKd5zoRmkAGz-nGkFHZJar3HYtCNYQcFqIzydlqTUYRgl1" alt="ASUS ROG Phone 7" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>ASUS ROG Phone 6 Pro 1 تيرا</h4>
+                                <div class="rating" data-product-id="asus-rog-phone-6-pro-1tb">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(15)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,799 ريال</span>
+                                    <span class="old-price">4,299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQesFzABGk0ecR7E9NMiu0L5rIMUAIdjvdVruFo2gyqRkGPlmIE1voRTID-3BsM" alt="Sony Xperia 1 V" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Sony Xperia 1 IV 512 جيجا</h4>
+                                <div class="rating" data-product-id="sony-xperia-1-iv-512">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(18)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,599 ريال</span>
+                                    <span class="old-price">3,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://fdn2.gsmarena.com/vv/bigpic/google-pixel-8-pro.jpg" alt="Google Pixel 8 Pro" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Google Pixel 8 Pro 512 جيجا</h4>
+                                <div class="rating" data-product-id="google-pixel-8-pro-512">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(32)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,299 ريال</span>
+                                    <span class="old-price">3,699 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Computers Category -->
+                <div class="electronics-section" id="computers">
+                    <h3><i class="fas fa-laptop"></i> أجهزة كمبيوتر</h3>
+                    <div class="products-grid">
+                        <!-- المنتج 1 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQyJgbUDTtMVkb_k83nyj7_vnYQmbw5GcUJbKH5Fk0BvYdg-y3ezqqhskX3LtsN28G8sH_CHBVnokv5joJlfro4JBS4jYYVyeYuRQPH3FaAe0DgNyc" alt="MacBook Pro 16" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>MacBook Pro 16 M2</h4>
+                                <div class="rating" data-product-id="macbook-pro-16-m2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(58)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">14,999 ريال</span>
+                                    <span class="old-price">16,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 2 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQkY68-1XIoNyrN1AWiHyp3XaspCeHky1L60F8se97BJqiDCY6ObQLYmO4QJyJKGiwYYMofZcWy-UhC59b0UH7D7J8bGBHGIDTvEyLTN_-3UNJl33M" alt="Dell XPS 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Dell XPS 15</h4>
+                                <div class="rating" data-product-id="dell-xps-15">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(45)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">8,499 ريال</span>
+                                    <span class="old-price">9,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 3 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTGFbZ0sXoug_rc1f3yFIgwkwzPZUeVCWgVycCDnOhSEXbTBjy906WIKPfPEzbyn2x3iPLRNJICZ38jyvO6E4ZL9QXnH5b3wzAEI9szJ44l6h7u50I" alt="HP Spectre x360" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>HP Spectre x360</h4>
+                                <div class="rating" data-product-id="hp-spectre-x360">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(37)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">6,999 ريال</span>
+                                    <span class="old-price">7,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 4 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcSJ9ifa4OEs05TuFt5AFMScZ1mzcYkBR_L1BcSM3KXB5n5C8hyzfiEWNiRUQeQ4BDaNO4VcDupZX8m7NyVBLDJb9eix77BJ1vX2ema6TxyX9Nh0AE8" alt="Lenovo ThinkPad X1" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Lenovo ThinkPad X1</h4>
+                                <div class="rating" data-product-id="lenovo-thinkpad-x1">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(41)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">7,299 ريال</span>
+                                    <span class="old-price">8,299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 5 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcS-vSJ5jYCZTPfnrxwpfHw1p_LO_DqaYhb6JB_OdZe9hOjK1_J2zRcSgX1Ju2lW26o5S5gVPa5NxCHfyz0Xn3bJsaWJs_oJwDbFBCWna4HM81A0F-k" alt="ASUS ROG Zephyrus" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>ASUS ROG Zephyrus</h4>
+                                <div class="rating" data-product-id="asus-rog-zephyrus">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(52)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">9,999 ريال</span>
+                                    <span class="old-price">11,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 6 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQw-gekpfWzvbkMW8lvX8jwYir3BumbZwZaMiLYYE1KRIIloew3k_rwEf1E-FRb7mlqhBhYs1Wa1OBlzhg136Q1Gdrbf_6xifAVyh4LfMrVSQ9u9xs" alt="Microsoft Surface Laptop" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Microsoft Surface Laptop</h4>
+                                <div class="rating" data-product-id="microsoft-surface-laptop">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(33)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">5,499 ريال</span>
+                                    <span class="old-price">6,199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 7 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSG-hAeEvDB7pUggfLK3ihljnJlgLme1MDh0JSTwU8j-9Iynz8eHtFpcRheFV6fk-7FO0eRI2EfMaBBD4mmJDtPPLlNB6-Aln1Dl_UODOVpFZHfMhY" alt="Acer Predator Helios" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Acer Predator Helios</h4>
+                                <div class="rating" data-product-id="acer-predator-helios">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(29)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">7,999 ريال</span>
+                                    <span class="old-price">8,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 8 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTRRqTFhw2zAgQg9ecH0zBdViuT4Ww2E9MVUdXxlUT0bWWIv8NMOqFyoToFNiaxktHHALNp6NSQY5vsYIeDW6TK75TRXjatyvaYduaVk8FSz45NWHQ" alt="MSI GS66 Stealth" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>MSI GS66 Stealth</h4>
+                                <div class="rating" data-product-id="msi-gs66-stealth">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(35)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">8,799 ريال</span>
+                                    <span class="old-price">9,799 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 9 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcT-8ZZ2zuAbxkHuacKYDiu0BEDIbsa94MwTDu2ThXyE_R1Ja6XWuLzReiX2u88G7mRJUrgR_P-0kimrM0UV77hT6V4uQ_BlL9F76CNLHjP3aPR0R1M" alt="Razer Blade 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Razer Blade 15</h4>
+                                <div class="rating" data-product-id="razer-blade-15">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(49)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">10,999 ريال</span>
+                                    <span class="old-price">12,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 10 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcT3EFYzVeXnOGyaTrA4H3c2gHRncnZO0p08DJZzkZMI6bd-45CIQE42WRxX1Vbsa36J7uWUFSyeS13XFawNKKRnsZVJ1dA_Us77tvUkbYwIhzwUqx4" alt="Gigabyte Aero 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Gigabyte Aero 15</h4>
+                                <div class="rating" data-product-id="gigabyte-aero-15">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(31)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">8,299 ريال</span>
+                                    <span class="old-price">9,299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 11 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSSI0XinkvKCOHHBFem3LIvZ5RRPLdu8-zW1NUTLEGWj87z09t0VBNcrNf0_SlO" alt="Samsung Galaxy Book Pro" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Samsung Galaxy Book Pro</h4>
+                                <div class="rating" data-product-id="samsung-galaxy-book-pro">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(27)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">5,999 ريال</span>
+                                    <span class="old-price">6,799 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 12 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRT5ii4jpkd6nvm-sXs3FPgo5wwKuoPrdbMGFJ8kEm1zDG7w9NWtPmXqV5M7Pu-bHqIMOLuKTsby7LccLcdrkvN_UGcAoG2RZ_v_0_N9ROsq6QsOEA" alt="Huawei MateBook X Pro" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Huawei MateBook X Pro</h4>
+                                <div class="rating" data-product-id="huawei-matebook-x-pro">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(24)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">6,499 ريال</span>
+                                    <span class="old-price">7,299 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 13 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQGtmqhjFkLTu-GfiAn-xoCYyJ6vrCR2ZDXl9exZ3cN6-mMmBSHJ2lOKT1z1ud7CfofI6YG8IDiQmNti2fQJlO7AbD0LpnuJ6CHzMwfRQl9Gtdoqoo" alt="Dell Inspiron 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Dell Inspiron 15</h4>
+                                <div class="rating" data-product-id="dell-inspiron-15">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(42)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,999 ريال</span>
+                                    <span class="old-price">4,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 14 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcR-xeJHTXoIg7Lh-zd6pKUXXqc0BoxSEEOTjXQx4MqNwFSaXAgVgFkzUPfPH7bLRL_xUTRYz28c0EJ-enVdWe06qNbsIY4UAkkZQjon4CBUPh7cnwM" alt="HP Pavilion 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>HP Pavilion 15</h4>
+                                <div class="rating" data-product-id="hp-pavilion-15">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(38)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,499 ريال</span>
+                                    <span class="old-price">3,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 15 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcT1icKdHI_hoXXhkmq2QmAWAzaQvjj_LbCC63Qig7j4_rXPTMmi5SLc946vfFvH2s1HU0B5YtbNN3lPTy06DhmcyVtnJ4Kedna1lH_wuvf7YvCstgA" alt="Lenovo IdeaPad 5" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Lenovo IdeaPad 5</h4>
+                                <div class="rating" data-product-id="lenovo-ideapad-5">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(36)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,299 ريال</span>
+                                    <span class="old-price">3,799 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 16 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRSzOTMtRRc_oKlCyd4b4PxtRmdWSWbyeyiqMWDFdqHgLluCBz5uzZBgGqQhh8FC-hWEpE5Dt102ghWyP-FvQTgWQBl3gpR-mQtWie721sBNv018xo" alt="ASUS VivoBook 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>ASUS VivoBook 15</h4>
+                                <div class="rating" data-product-id="asus-vivobook-15">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(33)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">2,999 ريال</span>
+                                    <span class="old-price">3,499 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 17 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQGr3IDs4JtS8MDenZ2tfi2x5wNG1fP86Pk8oYNoI_3nEJHtWDBgobBM_otpCHUyHy6-hJsWm4gYDUbsRTL_1g4BLKpO7Sn9zkjXnlsDBnoPzuagQc" alt="Acer Aspire 5" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Acer Aspire 5</h4>
+                                <div class="rating" data-product-id="acer-aspire-5">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(38)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">2,799 ريال</span>
+                                    <span class="old-price">3,199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 18 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDIGLJstaBhQ6Gkw0D_Te2dyOxe7BHQSWsEpr67O5iA20IT9lTKw9e-tgokX2i" alt="MSI Modern 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>MSI Modern 15</h4>
+                                <div class="rating" data-product-id="msi-modern-15">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(31)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">3,599 ريال</span>
+                                    <span class="old-price">4,099 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 19 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTLSz9bbb1OC1LNrVGHgk_y5yTy9Uhd3-V_PpeAsVhNu6F1wiVkOiJ70LjI4qeZclTupVbft8CKWIsJKY2zSxdPkwl8j_8jcxuGYs7dsKG_bkIiM4w" alt="Microsoft Surface Go" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Microsoft Surface Go</h4>
+                                <div class="rating" data-product-id="microsoft-surface-go">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(24)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">2,499 ريال</span>
+                                    <span class="old-price">2,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- المنتج 20 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsebGahQON7De9gW6ceGSDsMVG6a2DoQ8n6JFiqWgl1yI2N1HUi7loBAranrFB" alt="Apple MacBook Air M2" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>Apple MacBook Air M2</h4>
+                                <div class="rating" data-product-id="apple-macbook-air-m2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(67)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">8,999 ريال</span>
+                                    <span class="old-price">9,999 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessories Category -->
+                <div class="electronics-section" id="accessories">
+                    <h3><i class="fas fa-headphones"></i> إكسسوارات</h3>
+
+                    <div class="products-grid">
+                        <!-- المنتج 1 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRpF162jPUtu9OVoSmla1cn2JPWhcqUerNRDfRdoDyURsjBm8keqECLO1CDw4HR" alt="سماعة بلوتوث" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>سماعة بلوتوث لاسلكية</h4>
+                                <div class="rating" data-product-id="bluetooth-headphones">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(86)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">39 ريال</span>
+                                    <span class="old-price">59 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 2 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUShWYOo2wKvLib4kMu0Kc9o-tbp9yNfOfd4f-j5Td2_B8X5QgiVSlP4chvLst" alt="شاحن متنقل" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>شاحن متنقل 10000 مللي أمبير</h4>
+                                <div class="rating" data-product-id="power-bank-10000">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(112)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">49 ريال</span>
+                                    <span class="old-price">79 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 3 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRlTYg-RJKU1vXxJTn29AZhNyXhwlXJgabkYCDZZjG5p20x2_0WvOzX_lLvzhzG" alt="كابل USB" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>كابل USB Type-C سريع</h4>
+                                <div class="rating" data-product-id="usb-type-c-cable">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(74)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">29 ريال</span>
+                                    <span class="old-price">45 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 4 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ3EBIEXkz_zReba6LdNvNoILVyISJqHB6ZMzgppPJ1ehGB5bD87vIDfH9wIQhu" alt="حامل سيارة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>حامل سيارة للهاتف</h4>
+                                <div class="rating" data-product-id="car-phone-holder">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(68)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">35 ريال</span>
+                                    <span class="old-price">55 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 5 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTdbNekaRgdd70SdzmoECabZl83zUT1E7VQWujKZMFDB1C8viI9Bih1lVvBClnW" alt="سماعة أذن" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>سماعة أذن سلكية</h4>
+                                <div class="rating" data-product-id="wired-earphones">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(56)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">25 ريال</span>
+                                    <span class="old-price">40 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 6 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQxbIDv2fNVISLrlpHyiqEGLHpMpBKdpIkotFX14YRhbMmZZIOJvNMMliVf-DCC" alt="واقي شاشة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>واقي شاشة زجاجي</h4>
+                                <div class="rating" data-product-id="glass-screen-protector">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(92)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">19 ريال</span>
+                                    <span class="old-price">30 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 7 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR5r95JgDhZGJeIdxoe5VBcOjCfXWo5rkRMtWZEzo-XecGSfMql5oqY3UiXe7li" alt="جراب هاتف" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>جراب هاتف شفاف</h4>
+                                <div class="rating" data-product-id="transparent-phone-case">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(81)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">22 ريال</span>
+                                    <span class="old-price">35 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 8 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSNpymWu0RTvsiusWNUMJ1PvKG43DkDiTEWH6fibc1vq0CHyPV6V4iz7dn5-n2g" alt="كاميرا ويب" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>كاميرا ويب للكمبيوتر</h4>
+                                <div class="rating" data-product-id="web-camera">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(47)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">89 ريال</span>
+                                    <span class="old-price">129 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 9 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS10b2rYAXWz05e1FqvecFxw0hu4Crx5v0uKJf9fbCO0B9SnuS_uQhXGoDfGkPs" alt="ماوس لاسلكي" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>ماوس لاسلكي</h4>
+                                <div class="rating" data-product-id="wireless-mouse">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(64)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">59 ريال</span>
+                                    <span class="old-price">89 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 10 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRTbyhfaPj996_uRI0PRAzqMw2wiQcrPeOjCLRCV0QCOqka96Z1oUgI06P1lJVG" alt="لوحة مفاتيح" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>لوحة مفاتيح لاسلكية</h4>
+                                <div class="rating" data-product-id="wireless-keyboard">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(53)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">79 ريال</span>
+                                    <span class="old-price">119 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 11 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQwOBwVnj0Gvz0AHIK8HMyRRV0iRwZqvMyVa7qmv_MonT0JP3KdaHar2MCIBOnW" alt="سماعات رأس" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>سماعات رأس لاسلكية</h4>
+                                <div class="rating" data-product-id="wireless-headphones">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(97)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">129 ريال</span>
+                                    <span class="old-price">179 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 12 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRb3VyoRl46Tsdh4ap_hMd-TsqRw4kPU9Qu8Bcbn0QWWHRS_3F7lRgTvRSRSq4r" alt="شاحن سيارة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>شاحن سيارة مزدوج</h4>
+                                <div class="rating" data-product-id="dual-car-charger">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(73)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">45 ريال</span>
+                                    <span class="old-price">69 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 13 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVWqyhWHR1Bg_XhSWayYQ_OCHkCmxlnMmwt8WoZluQF4DrW1Fjnh7r_jFcjKb6" alt="حامل مكتب" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>حامل مكتب للهاتف</h4>
+                                <div class="rating" data-product-id="desk-phone-holder">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(48)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">32 ريال</span>
+                                    <span class="old-price">49 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 14 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRUTL6WOA7zE48Urdx4FdofVBnfbDhAdp2CwDaMig1e6Oe4x5GOC8iLC2aLpxeO" alt="بطارية خارجية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>بطارية خارجية 20000 مللي أمبير</h4>
+                                <div class="rating" data-product-id="power-bank-20000">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(92)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">89 ريال</span>
+                                    <span class="old-price">139 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 15 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSP62r3K__MtxY9HJ1tTgg_fAFeCFlN2hxIeQGT3FrHbp1jaX0SfpEOHTJT4LFL" alt="كابل شحن" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>كابل شحن متعدد</h4>
+                                <div class="rating" data-product-id="multi-charging-cable">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(78)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">39 ريال</span>
+                                    <span class="old-price">59 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 16 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSrkzMwTlD80XupJnqb4BP_Q4hx7L5CmTA7ZUNkci1YV0JnE5rZGUmYqYuujE-E" alt="سماعة بلوتوث محمولة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>سماعة بلوتوث محمولة</h4>
+                                <div class="rating" data-product-id="portable-bluetooth-speaker">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(85)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">149 ريال</span>
+                                    <span class="old-price">199 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 17 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQru8aA4LDV9agqvNd_i0doFkcVz6UTvwTfHLg6HDltiDRmM1BmPwhB_-sJQA9L" alt="لوحة لمس" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>لوحة لمس للرسم</h4>
+                                <div class="rating" data-product-id="drawing-touchpad">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(42)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">199 ريال</span>
+                                    <span class="old-price">259 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 18 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbKsQIKecDjC4l-lSUc3WIfvbm1b0D5DfO4z7SzOB_qRrHv_oxVHkk7QqI5nbA" alt="مكبر صوت" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>مكبر صوت بلوتوث</h4>
+                                <div class="rating" data-product-id="bluetooth-speaker">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(63)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">169 ريال</span>
+                                    <span class="old-price">229 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 19 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7qsjrweoUTFa7xlURJgTg9XrlwY_1JO6mjW6FfL5pSe798QRYyWjVK15rYA2c" alt="كاميرا أمنية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>كاميرا أمنية لاسلكية</h4>
+                                <div class="rating" data-product-id="wireless-security-camera">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>(57)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">249 ريال</span>
+                                    <span class="old-price">319 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المنتج 20 -->
+                        <div class="product-card">
+                            <div class="product-img">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT4QaZTRMunexbOd2nBL6Vt6_0NVk2FtFpMriYscv_xm2ypB6oPCFWw80GKmoEv" alt="ساعة ذكية" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                            </div>
+                            <div class="product-info">
+                                <h4>ساعة ذكية</h4>
+                                <div class="rating" data-product-id="smartwatch">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>(104)</span>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price">299 ريال</span>
+                                    <span class="old-price">399 ريال</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart">أضف للسلة</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#">من نحن</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> info@myaccountvip.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تابعنا</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 My account VIP. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- السلة الجانبية -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h2>سلة التسوق</h2>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-container">
+            <!-- سيتم عرض عناصر السلة هنا بواسطة JavaScript -->
+        </div>
+    </div>
+</body>
+</html>
