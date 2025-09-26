@@ -84,6 +84,62 @@
         height: 20px;
         font-size: 11px;
     }
+
+    /* تحسين التفاعل على الأجهزة المحمولة */
+    .cart-icon:active {
+        transform: scale(0.95);
+    }
+}
+
+@media (max-width: 576px) {
+    .cart-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .cart-icon i {
+        font-size: 16px;
+    }
+
+    .cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+        top: -7px;
+        right: -7px;
+    }
+}
+
+@media (max-width: 400px) {
+    .cart-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .cart-icon i {
+        font-size: 14px;
+    }
+
+    .cart-count {
+        width: 16px;
+        height: 16px;
+        font-size: 9px;
+        top: -6px;
+        right: -6px;
+    }
+}
+
+/* تحسين التفاعل على الأجهزة ذات اللمس */
+@media (hover: none) {
+    .cart-icon:hover {
+        transform: none;
+        background: linear-gradient(135deg, #3498db, #2980b9);
+    }
+
+    .cart-icon:active {
+        transform: scale(0.95);
+        background: linear-gradient(135deg, #2980b9, #1f639a);
+    }
 }
 
 /* تأثيرات للوضع الليلي إذا لزم الأمر */

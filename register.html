@@ -5,10 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إنشاء حساب - My account VIP</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet">
+    <!-- استخدام خطوط محلية أو بديلة لتجنب مشاكل التحميل -->
+    <style>
+        @font-face {
+            font-family: 'Cairo';
+            src: local('Cairo'), local('Arial'), local('Tahoma');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Cairo';
+            src: local('Cairo'), local('Arial'), local('Tahoma');
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: 'Cairo';
+            src: local('Cairo'), local('Arial'), local('Tahoma');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'Nova Mono';
+            src: local('Courier New'), local('monospace');
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Register Page Specific Styles */
@@ -115,6 +133,8 @@
             font-size: 14px;
         }
 
+        /* تم إزالة أنماط نظام رموز الدعوة */
+
         .terms {
             margin-bottom: 25px;
         }
@@ -201,6 +221,58 @@
 
         .notification.error {
             background-color: #f44336;
+        }
+
+        /* Password Strength Styles */
+        .password-strength {
+            margin-top: 10px;
+        }
+
+        .strength-bar {
+            height: 5px;
+            background-color: #eee;
+            border-radius: 3px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        .strength-indicator {
+            height: 100%;
+            width: 0;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .strength-text {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .strength-weak .strength-indicator {
+            width: 33%;
+            background-color: #f44336;
+        }
+
+        .strength-weak .strength-text {
+            color: #f44336;
+        }
+
+        .strength-medium .strength-indicator {
+            width: 66%;
+            background-color: #ff9800;
+        }
+
+        .strength-medium .strength-text {
+            color: #ff9800;
+        }
+
+        .strength-strong .strength-indicator {
+            width: 100%;
+            background-color: #4CAF50;
+        }
+
+        .strength-strong .strength-text {
+            color: #4CAF50;
         }
 
         /* Telegram Login Styles */
@@ -432,6 +504,12 @@
                             <i class="fas fa-lock"></i>
                             <input type="password" id="password" name="password" required>
                         </div>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-bar">
+                                <div class="strength-indicator" id="strengthIndicator"></div>
+                            </div>
+                            <span class="strength-text" id="strengthText">قوة كلمة المرور</span>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -442,17 +520,7 @@
                         </div>
                     </div>
 
-                    <div class="invitation-code-note">
-                        <p><i class="fas fa-info-circle"></i> ملاحظة: لا يمكن إنشاء حساب جديد إلا باستخدام رمز دعوة صحيح من عضو حالي في الموقع.</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="invitationCode">رمز الدعوة <span class="required">*</span></label>
-                        <div class="input-icon">
-                            <i class="fas fa-key"></i>
-                            <input type="text" id="invitationCode" name="invitationCode" placeholder="أدخل رمز الدعوة" required>
-                        </div>
-                    </div>
+                    <!-- تم إزالة نظام رموز الدعوة -->
 
                     <div class="terms">
                         <label>
@@ -520,10 +588,14 @@
     </footer>
 
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database-compat.js"></script>
+
+    <!-- Notification Manager -->
+    <script src="notification-manager.js"></script>
 
     <!-- Custom scripts -->
-    <script src="register-script.js"></script>
+    <script src="register-server.js"></script>
 </body>
 </html>

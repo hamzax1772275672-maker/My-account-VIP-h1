@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Authentication Callback</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #232f3e;
+            margin-bottom: 20px;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff9900;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .message {
+            margin: 20px 0;
+            color: #555;
+        }
+        .success {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>معالجة مصادقة Telegram</h1>
+        <div class="loader"></div>
+        <div class="message">جاري معالجة بيانات المصادقة...</div>
+    </div>
+
+    <script>
+        // استخراج بيانات المصادقة من عنوان URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const first_name = urlParams.get('first_name');
+        const last_name = urlParams.get('last_name');
+        const username = urlParams.get('username');
+        const photo_url = urlParams.get('photo_url');
+        const auth_date = urlParams.get('auth_date');
+        const hash = urlParams.get('hash');
+
+        // التحقق من وجود البيانات المطلوبة
+        if (id && first_name) {
+            // إرسال البيانات إلى النافذة الأصل
+            window.opener.postMessage({
+                type: 'telegram-auth-success',
+                userData: {
+                    id: id,
+                    first_name: first_name,
+                    last_name: last_name || '',
+                    username: username || '',
+                    photo_url: photo_url || '',
+                    auth_date: auth_date
+                }
+            }, window.location.origin);
+
+            // تحديث الرسالة
+            document.querySelector('.message').textContent = 'تمت المصادقة بنجاح! جاري إغلاق النافذة...';
+            document.querySelector('.message').classList.add('success');
+
+            // إغلاق النافذة بعد فترة وجيزة
+            setTimeout(() => {
+                window.close();
+            }, 2000);
+        } else {
+            // إرسال رسالة خطأ إلى النافذة الأصل
+            window.opener.postMessage({
+                type: 'telegram-auth-error',
+                error: 'بيانات المصادقة غير مكتملة'
+            }, window.location.origin);
+
+            // تحديث الرسالة
+            document.querySelector('.message').textContent = 'فشلت المصادقة: بيانات غير مكتملة';
+            document.querySelector('.message').classList.add('error');
+
+            // إغلاق النافذة بعد فترة وجيزة
+            setTimeout(() => {
+                window.close();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

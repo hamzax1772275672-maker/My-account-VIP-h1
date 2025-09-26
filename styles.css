@@ -1068,7 +1068,7 @@ footer {
     color: #ddd;
 }
 
-/* Responsive Styles */
+/* Responsive Styles - Enhanced for Mobile Devices */
 @media (max-width: 992px) {
     .hero-content h2 {
         font-size: 36px;
@@ -1077,154 +1077,20 @@ footer {
     .hero-content p {
         font-size: 18px;
     }
-}
 
-@media (max-width: 768px) {
-    .top-bar .container {
-        flex-direction: column;
-    }
-
-    .logo {
-        margin-bottom: 15px;
-    }
-
-    .search-bar {
-        width: 100%;
-        margin: 0 0 15px;
-    }
-
-    .user-actions {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .nav-links {
-        flex-wrap: wrap;
-    }
-
-    .nav-links li {
-        width: 50%;
-    }
-
-    .hero {
-        height: 400px;
-    }
-
-    .hero-content h2 {
-        font-size: 30px;
-    }
-
-    .newsletter-form {
-        flex-direction: column;
-    }
-
-    .newsletter-form input {
-        margin-bottom: 10px;
-        border-radius: 4px;
-    }
-
-    .newsletter-form button {
-        border-radius: 4px;
-    }
-}
-
-
-/* Enhanced Responsive Styles */
-@media (max-width: 1200px) {
-    .container {
-        max-width: 960px;
-    }
-
-    .hero-title {
-        font-size: 48px;
-    }
-
-    .product-img {
-        height: 250px;
-        width: 250px;
-    }
-
-    .product-card h3 {
-        font-size: 22px;
-    }
-
-    .current-price {
-        font-size: 22px;
-    }
-}
-
-@media (max-width: 992px) {
-    .container {
-        max-width: 720px;
-    }
-
-    .hero-content h2 {
-        font-size: 36px;
-    }
-
-    .hero-content p {
-        font-size: 18px;
-    }
-
-    .hero {
-        height: 500px;
-    }
-
-    .features-grid, .categories-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 20px;
     }
-
-    .product-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .product-img {
-        height: 220px;
-        width: 100%;
-        margin-left: 0;
-        margin-bottom: 15px;
-    }
-
-    .product-card h3 {
-        font-size: 20px;
-    }
-
-    .price {
-        margin-left: 0;
-        justify-content: center;
-    }
-
-    .add-to-cart {
-        margin-left: 0;
-        margin-top: 10px;
-    }
-
-    .product-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .newsletter-form {
-        flex-direction: column;
-        max-width: 400px;
-    }
-
-    .newsletter-form input {
-        margin-bottom: 10px;
-        border-radius: 4px;
-    }
-
-    .newsletter-form button {
-        border-radius: 4px;
-    }
 }
 
 @media (max-width: 768px) {
     .container {
-        max-width: 540px;
-        padding: 0 10px;
+        padding: 0 15px;
+    }
+
+    body {
+        font-size: 15px;
     }
 
     .top-bar .container {
@@ -1236,20 +1102,23 @@ footer {
         margin-bottom: 15px;
     }
 
+    .logo-img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
     .search-bar {
         width: 100%;
         margin: 0 0 15px;
-        max-width: 100%;
     }
 
     .user-actions {
         width: 100%;
         justify-content: space-between;
-        flex-wrap: wrap;
-    }
-
-    .account, .cart, .admin-panel, .points-balance {
-        margin: 5px;
     }
 
     .nav-links {
@@ -1258,109 +1127,6 @@ footer {
 
     .nav-links li {
         width: 50%;
-    }
-
-    .hero {
-        height: 400px;
-    }
-
-    .hero-content h2 {
-        font-size: 30px;
-    }
-
-    .hero-title {
-        font-size: 36px;
-    }
-
-    .hero-logo-img {
-        height: 45px;
-        width: 45px;
-    }
-
-    .features-grid, .categories-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
-    }
-
-    .feature-card {
-        padding: 20px 15px;
-    }
-
-    .feature-icon {
-        width: 60px;
-        height: 60px;
-    }
-
-    .feature-icon i {
-        font-size: 28px;
-    }
-
-    .feature-card h3 {
-        font-size: 18px;
-    }
-
-    .category-img {
-        height: 150px;
-    }
-
-    .sub-categories {
-        grid-template-columns: 1fr;
-    }
-
-    .section-title {
-        font-size: 28px;
-    }
-
-    .footer-content {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-    }
-
-    .btn {
-        padding: 12px 25px;
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 576px) {
-    .container {
-        max-width: 100%;
-        padding: 0 5px;
-    }
-
-    .logo-text {
-        font-size: 20px;
-    }
-
-    .account-text {
-        font-size: 24px;
-    }
-
-    .vip-badge {
-        padding: 1px 6px;
-        font-size: 14px;
-    }
-
-    .user-actions {
-        justify-content: center;
-    }
-
-    .account, .cart, .admin-panel, .points-balance {
-        margin: 3px;
-        padding: 5px 10px;
-    }
-
-    .points-balance span {
-        font-size: 12px;
-    }
-
-    .nav-links li {
-        width: 100%;
-    }
-
-    .nav-links a {
-        padding: 12px 15px;
-        font-size: 14px;
     }
 
     .hero {
@@ -1368,291 +1134,195 @@ footer {
     }
 
     .hero-content h2 {
-        font-size: 24px;
+        font-size: 28px;
     }
 
     .hero-content p {
         font-size: 16px;
     }
 
-    .hero-title {
-        font-size: 28px;
+    .newsletter-form {
+        flex-direction: column;
     }
 
-    .hero-logo-img {
-        height: 40px;
-        width: 40px;
+    .newsletter-form input {
+        margin-bottom: 10px;
+        border-radius: 4px;
     }
 
-    .commission-text {
-        font-size: 1rem;
-        max-width: 95%;
+    .newsletter-form button {
+        border-radius: 4px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 16px;
+        min-height: 44px; /* Minimum recommended size for finger tap */
     }
 
     .section-title {
-        font-size: 24px;
-        margin-bottom: 25px;
+        font-size: 26px;
+        margin-bottom: 30px;
     }
 
-    .features-grid, .categories-grid {
-        grid-template-columns: 1fr;
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
         gap: 15px;
-    }
-
-    .feature-card {
-        padding: 15px;
-    }
-
-    .category-img {
-        height: 180px;
     }
 
     .product-card {
         padding: 10px;
     }
 
-    .product-img {
-        height: 200px;
+    .product-image {
+        height: 160px;
     }
 
-    .product-card h3 {
-        font-size: 18px;
-    }
-
-    .current-price {
-        font-size: 18px;
-    }
-
-    .old-price {
+    .product-title {
         font-size: 14px;
     }
 
-    .add-to-cart {
-        padding: 8px 15px;
+    .product-price {
+        font-size: 16px;
+    }
+
+    .cart-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .cart-icon i {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    body {
         font-size: 14px;
     }
 
-    .rating i {
-        font-size: 16px;
+    .nav-links li {
+        width: 100%;
     }
 
-    .rating span {
-        font-size: 16px;
+    .hero {
+        height: 300px;
     }
 
-    .newsletter-content h2 {
-        font-size: 24px;
+    .hero-content h2 {
+        font-size: 22px;
     }
 
-    .newsletter-content p {
-        font-size: 16px;
+    .hero-content p {
+        font-size: 14px;
     }
 
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        text-align: center;
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 25px;
     }
 
-    .footer-section h3:after {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
     }
 
-    .social-links {
-        margin-top: 15px;
+    .product-card {
+        padding: 8px;
     }
 
-    .contact-info li {
-        justify-content: center;
+    .product-image {
+        height: 140px;
+    }
+
+    .product-title {
+        font-size: 13px;
+    }
+
+    .product-price {
+        font-size: 15px;
     }
 
     .btn {
         padding: 10px 20px;
         font-size: 14px;
     }
+
+    .footer-section {
+        margin-bottom: 25px;
+    }
 }
 
-/* Small mobile devices */
-@media (max-width: 380px) {
-    .logo-text {
-        font-size: 18px;
-    }
-
-    .account-text {
-        font-size: 20px;
-    }
-
-    .vip-badge {
-        font-size: 12px;
-    }
-
-    .user-actions {
-        flex-wrap: wrap;
-    }
-
-    .account, .cart, .admin-panel, .points-balance {
-        margin: 2px;
-        padding: 3px 8px;
-    }
-
-    .account span, .cart span, .admin-panel span {
-        display: none;
-    }
-
-    .points-balance span {
-        font-size: 10px;
+/* Extra small devices (phones, 400px and down) */
+@media (max-width: 400px) {
+    .container {
+        padding: 0 8px;
     }
 
     .hero {
-        height: 320px;
+        height: 280px;
     }
 
-    .hero-title {
-        font-size: 24px;
+    .hero-content h2 {
+        font-size: 20px;
     }
 
-    .hero-logo-img {
-        height: 35px;
-        width: 35px;
-    }
-
-    .commission-text {
-        font-size: 0.9rem;
+    .hero-content p {
+        font-size: 13px;
     }
 
     .section-title {
-        font-size: 22px;
+        font-size: 20px;
+        margin-bottom: 20px;
     }
 
-    .category-img {
-        height: 160px;
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 8px;
     }
 
-    .product-img {
-        height: 180px;
+    .product-card {
+        padding: 6px;
     }
 
-    .product-card h3 {
-        font-size: 16px;
+    .product-image {
+        height: 120px;
     }
 
-    .current-price {
-        font-size: 16px;
-    }
-
-    .add-to-cart {
-        padding: 6px 12px;
+    .product-title {
         font-size: 12px;
+    }
+
+    .product-price {
+        font-size: 14px;
     }
 
     .btn {
         padding: 8px 15px;
-        font-size: 12px;
+        font-size: 13px;
     }
 }
 
-/* Tablet specific styles */
-@media (min-width: 768px) and (max-width: 1024px) {
+/* Landscape orientation for mobile devices */
+@media (max-width: 768px) and (orientation: landscape) {
     .hero {
-        height: 450px;
+        height: 220px;
     }
 
-    .hero-title {
-        font-size: 42px;
-    }
-
-    .features-grid, .categories-grid {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-
-    .product-card {
-        flex-direction: row;
-    }
-
-    .product-img {
-        height: 230px;
-        width: 230px;
-        margin-left: 15px;
-    }
-
-    .product-card h3 {
+    .hero-content h2 {
         font-size: 20px;
     }
 
-    .price {
-        margin-left: 15px;
-    }
-
-    .add-to-cart {
-        margin-left: 10px;
-    }
-
-    .product-actions {
-        flex-direction: row;
-    }
-}
-
-/* Large desktops and TVs */
-@media (min-width: 1400px) {
-    .container {
-        max-width: 1320px;
-    }
-
-    .hero {
-        height: 700px;
-    }
-
-    .hero-title {
-        font-size: 64px;
-    }
-
     .hero-content p {
-        font-size: 26px;
+        font-size: 14px;
     }
 
-    .features-grid, .categories-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 40px;
-    }
-
-    .feature-card {
-        padding: 40px 25px;
-    }
-
-    .feature-icon {
-        width: 100px;
-        height: 100px;
-    }
-
-    .feature-icon i {
-        font-size: 46px;
-    }
-
-    .feature-card h3 {
-        font-size: 26px;
-    }
-
-    .category-img {
-        height: 250px;
-    }
-
-    .product-img {
-        height: 350px;
-        width: 350px;
-    }
-
-    .product-card h3 {
-        font-size: 28px;
-    }
-
-    .current-price {
-        font-size: 28px;
-    }
-
-    .section-title {
-        font-size: 38px;
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
     }
 }
-

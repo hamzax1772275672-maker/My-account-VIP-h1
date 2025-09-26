@@ -393,33 +393,21 @@
                             <label for="remember">تذكرني</label>
                         </div>
                         <div class="forgot-password">
-                            <a href="#">نسيت كلمة المرور؟</a>
+                            <a href="#" id="forgotPasswordLink">نسيت كلمة المرور؟</a>
                         </div>
+                    </div>
+
+                    <div class="form-group" id="resetPasswordSection" style="display: none;">
+                        <label for="resetEmail">البريد الإلكتروني لإعادة تعيين كلمة المرور</label>
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="resetEmail" name="resetEmail" placeholder="أدخل بريدك الإلكتروني">
+                        </div>
+                        <button type="button" id="resetPasswordBtn" class="login-btn" style="background-color: #ff9900;">إرسال رابط إعادة التعيين</button>
+                        <button type="button" id="cancelResetBtn" class="login-btn" style="background-color: #95a5a6; margin-top: 10px;">إلغاء</button>
                     </div>
 
                     <button type="submit" class="login-btn">تسجيل الدخول</button>
-
-                    <div class="divider">
-                        <span>أو</span>
-                    </div>
-
-                    <div class="invitation-section">
-                        <h3>رمز الدعوة الخاص بك</h3>
-                        <p>شارك هذا الرمز مع أصدقائك ليتمكنوا من التسجيل في الموقع</p>
-
-                        <div class="invitation-code-display">
-                            <span class="code-text" id="invitationCode">AMZ-7X9P2K</span>
-                            <button type="button" class="copy-btn" id="copyCodeBtn">
-                                <i class="fas fa-copy"></i> نسخ
-                            </button>
-                        </div>
-
-                        <div class="share-options">
-                            <a href="#" class="share-btn telegram" id="shareTelegram">
-                                <i class="fab fa-telegram-plane"></i>
-                            </a>
-                        </div>
-                    </div>
 
                     <div class="register-link">
                         ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a>
@@ -477,12 +465,11 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <!-- Notification Manager -->
+    <script src="notification-manager.js"></script>
 
     <!-- Custom scripts -->
-    <script src="login-script.js"></script>
+    <script src="login-server.js"></script>
     
     <!-- السلة الجانبية -->
     <div class="cart-sidebar">

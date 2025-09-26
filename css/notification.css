@@ -40,3 +40,43 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 576px) {
+  .cart-notification {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    border-radius: 25px;
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cart-notification {
+    bottom: 6px;
+    left: 6px;
+    right: 6px;
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+}
+
+/* تحسين الإشعارات للأجهزة ذات الشاشات الطويلة */
+@media (max-height: 600px) {
+  .cart-notification {
+    bottom: 5px;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+}
+
+/* تحسين الإشعارات للأجهزة ذات الشاشات العريضة */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .cart-notification {
+    max-width: 60%;
+    padding: 14px 22px;
+    font-size: 15px;
+  }
+}

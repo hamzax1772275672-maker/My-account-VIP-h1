@@ -1,7 +1,6 @@
 // Firebase configuration
-// تم إضافة مدير الإشعارات الموحد (notification-manager.js) لاستبدال الدوال المكررة
 const firebaseConfig = {
-    apiKey: "AIzaSyDp6n4Ep8Ox8wif6iwjeflHJKZh5ZvmU-s",
+    apiKey: "AIzaSyAQ7Yw-xUgwTxKmnVPPsjeObWLX9xaKTms",
     authDomain: "my-account-vip.firebaseapp.com",
     projectId: "my-account-vip",
     storageBucket: "my-account-vip.firebasestorage.app",
@@ -13,14 +12,15 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
+// دالة التحقق من صحة البريد الإلكتروني
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 // Document Ready Function
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
-    const copyButton = document.querySelector('.copy-btn');
-    const codeText = document.querySelector('.code-text');
-
-    // Generate random invitation code on page load
-    generateInvitationCode();
 
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
@@ -59,26 +59,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 auth.signInWithEmailAndPassword(email, password)
                     .then((userCredential) => {
                         console.log('Sign in successful');
-                            // Store username in localStorage
-                            localStorage.setItem('username', email);
 
-                            // Get display name from Firebase user profile
-                            const displayName = userCredential.user.displayName;
-                            if (displayName) {
-                                localStorage.setItem('displayName', displayName);
-                            } else {
-                                // If no display name, use email username
-                                const username = email.split('@')[0];
-                                localStorage.setItem('displayName', username);
-                            }
+                        // Store username in localStorage
+                        localStorage.setItem('username', email);
 
-                            showNotification('تم تسجيل الدخول بنجاح! جاري توجيهك إلى الصفحة الرئيسية', 'success');
-
-                            // Redirect to home page after successful login
-                            setTimeout(() => {
-                                window.location.href = 'index.html';
-                            }, 2000);
+                        // Get display name from Firebase user profile
+                        const displayName = userCredential.user.displayName;
+                        if (displayName) {
+                            localStorage.setItem('displayName', displayName);
+                        } else {
+                            // If no display name, use email username
+                            const username = email.split('@')[0];
+                            localStorage.setItem('displayName', username);
                         }
+
+                        // Store user ID for future reference
+                        localStorage.setItem('userId', userCredential.user.uid);
+
+                        // Update last login timestamp
+                        localStorage.setItem('lastLogin', new Date().toISOString());
+
+                        showNotification('تم تسجيل الدخول بنجاح! جاري توجيهك إلى الصفحة الرئيسية', 'success');
+
+                        // Redirect to home page after successful login
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 2000);
                     })
                     .catch((error) => {
                         console.error('Sign in error:', error);
@@ -121,81 +127,82 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Copy invitation code functionality
-    if (copyButton && codeText) {
-        copyButton.addEventListener('click', function() {
-            const code = codeText.textContent;
 
-            // Copy to clipboard
-            navigator.clipboard.writeText(code).then(() => {
-                showNotification('تم نسخ الرمز بنجاح!', 'success');
 
-                // Change button text temporarily
-                const originalText = copyButton.textContent;
-                copyButton.textContent = 'تم النسخ!';
 
-                // Reset button text after 2 seconds
-                setTimeout(() => {
-                    copyButton.textContent = originalText;
-                }, 2000);
-            }).catch(err => {
-                showNotification('فشل نسخ الرمز. يرجى نسخه يدوياً', 'error');
-                console.error('Could not copy text: ', err);
-            });
+
+
+
+    // Forgot password functionality
+    const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+    const resetPasswordSection = document.getElementById('resetPasswordSection');
+    const resetPasswordBtn = document.getElementById('resetPasswordBtn');
+    const cancelResetBtn = document.getElementById('cancelResetBtn');
+
+    if (forgotPasswordLink) {
+        forgotPasswordLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginForm.style.display = 'none';
+            resetPasswordSection.style.display = 'block';
         });
     }
 
-    // Function to generate random invitation code
-    function generateInvitationCode() {
-        if (codeText) {
-            // Generate a random code in format VIP-XXXX-XXXX where X is alphanumeric
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            let code = 'VIP-';
-
-            // First part (4 characters)
-            for (let i = 0; i < 4; i++) {
-                code += characters.charAt(Math.floor(Math.random() * characters.length));
-            }
-
-            code += '-';
-
-            // Second part (4 characters)
-            for (let i = 0; i < 4; i++) {
-                code += characters.charAt(Math.floor(Math.random() * characters.length));
-            }
-
-            // Set the generated code
-            codeText.textContent = code;
-
-            // Store the code in localStorage for reference
-            localStorage.setItem('invitationCode', code);
-        }
+    if (cancelResetBtn) {
+        cancelResetBtn.addEventListener('click', function() {
+            resetPasswordSection.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
     }
 
-    // Function to generate multiple invitation codes
-    function generateMultipleInvitationCodes(count = 10) {
-        const codes = [];
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    if (resetPasswordBtn) {
+        resetPasswordBtn.addEventListener('click', function() {
+            const resetEmail = document.getElementById('resetEmail').value.trim();
 
-        for (let j = 0; j < count; j++) {
-            let code = 'VIP-';
-
-            // First part (4 characters)
-            for (let i = 0; i < 4; i++) {
-                code += characters.charAt(Math.floor(Math.random() * characters.length));
+            if (!resetEmail) {
+                showNotification('الرجاء إدخال بريدك الإلكتروني', 'error');
+                return;
             }
 
-            code += '-';
-
-            // Second part (4 characters)
-            for (let i = 0; i < 4; i++) {
-                code += characters.charAt(Math.floor(Math.random() * characters.length));
+            if (!isValidEmail(resetEmail)) {
+                showNotification('الرجاء إدخال بريد إلكتروني صحيح', 'error');
+                return;
             }
 
-            codes.push(code);
-        }
+            showNotification('جاري إرسال رابط إعادة تعيين كلمة المرور...', 'info');
 
-        return codes;
+            // Send password reset email
+            auth.sendPasswordResetEmail(resetEmail)
+                .then(() => {
+                    showNotification('تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني', 'success');
+
+                    // Hide reset section and show login form after a delay
+                    setTimeout(() => {
+                        resetPasswordSection.style.display = 'none';
+                        loginForm.style.display = 'block';
+                        document.getElementById('resetEmail').value = '';
+                    }, 3000);
+                })
+                .catch((error) => {
+                    console.error('Error sending password reset email:', error);
+                    let errorMessage = '';
+
+                    switch(error.code) {
+                        case 'auth/user-not-found':
+                            errorMessage = 'لا يوجد حساب مرتبط بهذا البريد الإلكتروني';
+                            break;
+                        case 'auth/invalid-email':
+                            errorMessage = 'البريد الإلكتروني غير صالح';
+                            break;
+                        case 'auth/too-many-requests':
+                            errorMessage = 'تم حظر الوصول مؤقتاً بسبب محاولات كثيرة. يرجى المحاولة لاحقاً';
+                            break;
+                        default:
+                            errorMessage = 'حدث خطأ أثناء إرسال رابط إعادة تعيين كلمة المرور: ' + error.message;
+                    }
+
+                    showNotification(errorMessage, 'error');
+                });
+        });
     }
 
     // Email validation function
@@ -269,21 +276,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Share functionality
-    const shareButtons = document.querySelectorAll('.share-btn');
 
-    shareButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            const code = codeText.textContent;
-            const shareText = `انضم إلى My account VIP باستخدام رمز الدعوة الخاص بي: ${code}`;
-            const shareUrl = window.location.href;
-
-            if (this.classList.contains('telegram')) {
-                // Share on Telegram
-                window.open(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`, '_blank');
-            }
-        });
-    });
 });

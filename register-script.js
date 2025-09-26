@@ -1,7 +1,6 @@
 // Firebase configuration
-// تم إضافة مدير الإشعارات الموحد (notification-manager.js) لاستبدال الدوال المكررة
 const firebaseConfig = {
-    apiKey: "AIzaSyDp6n4Ep8Ox8wif6iwjeflHJKZh5ZvmU-s",
+    apiKey: "AIzaSyAQ7Yw-xUgwTxKmnVPPsjeObWLX9xaKTms", // استبدل هذا بمفتاح API الفعلي الخاص بمشروعك
     authDomain: "my-account-vip.firebaseapp.com",
     projectId: "my-account-vip",
     storageBucket: "my-account-vip.firebasestorage.app",
@@ -9,30 +8,59 @@ const firebaseConfig = {
     appId: "1:30582754466:web:4c922d786ce1bf8c739bfb"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+// Initialize Firebase with error handling
+try {
+    firebase.initializeApp(firebaseConfig);
+    console.log("Firebase initialized successfully");
+} catch (error) {
+    console.error("Error initializing Firebase:", error);
+    // Show user-friendly error if Firebase fails to initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        const registerForm = document.getElementById('registerForm');
+        if (registerForm) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'firebase-error';
+            errorDiv.style.color = '#f44336';
+            errorDiv.style.padding = '15px';
+            errorDiv.style.marginBottom = '20px';
+            errorDiv.style.textAlign = 'center';
+            errorDiv.style.backgroundColor = '#ffebee';
+            errorDiv.style.borderRadius = '4px';
+            errorDiv.innerHTML = 'حدث خطأ في الاتصال بخدمات المصادقة. يرجى المحاولة مرة أخرى لاحقًا.';
+
+            registerForm.parentNode.insertBefore(errorDiv, registerForm);
+            registerForm.style.display = 'none';
+        }
+    });
+}
+
+// Only get auth if initialization was successful
+let auth;
+try {
+    auth = firebase.auth();
+} catch (error) {
+    console.error("Error getting auth instance:", error);
+}
+
+// دالة التحقق من صحة البريد الإلكتروني
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// دالة التحقق من صحة رقم الهاتف - تقبل أي رقم
+function isValidPhone(phone) {
+    // تقبل أي رقم هاتف غير فارغ
+    return phone.trim() !== '';
+}
+
+// تم إزالة نظام رموز الدعوة
 
 // Document Ready Function
 document.addEventListener('DOMContentLoaded', function() {
-    // Load invitation codes from file
-    fetch('invitation-codes-list.txt')
-        .then(response => response.text())
-        .then(text => {
-            // Split text by lines and filter out empty lines
-            const codesFromFile = text.split(/\r?\n/).filter(line => line.trim() !== '');
-            // Save to localStorage for future use
-            localStorage.setItem('validInvitationCodes', JSON.stringify(codesFromFile));
-            console.log('Loaded ' + codesFromFile.length + ' invitation codes');
-        })
-        .catch(error => {
-            console.error('Error loading invitation codes:', error);
-        });
+   
     const registerForm = document.getElementById('registerForm');
     const telegramLoginBtn = document.getElementById('telegramLoginBtn');
-
-    
-   
     // إضافة مستمع لزر التسجيل بحساب Telegram
 if (telegramLoginBtn) {
     telegramLoginBtn.addEventListener('click', function() {
@@ -54,7 +82,9 @@ if (telegramLoginBtn) {
                 }
 
                 // توجيه النافذة المنبثقة
-                telegramWindow.location.href = 'https://oauth.telegram.org/auth?bot_id=6803998447&origin=https://myaccountvip.com&return_to=https://myaccountvip.com/telegram-auth-callback&request_access=write';
+                // استخدام رابط ديناميكي يعمل مع كل من البيئة المحلية والبيئة المنتجة
+                const origin = window.location.origin;
+                telegramWindow.location.href = `https://oauth.telegram.org/auth?bot_id=6803998447&origin=${encodeURIComponent(origin)}&return_to=${encodeURIComponent(origin + '/telegram-auth-callback.html')}&request_access=write`;
                 
                 // إظهار رسالة انتظار
                 showNotification('جاري فتح نافذة تسجيل الدخول عبر Telegram...', 'info');
@@ -101,6 +131,56 @@ if (telegramLoginBtn) {
     });
 }
 
+    // Password strength checker
+    const passwordInput = document.getElementById('password');
+    const strengthIndicator = document.getElementById('strengthIndicator');
+    const strengthText = document.getElementById('strengthText');
+    const passwordStrength = document.getElementById('passwordStrength');
+
+    if (passwordInput) {
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+
+            // Check password length
+            if (password.length >= 8) {
+                strength += 1;
+            }
+
+            // Check for mixed case
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) {
+                strength += 1;
+            }
+
+            // Check for numbers
+            if (password.match(/[0-9]/)) {
+                strength += 1;
+            }
+
+            // Check for special characters
+            if (password.match(/[^a-zA-Z0-9]/)) {
+                strength += 1;
+            }
+
+            // Update UI based on strength
+            passwordStrength.classList.remove('strength-weak', 'strength-medium', 'strength-strong');
+
+            if (password.length === 0) {
+                strengthIndicator.style.width = '0';
+                strengthText.textContent = 'قوة كلمة المرور';
+            } else if (strength < 2) {
+                passwordStrength.classList.add('strength-weak');
+                strengthText.textContent = 'ضعيفة';
+            } else if (strength < 4) {
+                passwordStrength.classList.add('strength-medium');
+                strengthText.textContent = 'متوسطة';
+            } else {
+                passwordStrength.classList.add('strength-strong');
+                strengthText.textContent = 'قوية';
+            }
+        });
+    }
+
     if (registerForm) {
         registerForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -112,7 +192,6 @@ if (telegramLoginBtn) {
             const phone = document.getElementById('phone').value.trim();
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-            const invitationCode = document.getElementById('invitationCode').value.trim();
             const termsAccepted = document.querySelector('input[name="terms"]').checked;
 
             // Validation flags
@@ -149,13 +228,10 @@ if (telegramLoginBtn) {
                 errorMessage = 'الرجاء إدخال رقم هاتف صحيح';
             }
 
-            // Validate password
+            // Validate password - تقبل أي كلمة مرور غير فارغة
             if (isValid && password === '') {
                 isValid = false;
                 errorMessage = 'الرجاء إدخال كلمة المرور';
-            } else if (isValid && password.length < 6) {
-                isValid = false;
-                errorMessage = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
             }
 
             // Validate confirm password
@@ -167,14 +243,7 @@ if (telegramLoginBtn) {
                 errorMessage = 'كلمتا المرور غير متطابقتين';
             }
 
-            // Validate invitation code
-            if (isValid && invitationCode === '') {
-                isValid = false;
-                errorMessage = 'الرجاء إدخال رمز الدعوة';
-            } else if (isValid && !isValidInvitationCode(invitationCode)) {
-                isValid = false;
-                errorMessage = 'رمز الدعوة غير صحيح. يرجى التحقق من رمز الدعوة والمحاولة مرة أخرى';
-            }
+            // تم إزالة التحقق من رمز الدعوة
             
 
 
@@ -190,6 +259,11 @@ if (telegramLoginBtn) {
                 const telegramAuthData = localStorage.getItem('telegramAuthData');
                 
                 // Create user with Firebase Authentication
+                if (!auth) {
+                    showNotification('خدمة المصادقة غير متاحة حالياً. يرجى تحديث الصفحة والمحاولة مرة أخرى.', 'error');
+                    return;
+                }
+
                 auth.createUserWithEmailAndPassword(email, password)
                     .then((userCredential) => {
                         // Update user profile with display name
@@ -198,9 +272,15 @@ if (telegramLoginBtn) {
                                 }).then(() => {
                                     // Store user data in localStorage
                                     localStorage.setItem('username', email);
+                                    localStorage.setItem('displayName', firstName + ' ' + lastName);
+                                    localStorage.setItem('userId', userCredential.user.uid);
+                                    localStorage.setItem('userEmail', email);
+                                    localStorage.setItem('userPhone', phone);
+                                    localStorage.setItem('registrationDate', new Date().toISOString());
+                                    localStorage.setItem('lastLogin', new Date().toISOString());
+                                    localStorage.setItem('isVerified', 'true');
                                     localStorage.setItem('firstName', firstName);
                                     localStorage.setItem('lastName', lastName);
-                                    localStorage.setItem('displayName', firstName + ' ' + lastName);
                                     
                                     // Send Telegram auth data to database if available
                                     if (telegramAuthData) {
@@ -233,7 +313,8 @@ if (telegramLoginBtn) {
                                     setTimeout(() => {
                                         window.location.href = 'login.html';
                                     }, 5000);
-                                }).catch((error) => {
+                                })
+                                .catch((error) => {
                                     console.error('Error updating profile:', error);
                                     showNotification('حدث خطأ أثناء تحديث بيانات الملف الشخصي: ' + error.message, 'error');
                                 });
@@ -241,9 +322,8 @@ if (telegramLoginBtn) {
                             .catch((error) => {
                                 console.error('Error sending verification email:', error);
                                 showNotification('حدث خطأ أثناء إرسال رسالة التحقق: ' + error.message, 'error');
-                            });
-                    })
-                    .catch((error) => {
+                            })
+                            .catch((error) => {
                         const errorCode = error.code;
                         let errorMessage = '';
 
@@ -297,63 +377,6 @@ if (telegramLoginBtn) {
         // Accept any valid phone number format
         return true;
     }
-
-    // Invitation code validation function
-    function isValidInvitationCode(code) {
-        // Generate valid invitation codes dynamically based on a pattern
-        // The pattern is: VIP-XXX-XXX-XXX where X is alphanumeric
-        const pattern = /^VIP-[A-Z0-9]{3}-[A-Z0-9]{3}-[A-Z0-9]{3}$/;
-
-        // Log the code and pattern test result for debugging
-        console.log('Testing invitation code:', code);
-        console.log('Pattern test result:', pattern.test(code));
-
-        // Check if the code matches the pattern
-        if (!pattern.test(code)) {
-            return false;
-        }
-        
-        // Get valid codes from localStorage
-        const validCodes = JSON.parse(localStorage.getItem('validInvitationCodes')) || [];
-        
-        // If no valid codes in localStorage, load them from the text file
-        if (validCodes.length === 0) {
-            // In a real application, you would fetch this from a server
-            // For this demo, we'll use a hardcoded list of valid codes from invitation-codes-list.txt
-            const defaultValidCodes = [
-                "VIP-BGI-016-YFA", "VIP-BLC-416-RGU", "VIP-AJK-798-STA", "VIP-TTR-244-NBE", "VIP-MEC-552-KDQ",
-                "VIP-SGC-742-CMA", "VIP-DYZ-574-ZYP", "VIP-OYJ-751-EGD", "VIP-WDB-537-DAJ", "VIP-FXP-987-WSP",
-                "VIP-HMS-546-SPB", "VIP-SMD-158-OBB", "VIP-RHK-130-YWT", "VIP-YFM-335-ICG", "VIP-BXK-395-MVG",
-                "VIP-JTQ-775-PDL", "VIP-FYY-218-YDC", "VIP-AXA-189-KVV", "VIP-QSD-538-KKX", "VIP-BNP-156-MGF",
-                "VIP-AUE-396-OHP", "VIP-WQU-544-TQE", "VIP-MSX-878-FLZ", "VIP-JHC-976-FBV", "VIP-KNL-581-EWI",
-                "VIP-JWR-040-BNX", "VIP-DYR-131-PYH", "VIP-RXU-646-BPY", "VIP-URF-275-WSP", "VIP-JGB-640-CYY",
-                "VIP-PGI-419-VAW", "VIP-GYQ-515-UUJ", "VIP-FTF-672-LYP", "VIP-IHQ-522-XRZ", "VIP-ZKC-629-GWP",
-                "VIP-DVE-874-MDD", "VIP-QOF-276-ELK", "VIP-DXK-478-RCU", "VIP-YFY-043-RXI", "VIP-FME-444-BTZ",
-                "VIP-VRD-825-UXR", "VIP-SOQ-995-QHE", "VIP-XSI-515-FVR", "VIP-XLN-803-ZOE", "VIP-UCA-474-FWN",
-                "VIP-DHN-025-QMM", "VIP-QKR-857-WDF", "VIP-PAX-787-FYR", "VIP-CBO-370-OGU", "VIP-BEN-374-YUB",
-                "VIP-UZM-978-UEU", "VIP-MDD-430-TDT", "VIP-XLK-144-SFY", "VIP-EJD-055-LMO", "VIP-WEJ-523-ELE",
-                "VIP-UJK-013-FBZ", "VIP-EMG-311-KDZ", "VIP-YFL-007-XVR", "VIP-SIH-659-SPJ", "VIP-ZFZ-507-UBG",
-                "VIP-UPX-101-IWN", "VIP-WPM-711-RCG", "VIP-LCM-798-VMC", "VIP-ZKX-272-UNY", "VIP-TMT-715-IQO",
-                "VIP-WLJ-503-RDL", "VIP-GDU-400-SRY", "VIP-PNS-993-TET", "VIP-ORB-141-BTA", "VIP-XOZ-916-NXV",
-                "VIP-TBI-140-WAN", "VIP-JFH-395-OVB", "VIP-DJB-220-UOR", "VIP-JBD-389-CCN", "VIP-MKH-010-JOL",
-                "VIP-XZJ-597-DOO", "VIP-IZU-207-BJL", "VIP-HEB-957-SFD", "VIP-PYY-542-VFK", "VIP-YIV-949-XEL",
-                "VIP-PWF-042-TNV", "VIP-ISF-130-XKK", "VIP-SVG-200-WYR", "VIP-VWE-249-VLX", "VIP-HGW-163-JXQ",
-                "VIP-VCH-578-BZG", "VIP-GTE-802-NMU", "VIP-OUJ-079-MTT", "VIP-PQQ-285-YYN", "VIP-ZLI-468-QLF",
-                "VIP-CKS-821-SDW", "VIP-VCC-715-IRR", "VIP-IPO-118-WWF", "VIP-XEQ-052-TTJ", "VIP-ZDS-544-SSM",
-                "VIP-PSB-051-SIO", "VIP-HUB-062-ANF", "VIP-XQA-827-IEW", "VIP-QFX-376-AJR"
-            ];
-            
-            // Save to localStorage for future use
-            localStorage.setItem('validInvitationCodes', JSON.stringify(defaultValidCodes));
-            
-            // Check if the code is in the default list
-            return defaultValidCodes.includes(code);
-        }
-        
-        // Check if the code is in the valid codes list
-        return validCodes.includes(code);
-    }
-
     // Show notification function
     function showNotification(message, type = 'info') {
         // Remove any existing notifications
@@ -396,9 +419,8 @@ if (telegramLoginBtn) {
     // Add input event listeners for real-time validation feedback
     const emailInput = document.getElementById('email');
     const phoneInput = document.getElementById('phone');
-    const passwordInput = document.getElementById('password');
+    // passwordInput is already defined above (line 148)
     const confirmPasswordInput = document.getElementById('confirmPassword');
-    const invitationCodeInput = document.getElementById('invitationCode');
 
     if (emailInput) {
         emailInput.addEventListener('blur', function() {
@@ -449,13 +471,7 @@ if (telegramLoginBtn) {
         });
     }
 
-    if (invitationCodeInput) {
-        invitationCodeInput.addEventListener('blur', function() {
-            if (this.value.trim() !== '' && !isValidInvitationCode(this.value.trim())) {
-                this.style.borderColor = '#f44336';
-            } else {
-                this.style.borderColor = '#ddd';
-            }
-        });
-    }
+    // تم إزالة التحقق من حقل رمز الدعوة
+
+    // تم إزالة وظيفة عرض وتوليد رموز الدعوة بالكامل
 });
