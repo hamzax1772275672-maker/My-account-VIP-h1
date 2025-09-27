@@ -1,0 +1,279 @@
+
+/* تحسينات إضافية للشاشات الصغيرة */
+@media (max-width: 768px) {
+    /* تحسينات للشريط العلوي */
+    .top-bar {
+        padding: 10px 0;
+    }
+
+    .top-bar .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .user-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* تحسينات للشريط التنقل */
+    .main-nav {
+        padding: 10px 0;
+    }
+
+    .main-nav .container {
+        padding: 0 10px;
+    }
+
+    /* تحسينات للقسم البطل */
+    .hero {
+        padding: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 2em;
+        margin-bottom: 15px;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    /* تحسينات للقسم المميز */
+    .features {
+        padding: 40px 0;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .feature-card {
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .feature-icon {
+        margin-bottom: 10px;
+    }
+
+    .feature-icon i {
+        font-size: 24px;
+        color: #ff9900;
+    }
+
+    /* تحسينات للقسم الرئيسي */
+    .main {
+        padding: 40px 0;
+    }
+
+    /* تحسينات للقسم الفرعي */
+    .sub-section {
+        padding: 40px 0;
+    }
+
+    /* تحسينات للقسم النهائي */
+    .footer {
+        padding: 40px 0;
+    }
+
+    /* تحسينات للشريط الجانبي */
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط السفلي */
+    .bottom-bar {
+        padding: 15px 0;
+    }
+
+    /* تحسينات للشريط العلوي الثانوي */
+    .top-bar-secondary {
+        padding: 10px 0;
+    }
+
+    /* تحسينات للشريط العلوي الثالث */
+    .top-bar-tertiary {
+        padding: 10px 0;
+    }
+
+    /* تحسينات للشريط العلوي الرابع */
+    .top-bar-quaternary {
+        padding: 10px 0;
+    }
+
+    /* تحسينات للشريط العلوي الخامس */
+    .top-bar-quinary {
+        padding: 10px 0;
+    }
+
+    /* تحسينات للشريط الجانبي الأيسر */
+    .left-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيمن */
+    .right-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* تحسينات للشريط العلوي الأيسر */
+    .top-left-bar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* تحسينات للشريط العلوي الأيمن */
+    .top-right-bar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* تحسينات للشريط السفلي الأيسر */
+    .bottom-left-bar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* تحسينات للشريط السفلي الأيمن */
+    .bottom-right-bar {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* تحسينات للشريط الجانبي العلوي */
+    .top-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي السفلي */
+    .bottom-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيسر العلوي */
+    .top-left-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيمن العلوي */
+    .top-right-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيسر السفلي */
+    .bottom-left-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيمن السفلي */
+    .bottom-right-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأوسط */
+    .middle-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأوسط العلوي */
+    .middle-top-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأوسط السفلي */
+    .middle-bottom-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيسر الأوسط */
+    .left-middle-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيمن الأوسط */
+    .right-middle-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأوسط الأيسر */
+    .middle-left-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأوسط الأيمن */
+    .middle-right-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيسر العلوي الأيسر */
+    .top-left-left-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيسر العلوي الأيمن */
+    .top-left-right-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيمن العلوي الأيسر */
+    .top-right-left-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيمن العلوي الأيمن */
+    .top-right-right-sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيسر السفلي الأيسر */
+    .bottom-left-left-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيسر السفلي الأيمن */
+    .bottom-left-right-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيمن السفلي الأيسر */
+    .bottom-right-left-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* تحسينات للشريط الجانبي الأيمن السفلي الأيمن */
+    .bottom-right-right-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+}

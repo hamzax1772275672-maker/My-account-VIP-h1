@@ -1,0 +1,62 @@
+
+/* تحسينات عامة للشاشات الصغيرة */
+@media (max-width: 768px) {
+    /* تحديث حجم الخط الأساسي */
+    html {
+        font-size: 14px;
+    }
+
+    /* تحديث الحاوية الرئيسية */
+    .container {
+        padding: 0 10px;
+        max-width: 100%;
+    }
+
+    /* تحديث حجم العناوين */
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        margin-bottom: 12px;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    /* تحديث الأزرار */
+    .btn {
+        padding: 12px 20px;
+        font-size: 16px;
+        min-height: 44px; /* الحد الأدنى الموصى به لسهولة اللمس */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* تحديث الأقسام */
+    section {
+        padding: 40px 0;
+    }
+
+    /* تحسينات للبطاقات */
+    .feature-card, .category-card {
+        margin-bottom: 20px;
+    }
+
+    /* تحسينات للصور */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* تحسينات للنص */
+    p {
+        font-size: 0.9em;
+        line-height: 1.5;
+    }
+}

@@ -1,0 +1,159 @@
+
+/* تحسينات للأداء على الشاشات الصغيرة */
+@media (max-width: 768px) {
+    /* تحسينات للصور */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* تحسينات لتحميل الصور المتأخرة */
+    .lazy-load {
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .lazy-load.loaded {
+        opacity: 1;
+    }
+
+    /* تحسينات للرسوم المتحركة */
+    .animate {
+        animation-duration: 0.5s; /* تقليل مدة الرسوم المتحركة */
+    }
+
+    /* تحسينات للتدرجات */
+    .gradient {
+        background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    }
+
+    /* تحسينات للظلال */
+    .shadow {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* تحسينات للانتقالات */
+    .transition {
+        transition: all 0.2s ease;
+    }
+
+    /* تحسينات للأزرار */
+    .btn {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.3s, height 0.3s;
+    }
+
+    .btn:active::after {
+        width: 300px;
+        height: 300px;
+    }
+
+    /* تحسينات للبطاقات */
+    .card {
+        transform: translateZ(0); /* تحسين الأداء باستخدام transform */
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    /* تحسينات للقوائم */
+    .list {
+        will-change: transform; /* تحسين الأداء باستخدام will-change */
+    }
+
+    /* تحسينات للشريط العلوي */
+    .top-bar {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للقسم البطل */
+    .hero {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للقسم المميز */
+    .features {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للقسم الرئيسي */
+    .main {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للقسم الفرعي */
+    .sub-section {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للقسم النهائي */
+    .footer {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للقائمة المنسدلة */
+    .dropdown {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للقائمة المنبثقة */
+    .popup {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للشريط الجانبي */
+    .sidebar {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للشريط السفلي */
+    .bottom-bar {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للشريط العلوي الثانوي */
+    .top-bar-secondary {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للشريط العلوي الثالث */
+    .top-bar-tertiary {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للشريط العلوي الرابع */
+    .top-bar-quaternary {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* تحسينات للشريط العلوي الخامس */
+    .top-bar-quinary {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+}

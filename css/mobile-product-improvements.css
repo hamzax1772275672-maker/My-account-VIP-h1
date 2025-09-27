@@ -1,0 +1,119 @@
+
+/* تحسينات لعناصر المنتج على الشاشات الصغيرة */
+@media (max-width: 768px) {
+    /* تحسينات لشبكة المنتجات */
+    .products-grid {
+        grid-template-columns: 1fr; /* عرض عمود واحد فقط */
+        gap: 15px;
+    }
+
+    /* تحسينات لبطاقات المنتج */
+    .product-card {
+        margin-bottom: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .product-img {
+        height: 200px; /* تقليل ارتفاع صور المنتج */
+        width: 100%; /* جعل العرض كامل */
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+        font-size: 1.1em;
+        margin-bottom: 8px;
+    }
+
+    .product-price {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #ff9900;
+        margin-bottom: 10px;
+    }
+
+    .add-to-cart {
+        background-color: #ff9900;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        min-height: 44px; /* الحد الأدنى الموصى به لسهولة اللمس */
+        width: 100%;
+    }
+
+    /* تحسينات لتقييم المنتج */
+    .rating {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .rating i {
+        font-size: 16px;
+        margin: 0 2px;
+    }
+
+    /* تحسينات للخصم */
+    .discount {
+        top: 10px;
+        right: 10px;
+        padding: 4px 8px;
+        font-size: 0.8em;
+    }
+
+    /* تحسينات للفئات */
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr); /* عرض عمودين للفئات */
+        gap: 15px;
+    }
+
+    .category-card {
+        text-align: center;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .category-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .category-img {
+        height: 120px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .category-card h3 {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+
+    .sub-categories {
+        display: none; /* إخفاء الفئات الفرعية افتراضياً */
+    }
+
+    .category-card:hover .sub-categories {
+        display: block; /* عرض الفئات الفرعية عند التمرير */
+        margin-top: 10px;
+    }
+
+    .sub-category {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+    }
+
+    .sub-category i {
+        margin-left: 8px;
+        color: #ff9900;
+    }
+}

@@ -1,0 +1,365 @@
+
+/* تحسينات خاصة لتنسيق قائمة التنقل على شاشات الهواتف */
+@media (max-width: 768px) {
+    /* إخفاء القائمة المنسدلة على الشاشات الكبيرة */
+    @media (min-width: 769px) {
+        .mobile-menu-toggle,
+        .mobile-menu-close,
+        .mobile-menu-overlay {
+            display: none !important;
+        }
+        
+        .nav-links {
+            display: flex !important;
+            position: static !important;
+            background-color: transparent !important;
+            flex-direction: row !important;
+            height: auto !important;
+            overflow: visible !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            animation: none !important;
+        }
+        
+        .nav-links li {
+            border-bottom: none !important;
+        }
+        
+        .nav-links a {
+            padding: 15px 20px !important;
+            text-align: right !important;
+            min-height: auto !important;
+        }
+        
+        .sub-menu {
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            background-color: #232f3e !important;
+            min-width: 200px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+            border-radius: 0 0 8px 8px !important;
+            display: none !important;
+            z-index: 1000 !important;
+        }
+        
+        .nav-links li:hover > .sub-menu {
+            display: block !important;
+        }
+        
+        .sub-menu a {
+            padding: 12px 20px 12px 25px !important;
+            font-size: 14px !important;
+        }
+    }
+    
+    /* تحسينات للشاشات الكبيرة */
+    @media (min-width: 769px) {
+        /* إخفاء عناصر القائمة المنسدلة */
+        .mobile-menu-toggle,
+        .mobile-menu-close,
+        .mobile-menu-overlay {
+            display: none !important;
+        }
+        
+        /* إظهار القائمة العادية على الشاشات الكبيرة */
+        .main-nav {
+            display: block !important;
+            position: static !important;
+        }
+        
+        .nav-links {
+            display: flex !important;
+            position: static !important;
+            background-color: transparent !important;
+            flex-direction: row !important;
+            height: auto !important;
+            overflow: visible !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            animation: none !important;
+            max-height: none !important;
+        }
+        
+        /* عرض القائمة العادية */
+        .nav-links {
+            display: flex !important;
+            position: static !important;
+            background-color: transparent !important;
+            flex-direction: row !important;
+            height: auto !important;
+            overflow: visible !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            animation: none !important;
+            max-height: none !important;
+            width: 100% !important;
+        }
+        
+        .nav-links li {
+            border-bottom: none !important;
+        }
+        
+        .nav-links a {
+            padding: 15px 20px !important;
+            text-align: right !important;
+            min-height: auto !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+        }
+        
+        /* تحسينات للقوائم الفرعية */
+        .sub-menu {
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            background-color: #232f3e !important;
+            min-width: 200px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+            border-radius: 0 0 8px 8px !important;
+            display: none !important;
+            z-index: 1000 !important;
+            padding: 0 !important;
+            margin-top: 0 !important;
+        }
+        
+        /* تحسينات للقوائم الفرعية على الشاشات الكبيرة */
+        @media (min-width: 769px) {
+            .sub-menu {
+                display: none !important;
+                position: absolute !important;
+                top: 100% !important;
+                left: 0 !important;
+                background-color: #232f3e !important;
+                min-width: 200px !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+                border-radius: 0 0 8px 8px !important;
+                z-index: 1000 !important;
+            }
+            
+            .nav-links li:hover > .sub-menu {
+                display: block !important;
+            }
+        }
+        
+        .sub-menu a {
+            padding: 12px 20px 12px 25px !important;
+            font-size: 14px !important;
+            text-align: right !important;
+            display: block !important;
+            white-space: nowrap !important;
+        }
+    }
+    
+    @media (max-width: 768px) {
+    /* تحسينات للقائمة المنسدلة */
+    .main-nav {
+        position: relative;
+    }
+
+    .main-nav .container {
+        position: relative;
+        padding: 0;
+    }
+
+    /* تحسينات لزر القائمة */
+    .mobile-menu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, #ff9900, #ff7700);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1001;
+        box-shadow: 0 2px 8px rgba(255, 153, 0, 0.3);
+        transition: all 0.3s ease;
+        margin: 10px;
+    }
+
+    .mobile-menu-toggle:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(255, 153, 0, 0.4);
+    }
+
+    .mobile-menu-toggle:active {
+        transform: scale(0.95);
+    }
+
+
+
+
+
+    /* تغيير أيقونة زر القائمة عند فتح القائمة */
+    .main-nav.active .mobile-menu-toggle i {
+        content: "\f00d"; /* Font Awesome times icon */
+    }
+
+    /* تحسينات للروابط في القائمة */
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(35, 47, 62, 0.95);
+        flex-direction: column;
+        z-index: 1000;
+        padding: 60px 0 0 0;
+        overflow-y: auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* إظهار القائمة عند الفتح */
+    .main-nav.active .nav-links {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    /* تأثيرات للروابط */
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links a {
+        padding: 18px 25px;
+        text-align: right;
+        justify-content: flex-start;
+        position: relative;
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s ease;
+        min-height: 60px; /* زيادة ارتفاع الروابط لسهولة اللمس */
+    }
+
+    .nav-links a:hover {
+        background-color: rgba(255, 153, 0, 0.1);
+        padding-right: 35px;
+    }
+
+    .nav-links a.active {
+        background-color: rgba(255, 153, 0, 0.2);
+        color: #ff9900;
+        font-weight: bold;
+    }
+
+    /* إضافة أيقونات للروابط فقط إذا لم تكن موجودة */
+    .nav-links a:not(:has(i))::before {
+        content: '054'; /* Font Awesome chevron-left icon */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+        opacity: 0.7;
+        transition: transform 0.3s ease;
+        font-size: 14px;
+    }
+
+    .nav-links a:not(:has(i)):hover::before {
+        transform: translateY(-50%) rotate(90deg);
+    }
+
+    /* إضافة أيقونة للرابط النشط */
+    .nav-links a.active::before {
+        color: #ff9900;
+    }
+
+    /* تأثيرات للروابط عند النقر */
+    .nav-links a:active {
+        background-color: rgba(255, 153, 0, 0.2);
+        transform: scale(0.98);
+    }
+
+    /* تحسينات للطبقة التغطية */
+    .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .main-nav.active ~ .mobile-menu-overlay {
+        display: block;
+        animation: fadeIn 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* تحسينات للقسم الرئيسي عند فتح القائمة */
+    body.menu-open {
+        overflow: hidden; /* منع التمرير عند فتح القائمة */
+    }
+
+    /* تحسينات للروابط الفرعية */
+    .sub-menu {
+        display: none;
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 0;
+    }
+
+    .nav-links li.has-submenu.active > .sub-menu {
+        display: block;
+        animation: subMenuOpen 0.3s ease forwards;
+    }
+
+    @keyframes subMenuOpen {
+        from {
+            opacity: 0;
+            max-height: 0;
+        }
+        to {
+            opacity: 1;
+            max-height: 500px;
+        }
+    }
+
+    .sub-menu a {
+        padding: 15px 25px 15px 50px;
+        font-size: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .sub-menu a:last-child {
+        border-bottom: none;
+    }
+
+    /* تحسينات للروابط التي تحتوي على روابط فرعية فقط إذا لم تكن موجودة */
+    .has-submenu > a:not(:has(i))::after {
+        content: '107'; /* Font Awesome chevron-down icon */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        right: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+    }
+
+    .has-submenu.active > a:not(:has(i))::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+}
