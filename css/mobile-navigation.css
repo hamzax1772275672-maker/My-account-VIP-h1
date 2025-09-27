@@ -1,0 +1,194 @@
+
+/* Enhanced mobile navigation styles */
+@media (max-width: 768px) {
+    /* Main navigation adjustments */
+    .main-nav {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        padding: 10px 0;
+        background-color: #232f3e;
+    }
+
+    .main-nav .container {
+        position: relative;
+        padding: 0 15px;
+    }
+
+    /* Mobile menu toggle - improved design */
+    .mobile-menu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, #ff9900, #ff7700);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1001;
+        box-shadow: 0 2px 8px rgba(255, 153, 0, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .mobile-menu-toggle:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(255, 153, 0, 0.4);
+    }
+
+    .mobile-menu-toggle:active {
+        transform: scale(0.95);
+    }
+
+    /* Hide navigation by default on mobile */
+    .main-nav .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #232f3e;
+        flex-direction: column;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        max-height: 70vh;
+        overflow-y: auto;
+        padding: 10px 0;
+        border-radius: 0 0 8px 8px;
+    }
+
+    /* Show navigation when active */
+    .main-nav.active .nav-links {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Enhanced navigation items */
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links a {
+        padding: 15px 20px;
+        text-align: right;
+        justify-content: flex-start;
+        position: relative;
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+        background-color: rgba(255, 153, 0, 0.1);
+        padding-right: 25px;
+    }
+
+    .nav-links a::before {
+        content: '054'; /* Font Awesome chevron-left icon */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+        opacity: 0.7;
+        transition: transform 0.3s ease;
+    }
+
+    .nav-links a:hover::before {
+        transform: translateY(-50%) rotate(90deg);
+    }
+
+    /* Highlight active item */
+    .nav-links a.active {
+        background-color: rgba(255, 153, 0, 0.2);
+        font-weight: bold;
+        color: #ff9900;
+    }
+
+    /* Add smooth transitions */
+    .main-nav .nav-links {
+        transition: all 0.3s ease;
+    }
+
+    /* Add a close button for the menu */
+    .mobile-menu-close {
+        display: none;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1002;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-menu-close:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* When menu is active, show close button */
+    .main-nav.active .mobile-menu-close {
+        display: flex;
+    }
+
+    /* Hide the menu toggle when menu is active */
+    .main-nav.active .mobile-menu-toggle {
+        display: none;
+    }
+
+    /* Add overlay when menu is open */
+    .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .main-nav.active ~ .mobile-menu-overlay {
+        display: block;
+    }
+
+    .mobile-menu-overlay.active {
+        animation: fadeIn 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+}

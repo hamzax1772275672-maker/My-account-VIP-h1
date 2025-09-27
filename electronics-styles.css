@@ -50,30 +50,29 @@
 }
 
 .electronics-section .product-info h4 {
+    margin: 0 0 10px;
     font-size: 18px;
     color: #232f3e;
-    margin-bottom: 10px;
-    min-height: 50px;
+}
+
+.electronics-section .product-price {
+    margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.electronics-section .product-price {
-    margin-bottom: 15px;
-}
-
 .electronics-section .current-price {
     font-size: 18px;
-    font-weight: 600;
-    color: #ff9900;
+    font-weight: bold;
+    color: #232f3e;
 }
 
 .electronics-section .old-price {
-    font-size: 14px;
-    color: #777;
     text-decoration: line-through;
-    margin-right: 8px;
+    color: #777;
+    margin-right: 10px;
+    font-size: 16px;
 }
 
 .electronics-section .product-actions {
@@ -103,23 +102,23 @@
     gap: 20px;
 }
 
-/* Product Rating Styles - Similar to Best Sellers */
+/* Product Rating Styles - Unified across all sections */
 .electronics-section .rating {
-    padding: 0;
-    margin-bottom: 10px;
-    color: #ff9900;
+    margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .electronics-section .rating i {
-    margin-left: 3px;
     font-size: 16px;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .electronics-section .rating span {
-    font-size: 14px;
-    color: #777;
+    font-size: 12px;
+    color: #666;
     margin-right: 5px;
 }

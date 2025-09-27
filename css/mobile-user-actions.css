@@ -1,0 +1,122 @@
+
+/* Mobile user actions dropdown styles */
+@media (max-width: 768px) {
+    /* Hide user actions by default on mobile */
+    .user-actions {
+        position: relative;
+    }
+
+    /* Mobile menu toggle button */
+    .mobile-user-menu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-left: 10px;
+    }
+
+    .mobile-user-menu-toggle:hover {
+        background: linear-gradient(135deg, #e9ecef, #dee2e6);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-user-menu-toggle i {
+        color: #495057;
+        font-size: 20px;
+    }
+
+    /* Hide other user actions on mobile */
+    .language-selector,
+    .account,
+    .points-balance,
+    .cart-icon,
+    .admin-panel {
+        display: none;
+    }
+
+    /* Mobile user actions dropdown */
+    .mobile-user-actions-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 200px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        margin-top: 10px;
+        overflow: hidden;
+        flex-direction: column;
+    }
+
+    /* Show dropdown when active */
+    .user-actions.active .mobile-user-actions-dropdown {
+        display: flex;
+    }
+
+    /* Dropdown items */
+    .mobile-user-actions-dropdown .dropdown-item {
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.2s ease;
+    }
+
+    .mobile-user-actions-dropdown .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    .mobile-user-actions-dropdown .dropdown-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    .mobile-user-actions-dropdown .dropdown-item i {
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #ff9900;
+        width: 20px;
+        text-align: center;
+    }
+
+    /* Points balance special styling */
+    .mobile-user-actions-dropdown .points-balance {
+        display: flex !important;
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        align-items: center;
+        justify-content: flex-start;
+        cursor: default;
+    }
+
+    .mobile-user-actions-dropdown .points-balance i {
+        color: #ff9900;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    /* Cart count badge */
+    .mobile-cart-count {
+        background-color: #ff9900;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        margin-left: 5px;
+    }
+}

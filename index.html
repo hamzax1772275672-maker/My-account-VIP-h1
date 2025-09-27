@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/simple-cart.css">
     <link rel="stylesheet" href="css/notification.css">
     <link rel="stylesheet" href="css/cart-count-fix.css">
+    <link rel="stylesheet" href="css/mobile-navigation.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
@@ -21,6 +22,7 @@
     <script src="js/cart-init.js" defer></script>
     <script src="js/cart-click-fix.js" defer></script>
     <script src="update-account-name-new.js" defer></script>
+    <script src="js/mobile-navigation.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -74,6 +76,12 @@
         </div>
         <nav class="main-nav">
             <div class="container">
+                <button class="mobile-menu-close" id="mobileMenuClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">الرئيسية</a></li>
                     <li><a href="#categories">التصنيفات</a></li>
@@ -84,6 +92,7 @@
                 </ul>
             </div>
         </nav>
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     </header>
 
     <!-- Hero Section -->

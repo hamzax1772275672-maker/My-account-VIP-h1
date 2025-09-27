@@ -157,27 +157,27 @@ function unifyProductsFormat() {
     }
     
     // معالجة خاصة لقسم أزياء الأطفال
-    const kidsFashion = document.querySelector('.fashion-kids');
+    const kidsFashion = document.querySelector('#children-fashion');
     if (kidsFashion) {
         // إضافة CSS مخصص لقسم أزياء الأطفال
         const kidsStyle = document.createElement('style');
         kidsStyle.textContent = `
-            .fashion-kids {
+            #children-fashion .products-grid {
                 display: grid !important;
                 grid-template-columns: repeat(4, 1fr) !important;
                 gap: 20px !important;
                 padding: 20px !important;
                 width: 100% !important;
             }
-            .fashion-kids .product-card {
+            #children-fashion .product-card {
                 width: 100% !important;
                 max-width: none !important;
                 float: none !important;
             }
-            .fashion-kids .row,
-            .fashion-kids .container,
-            .fashion-kids .wrapper,
-            .fashion-kids .products {
+            #children-fashion .row,
+            #children-fashion .container,
+            #children-fashion .wrapper,
+            #children-fashion .products {
                 display: grid !important;
                 grid-template-columns: repeat(4, 1fr) !important;
                 gap: 20px !important;
