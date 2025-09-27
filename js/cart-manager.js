@@ -330,6 +330,10 @@ class CartManager {
 
   // عرض إشعارات للمستخدم
   showNotification(message) {
+    // إزالة أي إشعارات موجودة قبل عرض الإشعار الجديد
+    const existingNotifications = document.querySelectorAll('.cart-notification, .notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
     // إنشاء عنصر الإشعار
     const notification = document.createElement('div');
     notification.className = 'cart-notification';

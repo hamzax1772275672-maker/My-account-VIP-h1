@@ -48,6 +48,8 @@
         flex-direction: column;
         z-index: 1000;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-height: 70vh; /* Limit height to prevent covering too much screen */
+        overflow-y: auto; /* Enable scrolling if content is too long */
     }
 
     /* Show navigation when active */
@@ -55,17 +57,171 @@
         display: flex;
     }
 
+    /* Enhanced mobile navigation items */
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links a {
+        padding: 15px;
+        text-align: right;
+        justify-content: flex-start;
+        position: relative;
+    }
+
+    .nav-links a::after {
+        content: '\f054'; /* Font Awesome chevron-left icon */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.7;
+    }
+
+    /* Highlight active item */
+    .nav-links a.active {
+        background-color: #ff9900;
+        font-weight: bold;
+    }
+
+    /* Add smooth transitions */
+    .main-nav .nav-links {
+        transition: all 0.3s ease;
+        transform-origin: top;
+    }
+
+    /* Add animation when opening menu */
+    .main-nav.active .nav-links {
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Add overlay when menu is open */
+    .main-nav.active::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+    }
+
+    /* Add close button inside the menu */
+    .mobile-menu-close {
+        display: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1002;
+        padding: 5px;
+    }
+
+    .main-nav.active .mobile-menu-close {
+        display: block;
+    }
+
     /* Mobile dropdown improvements */
     .dropdown-menu {
         position: fixed;
-        top: auto;
-        left: 0;
-        right: 0;
-        width: 90%;
-        max-width: 300px;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 85%;
+        max-width: 320px;
         margin: 0 auto;
-        border-radius: 8px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        z-index: 2000 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: all 0.3s ease !important;
+    }
+
+    /* Show dropdown when active */
+    .dropdown.touch-active .dropdown-menu,
+    .account.dropdown:hover .dropdown-menu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    /* Add overlay when dropdown is open */
+    .dropdown.touch-active::before,
+    .account.dropdown:hover::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1999;
+    }
+
+    /* Improve dropdown items for mobile */
+    .dropdown-item {
+        padding: 15px 20px !important;
+        font-size: 16px !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .dropdown-item:last-child {
+        border-bottom: none !important;
+    }
+
+    .dropdown-item i {
+        font-size: 18px !important;
+    }
+
+    /* Make account dropdown more touch-friendly */
+    .account.dropdown {
+        padding: 10px 15px !important;
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+
+    /* Add close button for dropdown */
+    .dropdown-close {
+        display: none;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: none;
+        border: none;
+        color: #6c757d;
+        font-size: 18px;
+        cursor: pointer;
+        z-index: 2001;
+        padding: 5px;
+    }
+
+    .dropdown.touch-active .dropdown-close,
+    .account.dropdown:hover .dropdown-close {
+        display: block;
     }
 
     /* Improved product cards for mobile */

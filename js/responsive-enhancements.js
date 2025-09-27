@@ -29,9 +29,16 @@ function initMobileMenu() {
         mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
         mobileMenuToggle.setAttribute('aria-label', 'Toggle navigation menu');
 
+        // Create close button for the menu
+        const mobileMenuClose = document.createElement('button');
+        mobileMenuClose.className = 'mobile-menu-close';
+        mobileMenuClose.innerHTML = '<i class="fas fa-times"></i>';
+        mobileMenuClose.setAttribute('aria-label', 'Close navigation menu');
+
         const mainNav = document.querySelector('.main-nav');
         if (mainNav) {
             mainNav.insertBefore(mobileMenuToggle, mainNav.firstChild);
+            mainNav.appendChild(mobileMenuClose);
 
             // Toggle menu when button is clicked
             mobileMenuToggle.addEventListener('click', function() {
@@ -41,6 +48,26 @@ function initMobileMenu() {
                     icon.classList.toggle('fa-bars');
                     icon.classList.toggle('fa-times');
                 }
+
+                // Prevent body scroll when menu is open
+                if (mainNav.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close menu when close button is clicked
+            mobileMenuClose.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+
+                // Restore body scroll
+                document.body.style.overflow = '';
             });
 
             // Close menu when clicking outside
@@ -52,7 +79,26 @@ function initMobileMenu() {
                         icon.classList.add('fa-bars');
                         icon.classList.remove('fa-times');
                     }
+
+                    // Restore body scroll
+                    document.body.style.overflow = '';
                 }
+            });
+
+            // Close menu when a link is clicked (for better mobile UX)
+            const navLinks = mainNav.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mainNav.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+
+                    // Restore body scroll
+                    document.body.style.overflow = '';
+                });
             });
 
             // Close menu when window is resized to desktop size
@@ -64,6 +110,9 @@ function initMobileMenu() {
                         icon.classList.add('fa-bars');
                         icon.classList.remove('fa-times');
                     }
+
+                    // Restore body scroll
+                    document.body.style.overflow = '';
                 }
             });
         }
@@ -78,6 +127,25 @@ function initTouchInteractions() {
     dropdowns.forEach(dropdown => {
         let touchStart = false;
 
+        // Create close button for dropdown if it doesn't exist
+        if (!dropdown.querySelector('.dropdown-close')) {
+            const dropdownClose = document.createElement('button');
+            dropdownClose.className = 'dropdown-close';
+            dropdownClose.innerHTML = '<i class="fas fa-times"></i>';
+            dropdownClose.setAttribute('aria-label', 'Close dropdown menu');
+
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            if (dropdownMenu) {
+                dropdownMenu.appendChild(dropdownClose);
+
+                // Close dropdown when close button is clicked
+                dropdownClose.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dropdown.classList.remove('touch-active');
+                });
+            }
+        }
+
         dropdown.addEventListener('touchstart', function() {
             touchStart = true;
         });
@@ -87,7 +155,31 @@ function initTouchInteractions() {
                 e.preventDefault();
                 this.classList.toggle('touch-active');
                 touchStart = false;
+
+                // Prevent body scroll when dropdown is open
+                if (this.classList.contains('touch-active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
             }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!dropdown.contains(event.target) && dropdown.classList.contains('touch-active')) {
+                dropdown.classList.remove('touch-active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close dropdown when a link is clicked
+        const dropdownItems = dropdown.querySelectorAll('.dropdown-item');
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function() {
+                dropdown.classList.remove('touch-active');
+                document.body.style.overflow = '';
+            });
         });
     });
 

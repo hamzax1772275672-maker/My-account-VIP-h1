@@ -1,6 +1,5 @@
-
-/* Electronics specific styles for product images */
-.electronics-section .product-card {
+/* Home & Kitchen specific styles for product images */
+.home-kitchen-section .product-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,12 +13,12 @@
     height: 100%;
 }
 
-.electronics-section .product-card:hover {
+.home-kitchen-section .product-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-.electronics-section .product-img {
+.home-kitchen-section .product-img {
     height: 200px;
     width: 100%;
     overflow: hidden;
@@ -31,56 +30,55 @@
     background-color: #f8f9fa;
 }
 
-.electronics-section .product-img img {
+.home-kitchen-section .product-img img {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
     transition: all 0.3s ease;
 }
 
-.electronics-section .product-card:hover .product-img img {
+.home-kitchen-section .product-card:hover .product-img img {
     transform: scale(1.05);
 }
 
-.electronics-section .product-info {
+.home-kitchen-section .product-info {
     width: 100%;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
-.electronics-section .product-info h4 {
+.home-kitchen-section .product-info h4 {
+    margin: 0 0 10px;
     font-size: 18px;
     color: #232f3e;
-    margin-bottom: 10px;
-    min-height: 50px;
+}
+
+.home-kitchen-section .product-price {
+    margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.electronics-section .product-price {
-    margin-bottom: 15px;
-}
-
-.electronics-section .current-price {
+.home-kitchen-section .current-price {
     font-size: 18px;
-    font-weight: 600;
-    color: #ff9900;
+    font-weight: bold;
+    color: #232f3e;
 }
 
-.electronics-section .old-price {
-    font-size: 14px;
-    color: #777;
+.home-kitchen-section .old-price {
     text-decoration: line-through;
-    margin-right: 8px;
+    color: #777;
+    margin-right: 10px;
+    font-size: 16px;
 }
 
-.electronics-section .product-actions {
+.home-kitchen-section .product-actions {
     margin-top: auto;
 }
 
-.electronics-section .add-to-cart {
+.home-kitchen-section .add-to-cart {
     background-color: #232f3e;
     color: white;
     border: none;
@@ -91,35 +89,19 @@
     transition: all 0.3s ease;
 }
 
-.electronics-section .add-to-cart:hover {
+.home-kitchen-section .add-to-cart:hover {
     background-color: #37475a;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.electronics-section .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
+/* Responsive design for home & kitchen section */
+@media (max-width: 768px) {
+    .home-kitchen-section .product-card {
+        margin-bottom: 15px;
+    }
 
-/* Product Rating Styles - Similar to Best Sellers */
-.electronics-section .rating {
-    padding: 0;
-    margin-bottom: 10px;
-    color: #ff9900;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.electronics-section .rating i {
-    margin-left: 3px;
-    font-size: 16px;
-}
-
-.electronics-section .rating span {
-    font-size: 14px;
-    color: #777;
-    margin-right: 5px;
+    .home-kitchen-section .product-img {
+        height: 180px;
+    }
 }

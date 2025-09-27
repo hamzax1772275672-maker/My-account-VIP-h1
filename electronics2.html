@@ -18,10 +18,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Markazi+Text:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="rating-system.js" defer></script>
     <script src="js/cart-manager.js" defer></script>
     <script src="js/cart-init.js" defer></script>
-    <script src="js/cart-click-fix.js" defer></script>
+    <script src="js/products-unifier.js" defer></script>
     <style>
         /* Custom styles for cart - Copied from index.html */
         .product-overlay {
@@ -253,7 +252,7 @@
                 <div class="electronics-section" id="smartphones">
                     <h3><i class="fas fa-mobile-alt"></i> هواتف ذكية</h3>
                     <div class="products-grid">
-                        <div class="product-card">
+                        <div class="product-card" data-id="iphone-15-pro-max-256" data-name="آيفون 15 برو ماكس 256 جيجا" data-price="5299" data-image="https://www.digitaltrends.com/wp-content/uploads/2023/09/iphone-15-pro-max-review-outside-leaves.jpg?p=1" data-category="هواتف">
                             <div class="product-img">
                                 <img src="https://www.digitaltrends.com/wp-content/uploads/2023/09/iphone-15-pro-max-review-outside-leaves.jpg?p=1" alt="آيفون 15 برو ماكس">
                             </div>
@@ -300,7 +299,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+                        <div class="product-card" data-id="google-pixel-8-pro-256" data-name="جوجل بيكسل 8 برو 256 جيجا" data-price="4799" data-image="https://i.insider.com/65cfbf246fcb546d2d50f812?format=jpeg&width=1200" data-category="هواتف">
                             <div class="product-img">
                                 <img src="https://i.insider.com/65cfbf246fcb546d2d50f812?format=jpeg&width=1200" alt="جوجل بيكسل 8 برو">
                             </div>
@@ -324,7 +323,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+                        <div class="product-card" data-id="xiaomi-14-ultra-512" data-name="شاومي 14 الترا 512 جيجا" data-price="3499" data-image="https://www.digitaltrends.com/wp-content/uploads/2024/03/xiaomi-14-ultra-back-hand.jpg?fit=3000%2C2000&p=1" data-category="هواتف">
                             <div class="product-img">
                                 <img src="https://www.digitaltrends.com/wp-content/uploads/2024/03/xiaomi-14-ultra-back-hand.jpg?fit=3000%2C2000&p=1" alt="شاومي 14 الترا">
                             </div>
@@ -348,7 +347,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+                        <div class="product-card" data-id="oneplus-12-256" data-name="OnePlus 12 256 جيجا" data-price="2999" data-image="https://www.androidauthority.com/wp-content/uploads/2024/02/oneplus-12-camera-on-box.jpg" data-category="هواتف">
                             <div class="product-img">
                                 <img src="https://www.androidauthority.com/wp-content/uploads/2024/02/oneplus-12-camera-on-box.jpg" alt="OnePlus 12">
                             </div>
@@ -564,10 +563,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                         <div class="product-card" data-id="iphone-16-pro-max-512" data-name="iPhone 16 Pro Max 512 جيجا" data-price="5299" data-image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRnG_yvgF1wWV2yw4-GF204e9dJkSph-b38p4iZCOAKeJVosPESJXxuKZYT15I1" data-category="هواتف">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRnG_yvgF1wWV2yw4-GF204e9dJkSph-b38p4iZCOAKeJVosPESJXxuKZYT15I1" alt="iPhone 15 Pro Max" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRnG_yvgF1wWV2yw4-GF204e9dJkSph-b38p4iZCOAKeJVosPESJXxuKZYT15I1" alt="iPhone 15 Pro Max">
                             </div>
                             <div class="product-info">
                                 <h4>iPhone 16 Pro Max 512 جيجا</h4>
@@ -585,7 +583,6 @@
                                 </div>
                                 <div class="product-actions">
                                     <button class="add-to-cart">أضف للسلة</button>
-
                                 </div>
                             </div>
                         </div>
@@ -615,7 +612,7 @@
                         </div>
                         <div class="product-card" data-id="xiaomi-15-ultra-1tb" data-name="Xiaomi 15 Ultra 1 تيرا" data-price="3299" data-image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQtr03xt5wXh0k_ZacZoGzkV7kjxh4HSuT39bEt8gwaCP7VQ9wIuJhyIms2mV42" data-category="هواتف">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQtr03xt5wXh0k_ZacZoGzkV7kjxh4HSuT39bEt8gwaCP7VQ9wIuJhyIms2mV42" alt="Xiaomi 14 Pro" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQtr03xt5wXh0k_ZacZoGzkV7kjxh4HSuT39bEt8gwaCP7VQ9wIuJhyIms2mV42" alt="Xiaomi 14 Pro">
                             </div>
                             <div class="product-info">
                                 <h4>Xiaomi 15 Ultra 1 تيرا</h4>
@@ -637,9 +634,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+                        <div class="product-card" data-id="samsung-galaxy-s24-ultra-1tb" data-name="Samsung Galaxy S24 Ultra 1 تيرا" data-price="4999" data-image="https://media.istockphoto.com/id/1459395537/photo/brand-new-samsung-galaxy-z-fold-4-in-grey-green-color-new-smartphone-with-a-folding-screen.jpg?s=1024x1024&w=is&k=20&c=54XHnLM0BjWPaKyrs23lWV0P1XJgJBAQY4z3ClHo6i4=" data-category="هواتف">
                             <div class="product-img">
-                                <img src="https://media.istockphoto.com/id/1459395537/photo/brand-new-samsung-galaxy-z-fold-4-in-grey-green-color-new-smartphone-with-a-folding-screen.jpg?s=1024x1024&w=is&k=20&c=54XHnLM0BjWPaKyrs23lWV0P1XJgJBAQY4z3ClHo6i4=" alt="Samsung Galaxy S24 Ultra" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://media.istockphoto.com/id/1459395537/photo/brand-new-samsung-galaxy-z-fold-4-in-grey-green-color-new-smartphone-with-a-folding-screen.jpg?s=1024x1024&w=is&k=20&c=54XHnLM0BjWPaKyrs23lWV0P1XJgJBAQY4z3ClHo6i4=" alt="Samsung Galaxy S24 Ultra">
                             </div>
                             <div class="product-info">
                                 <h4>Samsung Galaxy S24 Ultra 1 تيرا</h4>
@@ -661,9 +658,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+                        <div class="product-card" data-id="oppo-find-x6-pro-1tb" data-name="Oppo Find X6 Pro 1 تيرا" data-price="3999" data-image="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSaQfYvTzNU9tzDifXWQbGrD6XEyv0jiCaTsvjWbDG2VnsUB5EH9jUn0aQ0LGgk" data-category="هواتف">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSaQfYvTzNU9tzDifXWQbGrD6XEyv0jiCaTsvjWbDG2VnsUB5EH9jUn0aQ0LGgk" alt="Oppo Find X7 Ultra" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSaQfYvTzNU9tzDifXWQbGrD6XEyv0jiCaTsvjWbDG2VnsUB5EH9jUn0aQ0LGgk" alt="Oppo Find X7 Ultra">
                             </div>
                             <div class="product-info">
                                 <h4>Oppo Find X6 Pro 1 تيرا</h4>
@@ -685,9 +682,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+                        <div class="product-card" data-id="vivo-x100-pro" data-name="Vivo X100 Pro" data-price="3499" data-image="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSLlvA-3_8aE3P99vHV4C18RzPrn4uK9BHycV-Fk1FjiS8Di23X_BTFIYY8PwpU" data-category="هواتف">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSLlvA-3_8aE3P99vHV4C18RzPrn4uK9BHycV-Fk1FjiS8Di23X_BTFIYY8PwpU" alt="Vivo X100 Pro" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSLlvA-3_8aE3P99vHV4C18RzPrn4uK9BHycV-Fk1FjiS8Di23X_BTFIYY8PwpU" alt="Vivo X100 Pro">
                             </div>
                             <div class="product-info">
                                 <h4>Vivo  Pro+ 1 تيرا</h4>
@@ -709,9 +706,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+                        <div class="product-card" data-id="honor-magic-5-pro-1tb" data-name="Honor Magic 5 Pro 1 تيرا" data-price="3299" data-image="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSI7yOex0iz3PwCwsa4QzOidSjcDdYXVl9oXhLtfl2YedfSbWtEHeeNXQIDmi9G" data-category="هواتف">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSI7yOex0iz3PwCwsa4QzOidSjcDdYXVl9oXhLtfl2YedfSbWtEHeeNXQIDmi9G" alt="Honor Magic 6 Pro" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSI7yOex0iz3PwCwsa4QzOidSjcDdYXVl9oXhLtfl2YedfSbWtEHeeNXQIDmi9G" alt="Honor Magic 6 Pro">
                             </div>
                             <div class="product-info">
                                 <h4>Honor Magic 5 Pro 1 تيرا</h4>
@@ -733,9 +730,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+                        <div class="product-card" data-id="asus-rog-phone-6-pro-1tb" data-name="ASUS ROG Phone 6 Pro 1 تيرا" data-price="4199" data-image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSpBNNIHYVTO_y6xJRKd5zoRmkAGz-nGkFHZJar3HYtCNYQcFqIzydlqTUYRgl1" data-category="هواتف">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSpBNNIHYVTO_y6xJRKd5zoRmkAGz-nGkFHZJar3HYtCNYQcFqIzydlqTUYRgl1" alt="ASUS ROG Phone 7" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSpBNNIHYVTO_y6xJRKd5zoRmkAGz-nGkFHZJar3HYtCNYQcFqIzydlqTUYRgl1" alt="ASUS ROG Phone 7">
                             </div>
                             <div class="product-info">
                                 <h4>ASUS ROG Phone 6 Pro 1 تيرا</h4>
@@ -757,9 +754,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+                        <div class="product-card" data-id="sony-xperia-1-iv-512" data-name="Sony Xperia 1 IV 512 جيجا" data-price="4599" data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQesFzABGk0ecR7E9NMiu0L5rIMUAIdjvdVruFo2gyqRkGPlmIE1voRTID-3BsM" data-category="هواتف">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQesFzABGk0ecR7E9NMiu0L5rIMUAIdjvdVruFo2gyqRkGPlmIE1voRTID-3BsM" alt="Sony Xperia 1 V" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQesFzABGk0ecR7E9NMiu0L5rIMUAIdjvdVruFo2gyqRkGPlmIE1voRTID-3BsM" alt="Sony Xperia 1 V">
                             </div>
                             <div class="product-info">
                                 <h4>Sony Xperia 1 IV 512 جيجا</h4>
@@ -781,9 +778,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card">
+                        <div class="product-card" data-id="google-pixel-8-pro-512" data-name="Google Pixel 8 Pro 512 جيجا" data-price="4399" data-image="https://fdn2.gsmarena.com/vv/bigpic/google-pixel-8-pro.jpg" data-category="هواتف">
                             <div class="product-img">
-                                <img src="https://fdn2.gsmarena.com/vv/bigpic/google-pixel-8-pro.jpg" alt="Google Pixel 8 Pro" style="width: 30%; height: auto; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://fdn2.gsmarena.com/vv/bigpic/google-pixel-8-pro.jpg" alt="Google Pixel 8 Pro">
                             </div>
                             <div class="product-info">
                                 <h4>Google Pixel 8 Pro 512 جيجا</h4>
@@ -813,9 +810,9 @@
                     <h3><i class="fas fa-laptop"></i> أجهزة كمبيوتر</h3>
                     <div class="products-grid">
                         <!-- المنتج 1 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="macbook-pro-16-m2" data-name="MacBook Pro 16 M2" data-price="6999" data-image="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp16-spacegray-select-202310?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1697311054290" data-category="كمبيوتر">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQyJgbUDTtMVkb_k83nyj7_vnYQmbw5GcUJbKH5Fk0BvYdg-y3ezqqhskX3LtsN28G8sH_CHBVnokv5joJlfro4JBS4jYYVyeYuRQPH3FaAe0DgNyc" alt="MacBook Pro 16" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp16-spacegray-select-202310?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1697311054290" alt="MacBook Pro 16">
                             </div>
                             <div class="product-info">
                                 <h4>MacBook Pro 16 M2</h4>
@@ -839,9 +836,9 @@
                         </div>
                         
                         <!-- المنتج 2 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="dell-xps-15" data-name="Dell XPS 15" data-price="5999" data-image="https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-15-9530/media-gallery/xps-15-9530-titan-gray-gallery-1.psd?fmt=pjpg&pscan=auto&scl=1&hei=402&wid=596&qlt=100,0&resMode=sharp2&size=596,402" data-category="كمبيوتر">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQkY68-1XIoNyrN1AWiHyp3XaspCeHky1L60F8se97BJqiDCY6ObQLYmO4QJyJKGiwYYMofZcWy-UhC59b0UH7D7J8bGBHGIDTvEyLTN_-3UNJl33M" alt="Dell XPS 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-15-9530/media-gallery/xps-15-9530-titan-gray-gallery-1.psd?fmt=pjpg&pscan=auto&scl=1&hei=402&wid=596&qlt=100,0&resMode=sharp2&size=596,402" alt="Dell XPS 15">
                             </div>
                             <div class="product-info">
                                 <h4>Dell XPS 15</h4>
@@ -865,9 +862,9 @@
                         </div>
                         
                         <!-- المنتج 3 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="hp-spectre-x360" data-name="HP Spectre x360" data-price="4999" data-image="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTGFbZ0sXoug_rc1f3yFIgwkwzPZUeVCWgVycCDnOhSEXbTBjy906WIKPfPEzbyn2x3iPLRNJICZ38jyvO6E4ZL9QXnH5b3wzAEI9szJ44l6h7u50I" data-category="كمبيوتر">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTGFbZ0sXoug_rc1f3yFIgwkwzPZUeVCWgVycCDnOhSEXbTBjy906WIKPfPEzbyn2x3iPLRNJICZ38jyvO6E4ZL9QXnH5b3wzAEI9szJ44l6h7u50I" alt="HP Spectre x360" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTGFbZ0sXoug_rc1f3yFIgwkwzPZUeVCWgVycCDnOhSEXbTBjy906WIKPfPEzbyn2x3iPLRNJICZ38jyvO6E4ZL9QXnH5b3wzAEI9szJ44l6h7u50I" alt="HP Spectre x360">
                             </div>
                             <div class="product-info">
                                 <h4>HP Spectre x360</h4>
@@ -891,9 +888,9 @@
                         </div>
                         
                         <!-- المنتج 4 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="lenovo-thinkpad-x1" data-name="Lenovo ThinkPad X1" data-price="5499" data-image="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcSJ9ifa4OEs05TuFt5AFMScZ1mzcYkBR_L1BcSM3KXB5n5C8hyzfiEWNiRUQeQ4BDaNO4VcDupZX8m7NyVBLDJb9eix77BJ1vX2ema6TxyX9Nh0AE8" data-category="كمبيوتر">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcSJ9ifa4OEs05TuFt5AFMScZ1mzcYkBR_L1BcSM3KXB5n5C8hyzfiEWNiRUQeQ4BDaNO4VcDupZX8m7NyVBLDJb9eix77BJ1vX2ema6TxyX9Nh0AE8" alt="Lenovo ThinkPad X1" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcSJ9ifa4OEs05TuFt5AFMScZ1mzcYkBR_L1BcSM3KXB5n5C8hyzfiEWNiRUQeQ4BDaNO4VcDupZX8m7NyVBLDJb9eix77BJ1vX2ema6TxyX9Nh0AE8" alt="Lenovo ThinkPad X1">
                             </div>
                             <div class="product-info">
                                 <h4>Lenovo ThinkPad X1</h4>
@@ -917,9 +914,9 @@
                         </div>
                         
                         <!-- المنتج 5 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="asus-rog-zephyrus" data-name="ASUS ROG Zephyrus" data-price="6499" data-image="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcS-vSJ5jYCZTPfnrxwpfHw1p_LO_DqaYhb6JB_OdZe9hOjK1_J2zRcSgX1Ju2lW26o5S5gVPa5NxCHfyz0Xn3bJsaWJs_oJwDbFBCWna4HM81A0F-k" data-category="كمبيوتر">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcS-vSJ5jYCZTPfnrxwpfHw1p_LO_DqaYhb6JB_OdZe9hOjK1_J2zRcSgX1Ju2lW26o5S5gVPa5NxCHfyz0Xn3bJsaWJs_oJwDbFBCWna4HM81A0F-k" alt="ASUS ROG Zephyrus" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcS-vSJ5jYCZTPfnrxwpfHw1p_LO_DqaYhb6JB_OdZe9hOjK1_J2zRcSgX1Ju2lW26o5S5gVPa5NxCHfyz0Xn3bJsaWJs_oJwDbFBCWna4HM81A0F-k" alt="ASUS ROG Zephyrus">
                             </div>
                             <div class="product-info">
                                 <h4>ASUS ROG Zephyrus</h4>
@@ -943,9 +940,9 @@
                         </div>
                         
                         <!-- المنتج 6 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="microsoft-surface-laptop" data-name="Microsoft Surface Laptop" data-price="5299" data-image="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQw-gekpfWzvbkMW8lvX8jwYir3BumbZwZaMiLYYE1KRIIloew3k_rwEf1E-FRb7mlqhBhYs1Wa1OBlzhg136Q1Gdrbf_6xifAVyh4LfMrVSQ9u9xs" data-category="كمبيوتر">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQw-gekpfWzvbkMW8lvX8jwYir3BumbZwZaMiLYYE1KRIIloew3k_rwEf1E-FRb7mlqhBhYs1Wa1OBlzhg136Q1Gdrbf_6xifAVyh4LfMrVSQ9u9xs" alt="Microsoft Surface Laptop" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQw-gekpfWzvbkMW8lvX8jwYir3BumbZwZaMiLYYE1KRIIloew3k_rwEf1E-FRb7mlqhBhYs1Wa1OBlzhg136Q1Gdrbf_6xifAVyh4LfMrVSQ9u9xs" alt="Microsoft Surface Laptop">
                             </div>
                             <div class="product-info">
                                 <h4>Microsoft Surface Laptop</h4>
@@ -969,9 +966,9 @@
                         </div>
                         
                         <!-- المنتج 7 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="acer-predator-helios" data-name="Acer Predator Helios" data-price="5799" data-image="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSG-hAeEvDB7pUggfLK3ihljnJlgLme1MDh0JSTwU8j-9Iynz8eHtFpcRheFV6fk-7FO0eRI2EfMaBBD4mmJDtPPLlNB6-Aln1Dl_UODOVpFZHfMhY" data-category="كمبيوتر">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSG-hAeEvDB7pUggfLK3ihljnJlgLme1MDh0JSTwU8j-9Iynz8eHtFpcRheFV6fk-7FO0eRI2EfMaBBD4mmJDtPPLlNB6-Aln1Dl_UODOVpFZHfMhY" alt="Acer Predator Helios" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSG-hAeEvDB7pUggfLK3ihljnJlgLme1MDh0JSTwU8j-9Iynz8eHtFpcRheFV6fk-7FO0eRI2EfMaBBD4mmJDtPPLlNB6-Aln1Dl_UODOVpFZHfMhY" alt="Acer Predator Helios">
                             </div>
                             <div class="product-info">
                                 <h4>Acer Predator Helios</h4>
@@ -995,9 +992,9 @@
                         </div>
                         
                         <!-- المنتج 8 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="msi-gs66-stealth" data-name="MSI GS66 Stealth" data-price="6299" data-image="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTRRqTFhw2zAgQg9ecH0zBdViuT4Ww2E9MVUdXxlUT0bWWIv8NMOqFyoToFNiaxktHHALNp6NSQY5vsYIeDW6TK75TRXjatyvaYduaVk8FSz45NWHQ" data-category="كمبيوتر">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTRRqTFhw2zAgQg9ecH0zBdViuT4Ww2E9MVUdXxlUT0bWWIv8NMOqFyoToFNiaxktHHALNp6NSQY5vsYIeDW6TK75TRXjatyvaYduaVk8FSz45NWHQ" alt="MSI GS66 Stealth" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTRRqTFhw2zAgQg9ecH0zBdViuT4Ww2E9MVUdXxlUT0bWWIv8NMOqFyoToFNiaxktHHALNp6NSQY5vsYIeDW6TK75TRXjatyvaYduaVk8FSz45NWHQ" alt="MSI GS66 Stealth">
                             </div>
                             <div class="product-info">
                                 <h4>MSI GS66 Stealth</h4>
@@ -1021,7 +1018,7 @@
                         </div>
                         
                         <!-- المنتج 9 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="razer-blade-15" data-name="Razer Blade 15" data-price="6799" data-image="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcT-8ZZ2zuAbxkHuacKYDiu0BEDIbsa94MwTDu2ThXyE_R1Ja6XWuLzReiX2u88G7mRJUrgR_P-0kimrM0UV77hT6V4uQ_BlL9F76CNLHjP3aPR0R1M" data-category="كمبيوتر">
                             <div class="product-img">
                                 <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcT-8ZZ2zuAbxkHuacKYDiu0BEDIbsa94MwTDu2ThXyE_R1Ja6XWuLzReiX2u88G7mRJUrgR_P-0kimrM0UV77hT6V4uQ_BlL9F76CNLHjP3aPR0R1M" alt="Razer Blade 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
                             </div>
@@ -1047,7 +1044,7 @@
                         </div>
                         
                         <!-- المنتج 10 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="gigabyte-aero-15" data-name="Gigabyte Aero 15" data-price="6199" data-image="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcT3EFYzVeXnOGyaTrA4H3c2gHRncnZO0p08DJZzkZMI6bd-45CIQE42WRxX1Vbsa36J7uWUFSyeS13XFawNKKRnsZVJ1dA_Us77tvUkbYwIhzwUqx4" data-category="كمبيوتر">
                             <div class="product-img">
                                 <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcT3EFYzVeXnOGyaTrA4H3c2gHRncnZO0p08DJZzkZMI6bd-45CIQE42WRxX1Vbsa36J7uWUFSyeS13XFawNKKRnsZVJ1dA_Us77tvUkbYwIhzwUqx4" alt="Gigabyte Aero 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
                             </div>
@@ -1099,7 +1096,7 @@
                         </div>
                         
                         <!-- المنتج 12 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="huawei-matebook-x-pro" data-name="Huawei MateBook X Pro" data-price="6499" data-image="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRT5ii4jpkd6nvm-sXs3FPgo5wwKuoPrdbMGFJ8kEm1zDG7w9NWtPmXqV5M7Pu-bHqIMOLuKTsby7LccLcdrkvN_UGcAoG2RZ_v_0_N9ROsq6QsOEA" data-category="كمبيوتر">
                             <div class="product-img">
                                 <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRT5ii4jpkd6nvm-sXs3FPgo5wwKuoPrdbMGFJ8kEm1zDG7w9NWtPmXqV5M7Pu-bHqIMOLuKTsby7LccLcdrkvN_UGcAoG2RZ_v_0_N9ROsq6QsOEA" alt="Huawei MateBook X Pro" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
                             </div>
@@ -1151,7 +1148,7 @@
                         </div>
                         
                         <!-- المنتج 14 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="hp-pavilion-15" data-name="HP Pavilion 15" data-price="3999" data-image="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcR-xeJHTXoIg7Lh-zd6pKUXXqc0BoxSEEOTjXQx4MqNwFSaXAgVgFkzUPfPH7bLRL_xUTRYz28c0EJ-enVdWe06qNbsIY4UAkkZQjon4CBUPh7cnwM" data-category="كمبيوتر">
                             <div class="product-img">
                                 <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcR-xeJHTXoIg7Lh-zd6pKUXXqc0BoxSEEOTjXQx4MqNwFSaXAgVgFkzUPfPH7bLRL_xUTRYz28c0EJ-enVdWe06qNbsIY4UAkkZQjon4CBUPh7cnwM" alt="HP Pavilion 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
                             </div>
@@ -1203,7 +1200,7 @@
                         </div>
                         
                         <!-- المنتج 16 -->
-                        <div class="product-card">
+                        <div class="product-card" data-id="asus-vivobook-15" data-name="ASUS VivoBook 15" data-price="3299" data-image="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRSzOTMtRRc_oKlCyd4b4PxtRmdWSWbyeyiqMWDFdqHgLluCBz5uzZBgGqQhh8FC-hWEpE5Dt102ghWyP-FvQTgWQBl3gpR-mQtWie721sBNv018xo" data-category="كمبيوتر">
                             <div class="product-img">
                                 <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRSzOTMtRRc_oKlCyd4b4PxtRmdWSWbyeyiqMWDFdqHgLluCBz5uzZBgGqQhh8FC-hWEpE5Dt102ghWyP-FvQTgWQBl3gpR-mQtWie721sBNv018xo" alt="ASUS VivoBook 15" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
                             </div>
@@ -1342,7 +1339,7 @@
                         <!-- المنتج 1 -->
                         <div class="product-card">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRpF162jPUtu9OVoSmla1cn2JPWhcqUerNRDfRdoDyURsjBm8keqECLO1CDw4HR" alt="سماعة بلوتوث" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRpF162jPUtu9OVoSmla1cn2JPWhcqUerNRDfRdoDyURsjBm8keqECLO1CDw4HR" alt="سماعة بلوتوث">
                             </div>
                             <div class="product-info">
                                 <h4>سماعة بلوتوث لاسلكية</h4>
@@ -1368,7 +1365,7 @@
                         <!-- المنتج 2 -->
                         <div class="product-card">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUShWYOo2wKvLib4kMu0Kc9o-tbp9yNfOfd4f-j5Td2_B8X5QgiVSlP4chvLst" alt="شاحن متنقل" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUShWYOo2wKvLib4kMu0Kc9o-tbp9yNfOfd4f-j5Td2_B8X5QgiVSlP4chvLst" alt="شاحن متنقل">
                             </div>
                             <div class="product-info">
                                 <h4>شاحن متنقل 10000 مللي أمبير</h4>
@@ -1394,7 +1391,7 @@
                         <!-- المنتج 3 -->
                         <div class="product-card">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRlTYg-RJKU1vXxJTn29AZhNyXhwlXJgabkYCDZZjG5p20x2_0WvOzX_lLvzhzG" alt="كابل USB" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRlTYg-RJKU1vXxJTn29AZhNyXhwlXJgabkYCDZZjG5p20x2_0WvOzX_lLvzhzG" alt="كابل USB">
                             </div>
                             <div class="product-info">
                                 <h4>كابل USB Type-C سريع</h4>
@@ -1420,7 +1417,7 @@
                         <!-- المنتج 4 -->
                         <div class="product-card">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ3EBIEXkz_zReba6LdNvNoILVyISJqHB6ZMzgppPJ1ehGB5bD87vIDfH9wIQhu" alt="حامل سيارة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ3EBIEXkz_zReba6LdNvNoILVyISJqHB6ZMzgppPJ1ehGB5bD87vIDfH9wIQhu" alt="حامل سيارة">
                             </div>
                             <div class="product-info">
                                 <h4>حامل سيارة للهاتف</h4>
@@ -1446,7 +1443,7 @@
                         <!-- المنتج 5 -->
                         <div class="product-card">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTdbNekaRgdd70SdzmoECabZl83zUT1E7VQWujKZMFDB1C8viI9Bih1lVvBClnW" alt="سماعة أذن" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTdbNekaRgdd70SdzmoECabZl83zUT1E7VQWujKZMFDB1C8viI9Bih1lVvBClnW" alt="سماعة أذن">
                             </div>
                             <div class="product-info">
                                 <h4>سماعة أذن سلكية</h4>
@@ -1472,7 +1469,7 @@
                         <!-- المنتج 6 -->
                         <div class="product-card">
                             <div class="product-img">
-                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQxbIDv2fNVISLrlpHyiqEGLHpMpBKdpIkotFX14YRhbMmZZIOJvNMMliVf-DCC" alt="واقي شاشة" style="width: 100%; height: 200px; object-fit: cover; margin: 0 auto; display: block;">
+                                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQxbIDv2fNVISLrlpHyiqEGLHpMpBKdpIkotFX14YRhbMmZZIOJvNMMliVf-DCC" alt="واقي شاشة">
                             </div>
                             <div class="product-info">
                                 <h4>واقي شاشة زجاجي</h4>

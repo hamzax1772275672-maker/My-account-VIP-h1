@@ -1,6 +1,5 @@
-
-/* Electronics specific styles for product images */
-.electronics-section .product-card {
+/* Fashion specific styles for product images */
+.fashion-section .product-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,12 +13,12 @@
     height: 100%;
 }
 
-.electronics-section .product-card:hover {
+.fashion-section .product-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-.electronics-section .product-img {
+.fashion-section .product-img {
     height: 200px;
     width: 100%;
     overflow: hidden;
@@ -31,56 +30,55 @@
     background-color: #f8f9fa;
 }
 
-.electronics-section .product-img img {
+.fashion-section .product-img img {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
     transition: all 0.3s ease;
 }
 
-.electronics-section .product-card:hover .product-img img {
+.fashion-section .product-card:hover .product-img img {
     transform: scale(1.05);
 }
 
-.electronics-section .product-info {
+.fashion-section .product-info {
     width: 100%;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
-.electronics-section .product-info h4 {
+.fashion-section .product-info h4 {
+    margin: 0 0 10px;
     font-size: 18px;
     color: #232f3e;
-    margin-bottom: 10px;
-    min-height: 50px;
+}
+
+.fashion-section .product-price {
+    margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.electronics-section .product-price {
-    margin-bottom: 15px;
-}
-
-.electronics-section .current-price {
+.fashion-section .current-price {
     font-size: 18px;
-    font-weight: 600;
-    color: #ff9900;
+    font-weight: bold;
+    color: #232f3e;
 }
 
-.electronics-section .old-price {
-    font-size: 14px;
-    color: #777;
+.fashion-section .old-price {
     text-decoration: line-through;
-    margin-right: 8px;
+    color: #777;
+    margin-right: 10px;
+    font-size: 16px;
 }
 
-.electronics-section .product-actions {
+.fashion-section .product-actions {
     margin-top: auto;
 }
 
-.electronics-section .add-to-cart {
+.fashion-section .add-to-cart {
     background-color: #232f3e;
     color: white;
     border: none;
@@ -91,35 +89,19 @@
     transition: all 0.3s ease;
 }
 
-.electronics-section .add-to-cart:hover {
+.fashion-section .add-to-cart:hover {
     background-color: #37475a;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.electronics-section .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
+/* Responsive design for fashion section */
+@media (max-width: 768px) {
+    .fashion-section .product-card {
+        margin-bottom: 15px;
+    }
 
-/* Product Rating Styles - Similar to Best Sellers */
-.electronics-section .rating {
-    padding: 0;
-    margin-bottom: 10px;
-    color: #ff9900;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.electronics-section .rating i {
-    margin-left: 3px;
-    font-size: 16px;
-}
-
-.electronics-section .rating span {
-    font-size: 14px;
-    color: #777;
-    margin-right: 5px;
+    .fashion-section .product-img {
+        height: 180px;
+    }
 }
