@@ -52,7 +52,14 @@ class CartManager {
     // تحديث واجهة المستخدم فوراً
     this.updateCartUI();
     
-    this.showNotification(`تمت إضافة ${product.name} للسلة`);
+    // تحقق من حجم الشاشة قبل عرض الإشعار
+    if (window.innerWidth <= 768) {
+      // على الشاشات الصغيرة، عرض إشعار صغير في الأعلى
+      this.showNotification(`تمت إضافة ${product.name} للسلة`);
+    } else {
+      // على الشاشات الكبيرة، الإشعار الحالي
+      this.showNotification(`تمت إضافة ${product.name} للسلة`);
+    }
   }
 
   // تحديث كمية منتج

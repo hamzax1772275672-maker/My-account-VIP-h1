@@ -3,15 +3,19 @@
 @media (max-width: 768px) {
     /* تحسينات لشبكة المنتجات */
     .products-grid {
-        grid-template-columns: 1fr; /* عرض عمود واحد فقط */
+        display: grid;
+        grid-template-columns: repeat(1, minmax(200px, 1fr)); /* عرض عمود واحد فقط */
         gap: 15px;
+        width: 100%;
     }
 
     /* تحسينات لبطاقات المنتج */
     .product-card {
-        margin-bottom: 15px;
+        display: flex;
         flex-direction: column;
         text-align: center;
+        margin-bottom: 15px;
+        padding: 10px;
     }
 
     .product-img {
