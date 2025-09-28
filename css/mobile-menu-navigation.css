@@ -1,6 +1,53 @@
 
 /* تحسينات خاصة لتنسيق قائمة التنقل على شاشات الهواتف */
+
+/* تعريف الرسوم المتحركة */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
 @media (max-width: 768px) {
+    /* تعريف القائمة المنسدلة على الشاشات الصغيرة */
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        color: #232f3e;
+    }
+    
+    .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    
+    .mobile-menu-overlay.active {
+        display: block;
+    }
+    
     /* إخفاء القائمة المنسدلة على الشاشات الكبيرة */
     @media (min-width: 769px) {
         .mobile-menu-toggle,
@@ -199,6 +246,12 @@
     .main-nav.active .mobile-menu-toggle i {
         content: "\f00d"; /* Font Awesome times icon */
     }
+    
+    /* إضافة تأثير خروج للقائمة */
+    .main-nav:not(.active) .nav-links {
+        transform: translateX(100%);
+        animation: slideOut 0.3s ease forwards;
+    }
 
     /* تحسينات للروابط في القائمة */
     .nav-links {
@@ -215,19 +268,41 @@
         overflow-y: auto;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         right: 0;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .nav-links.active {
+        display: flex;
         transform: translateX(0);
     }
 
     /* إظهار القائمة عند الفتح */
     .main-nav.active .nav-links {
         display: flex;
-        animation: slideDown 0.3s ease forwards;
+        transform: translateX(0);
+        animation: slideIn 0.3s ease forwards;
     }
 
     /* تأثيرات للروابط */
     .nav-links li {
         width: 100%;
+        position: relative;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0;
+        margin: 0;
+    }
+    
+    .nav-links li.has-submenu::after {
+        content: "\f078";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #ff9900;
+        font-size: 12px;
     }
 
     .nav-links li:last-child {
@@ -235,18 +310,22 @@
     }
 
     .nav-links a {
+        display: flex;
+        align-items: center;
         padding: 18px 25px;
         text-align: right;
-        justify-content: flex-start;
+        justify-content: space-between;
         position: relative;
         color: #fff;
         text-decoration: none;
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        transition: all 0.3s ease;
-        min-height: 60px; /* زيادة ارتفاع الروابط لسهولة اللمس */
+        font-size: 16px;
+        transition: background-color 0.3s;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .nav-links a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
     .nav-links a:hover {
@@ -262,7 +341,7 @@
 
     /* إضافة أيقونات للروابط فقط إذا لم تكن موجودة */
     .nav-links a:not(:has(i))::before {
-        content: '054'; /* Font Awesome chevron-left icon */
+        content: '\f054'; /* Font Awesome chevron-left icon */
         font-family: 'Font Awesome 6 Free';
         font-weight: 900;
         position: absolute;
@@ -287,6 +366,23 @@
     .nav-links a:active {
         background-color: rgba(255, 153, 0, 0.2);
         transform: scale(0.98);
+    }
+    
+    /* إظهار القوائم الفرعية عند النقر */
+    .nav-links li > a:active::after {
+        content: "\f077";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #ff9900;
+        font-size: 12px;
+    }
+    
+    .nav-links li.active > a:active::after {
+        content: "\f078";
     }
 
     /* تحسينات للطبقة التغطية */

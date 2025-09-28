@@ -41,6 +41,12 @@
     /* تحديث الأقسام */
     section {
         padding: 40px 0;
+        overflow: hidden;
+    }
+    
+    section.products {
+        padding: 30px 0;
+        background-color: #f8f9fa;
     }
 
     /* تحسينات للبطاقات */
