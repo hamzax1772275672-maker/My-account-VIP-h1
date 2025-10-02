@@ -1,0 +1,19 @@
+/* تنسيقات أيقونات الفئات */
+.category-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.category-icon i {
+    font-size: 48px;
+    color: #4a90e2;
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .category-icon i {
+    color: #ff9800;
+    transform: scale(1.1);
+}

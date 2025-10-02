@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المشرف - amazon.vip</title>
+    <link rel="stylesheet" href="css/admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- الشريط الجانبي -->
+    <div class="sidebar">
+        <div class="logo">
+            <h2>amazon.vip</h2>
+            <p>لوحة التحكم</p>
+        </div>
+        <ul class="nav-menu">
+            <li class="active">
+                <a href="dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>الرئيسية</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-users"></i>
+                    <span>إدارة المستخدمين</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="products-link">
+                    <i class="fas fa-box"></i>
+                    <span>إدارة المنتجات</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>الطلبات</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-tags"></i>
+                    <span>الفئات</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-percentage"></i>
+                    <span>العروض</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>التقارير</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-wallet"></i>
+                    <span>إدارة الرصيد</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    <span>الإعدادات</span>
+                </a>
+            </li>
+        </ul>
+        <div class="logout">
+            <a href="#">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>تسجيل الخروج</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content">
+        <!-- شريط الأدوات العلوي -->
+        <div class="top-bar">
+            <div class="toggle-sidebar">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="search-bar">
+                <form action="#">
+                    <input type="text" placeholder="بحث...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="user-info">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </div>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/40" alt="المشرف">
+                    <div class="user-details">
+                        <h4>اسم المشرف</h4>
+                        <span>مدير النظام</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- بطاقات الإحصائيات -->
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card-info">
+                    <h3>0</h3>
+                    <p>المستخدمون</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="card-info">
+                    <h3>0</h3>
+                    <p>المنتجات</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="card-info">
+                    <h3>0</h3>
+                    <p>الطلبات الجديدة</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="card-info">
+                    <h3>$0</h3>
+                    <p>إجمالي المبيعات</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم إدارة المستخدمين -->
+        <div class="content-section">
+            <div class="section-header">
+                <h2>إدارة المستخدمين</h2>
+                <button class="btn">إضافة مستخدم جديد</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>المعرف</th>
+                            <th>اسم المستخدم</th>
+                            <th>البريد الإلكتروني</th>
+                            <th>تاريخ التسجيل</th>
+                            <th>الحالة</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="empty-table">
+                            <td colspan="6">لا توجد بيانات متاحة</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- قسم إدارة المنتجات -->
+        <div class="content-section" id="products-section" style="display: none;">
+            <div class="section-header">
+                <h2>إدارة المنتجات</h2>
+                <button class="btn" id="add-product-btn">إضافة منتج جديد</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>المعرف</th>
+                            <th>اسم المنتج</th>
+                            <th>الصورة</th>
+                            <th>السعر</th>
+                            <th>التقييم</th>
+                            <th>الحالة</th>
+                            <th>مميز</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#1</td>
+                            <td>هاتف ذكي جديد</td>
+                            <td><img src="images/product1.jpg" alt="هاتف ذكي" width="50"></td>
+                            <td>$299.99</td>
+                            <td>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </td>
+                            <td><span class="status active">نشط</span></td>
+                            <td><span class="featured yes">نعم</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-product-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-product-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#2</td>
+                            <td>لابتوب احترافي</td>
+                            <td><img src="images/product2.jpg" alt="لابتوب" width="50"></td>
+                            <td>$899.99</td>
+                            <td>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </td>
+                            <td><span class="status active">نشط</span></td>
+                            <td><span class="featured yes">نعم</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-product-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-product-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#3</td>
+                            <td>سماعات لاسلكية</td>
+                            <td><img src="images/product3.jpg" alt="سماعات" width="50"></td>
+                            <td>$149.99</td>
+                            <td>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </td>
+                            <td><span class="status active">نشط</span></td>
+                            <td><span class="featured yes">نعم</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-product-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-product-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#4</td>
+                            <td>كاميرا رقمية</td>
+                            <td><img src="images/product4.jpg" alt="كاميرا" width="50"></td>
+                            <td>$499.99</td>
+                            <td>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </td>
+                            <td><span class="status active">نشط</span></td>
+                            <td><span class="featured yes">نعم</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-product-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-product-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#5</td>
+                            <td>ساعة ذكية</td>
+                            <td><img src="images/product5.jpg" alt="ساعة" width="50"></td>
+                            <td>$199.99</td>
+                            <td>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </td>
+                            <td><span class="status active">نشط</span></td>
+                            <td><span class="featured yes">نعم</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-product-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-product-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#6</td>
+                            <td>شاحن محمول</td>
+                            <td><img src="images/product6.jpg" alt="شاحن" width="50"></td>
+                            <td>$39.99</td>
+                            <td>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </td>
+                            <td><span class="status active">نشط</span></td>
+                            <td><span class="featured yes">نعم</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-product-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-product-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#7</td>
+                            <td>لوحة مفاتيح لاسلكية</td>
+                            <td><img src="images/product7.jpg" alt="لوحة مفاتيح" width="50"></td>
+                            <td>$59.99</td>
+                            <td>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </td>
+                            <td><span class="status active">نشط</span></td>
+                            <td><span class="featured yes">نعم</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-product-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-product-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#8</td>
+                            <td>فأرة لاسلكية</td>
+                            <td><img src="images/product8.jpg" alt="فأرة" width="50"></td>
+                            <td>$29.99</td>
+                            <td>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </td>
+                            <td><span class="status active">نشط</span></td>
+                            <td><span class="featured yes">نعم</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-product-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-product-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#9</td>
+                            <td>شاشة كمبيوتر</td>
+                            <td><img src="images/product9.jpg" alt="شاشة" width="50"></td>
+                            <td>$249.99</td>
+                            <td>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </td>
+                            <td><span class="status active">نشط</span></td>
+                            <td><span class="featured yes">نعم</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-product-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-product-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#10</td>
+                            <td>طابعة ليزر</td>
+                            <td><img src="images/product10.jpg" alt="طابعة" width="50"></td>
+                            <td>$179.99</td>
+                            <td>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </td>
+                            <td><span class="status active">نشط</span></td>
+                            <td><span class="featured yes">نعم</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="edit-product-btn"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-product-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- نموذج إضافة/تعديل المستخدم -->
+        <div class="modal" id="user-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>إضافة مستخدم جديد</h3>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="user-form">
+                        <div class="form-group">
+                            <label for="user-name">الاسم الكامل</label>
+                            <input type="text" id="user-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-email">البريد الإلكتروني</label>
+                            <input type="email" id="user-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-password">كلمة المرور</label>
+                            <input type="password" id="user-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-role">الدور</label>
+                            <select id="user-role">
+                                <option value="customer">عميل</option>
+                                <option value="admin">مشرف</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-status">الحالة</label>
+                            <select id="user-status">
+                                <option value="active">نشط</option>
+                                <option value="inactive">غير نشط</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn">حفظ</button>
+                            <button type="button" class="btn btn-secondary cancel-btn">إلغاء</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- نموذج إضافة/تعديل المنتج -->
+        <div class="modal" id="product-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>إضافة منتج جديد</h3>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="product-form">
+                        <div class="form-group">
+                            <label for="product-name">اسم المنتج</label>
+                            <input type="text" id="product-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-price">السعر ($)</label>
+                            <input type="number" id="product-price" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-image">رابط الصورة</label>
+                            <input type="text" id="product-image" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-rating">التقييم (1-5)</label>
+                            <select id="product-rating">
+                                <option value="1">1 نجمة</option>
+                                <option value="2">نجمتان</option>
+                                <option value="3">3 نجوم</option>
+                                <option value="4">4 نجوم</option>
+                                <option value="5">5 نجوم</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-status">الحالة</label>
+                            <select id="product-status">
+                                <option value="active">نشط</option>
+                                <option value="inactive">غير نشط</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-featured">منتج مميز</label>
+                            <select id="product-featured">
+                                <option value="no">لا</option>
+                                <option value="yes">نعم</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn">حفظ</button>
+                            <button type="button" class="btn btn-secondary cancel-btn">إلغاء</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- تذييل الصفحة -->
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2023 متجر اليمن. جميع الحقوق محفوظة.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/admin-script.js"></script>
+</body>
+</html>
